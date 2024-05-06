@@ -1,4 +1,4 @@
-import { Button, Layout, Menu, theme } from 'antd'
+import { Avatar, Button, Col, Dropdown, Layout, Menu, Row, theme } from 'antd'
 import {
   AppstoreAddOutlined,
   AreaChartOutlined,
@@ -8,6 +8,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ShopOutlined,
+  SmileOutlined,
   SnippetsOutlined,
   TeamOutlined,
 } from '@ant-design/icons'
@@ -25,6 +26,24 @@ const AdminLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
+
+  const items = [
+    {
+      key: '1',
+      type: 'group',
+      label: 'Group title',
+      children: [
+        {
+          key: '1-1',
+          label: '1st menu item',
+        },
+        {
+          key: '1-2',
+          label: '2nd menu item',
+        },
+      ],
+    },
+  ]
 
   return (
     <Layout
@@ -115,16 +134,32 @@ const AdminLayout = () => {
             background: colorBgContainer,
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
+          <Row
+            justify="space-between"
+            align="middle"
+            style={{ padding: '0 24px' }}
+          >
+            <Col>
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+              />
+            </Col>
+            <Col>
+              <Dropdown
+                menu={{
+                  items,
+                }}
+                placement="bottomRight"
+                arrow
+              >
+                <a onClick={e => e.preventDefault()}>
+                  <Avatar src="url_to_your_profile_image" />
+                </a>
+              </Dropdown>
+            </Col>
+          </Row>
         </Header>
         <Content
           style={{
