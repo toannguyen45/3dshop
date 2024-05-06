@@ -1,0 +1,15 @@
+{
+  "side_menu": {
+    "product_management_label": "Sản phẩm",
+    "category_management_label": "Danh mục",
+    "order_management_label": "Đơn hàng",
+    "dashboard_label": "Thống kê",
+    "my_account": "Tài khoản",
+    "logout": "Đăng xuất",
+    "blog_management_label": "Blog",
+    "customer_management_label": "Khách hàng",
+    "brand_management_label": "Thương hiệu",
+    "catalog_management_label": "Mục lục",
+    "blog_category_management_label": "Danh mục Blog"
+  }
+}

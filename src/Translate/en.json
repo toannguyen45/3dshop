@@ -1,0 +1,15 @@
+{
+  "side_menu": {
+    "product_management_label": "Products",
+    "category_management_label": "Categories",
+    "order_management_label": "Orders",
+    "dashboard_label": "Dashboard",
+    "my_account": "My Account",
+    "logout": "Logout",
+    "blog_management_label": "Blogs",
+    "customer_management_label": "Users",
+    "brand_management_label": "Brands",
+    "catalog_management_label": "Catalogs",
+    "blog_category_management_label": "Blog Categories"
+  }
+}
