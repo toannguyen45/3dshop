@@ -14,6 +14,8 @@ import CategoriesAdminCreate from '@pages/Admin/Categories/Create'
 import CategoriesAdminEdit from '@pages/Admin/Categories/Edit'
 import CategoriesAdminDetail from '@pages/Admin/Categories/Detail'
 
+import BlogCategoriesAdminCreate from '@pages/Admin/BlogCategories/Create'
+
 import AdminNotFoundPage from '@pages/Admin/NotFound/NotFound'
 
 const router = createBrowserRouter([
@@ -86,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: 'categories/detail/:id',
         element: <CategoriesAdminDetail />,
+      },
+      {
+        path: 'blog-categories/create',
+        element: <BlogCategoriesAdminCreate />,
       },
     ],
   },
