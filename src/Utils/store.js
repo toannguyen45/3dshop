@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import bCategoryReducer from '../features/BlogCategory/blogCategorySlice'
+import bCategoryReducer from '../Features/BlogCategory/BlogCategorySlice'
 
 export const store = configureStore({
   reducer: {

@@ -23,7 +23,8 @@ module.exports = {
           ['@routes', './src/Routes'],
           ['@hooks', './src/Hooks'],
           ['@redux', './src/Redux'],
-          ["@translate': '/src/Translate"],
+          ["@translate': './src/Translate"],
+          ['@features', './src/Features'],
           // Thêm các alias khác ở đây
         ],
         extensions: ['.js', '.jsx', '.json'],

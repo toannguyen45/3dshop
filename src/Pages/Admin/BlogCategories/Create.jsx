@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import {
   createNewblogCat,
   resetState,
-} from '../../../features/BlogCategory/blogCategorySlice'
-import { Button, Form, Input } from 'antd'
+} from '@features/BlogCategory/BlogCategorySlice'
+import { Button, Form, Input, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
+import BreadcrumbCus from '@components/Admin/Breadcrumb-cus'
 
 const Create = () => {
   const { t } = useTranslation('translation')
@@ -37,13 +38,25 @@ const Create = () => {
       }, 300)
     },
   })
+
+  const items = [
+    {
+      href: '/admin/blog-categories',
+      title: 'Blog Category',
+    },
+    {
+      title: 'Create',
+    },
+  ]
+
   return (
-    <div>
+    <Space direction="vertical" size="large" style={{ display: 'flex' }}>
+      <BreadcrumbCus items={items} />
       <h3 className="mb-4  title">Add Blog Category</h3>
       <div>
-        <Form onFinish={formik.handleSubmit}>
+        <Form onFinish={formik.handleSubmit} layout="vertical">
           <Form.Item
-            label={t('blogCategory.title')}
+            label={t('blog_cate.title')}
             name="title"
             required
             validateStatus={
@@ -67,7 +80,7 @@ const Create = () => {
           </Button>
         </Form>
       </div>
-    </div>
+    </Space>
   )
 }
 

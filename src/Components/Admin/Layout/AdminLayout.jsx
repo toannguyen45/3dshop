@@ -8,7 +8,6 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ShopOutlined,
-  SmileOutlined,
   SnippetsOutlined,
   TeamOutlined,
 } from '@ant-design/icons'

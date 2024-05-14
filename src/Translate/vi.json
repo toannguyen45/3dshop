@@ -11,5 +11,8 @@
     "brand_management_label": "Thương hiệu",
     "catalog_management_label": "Mục lục",
     "blog_category_management_label": "Danh mục Blog"
+  },
+  "blog_cate": {
+    "title": "Tiêu đề"
   }
 }

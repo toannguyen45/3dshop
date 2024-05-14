@@ -11,5 +11,8 @@
     "brand_management_label": "Brands",
     "catalog_management_label": "Catalogs",
     "blog_category_management_label": "Blog Categories"
+  },
+  "blog_cate": {
+    "title": "Title"
   }
 }

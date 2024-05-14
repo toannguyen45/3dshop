@@ -15,6 +15,7 @@ export default defineConfig({
       '@hooks': '/src/Hooks',
       '@redux': '/src/Redux',
       '@translate': '/src/Translate',
+      '@features': '/src/Features',
       // Thêm các alias khác ở đây
     },
   },
