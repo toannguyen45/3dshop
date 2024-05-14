@@ -1,7 +1,7 @@
 import { Button, Flex, Space, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import qs from 'qs'
-import BreadcrumbCus from '@components/Admin/Breadcrumb-cus'
+import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useNavigate } from 'react-router-dom'
 
 const List = () => {
@@ -93,7 +93,7 @@ const List = () => {
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
-      <BreadcrumbCus items={items} />
+      <BreadCrumbCus items={items} />
       <h3 className="mb-4  title">Blog Category</h3>
       <Flex justify="space-between">
         <Button

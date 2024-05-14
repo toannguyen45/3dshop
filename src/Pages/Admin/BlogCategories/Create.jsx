@@ -9,7 +9,7 @@ import {
 } from '@features/BlogCategory/BlogCategorySlice'
 import { Button, Form, Input, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
-import BreadcrumbCus from '@components/Admin/Breadcrumb-cus'
+import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 
 const Create = () => {
   const { t } = useTranslation('translation')
@@ -51,7 +51,7 @@ const Create = () => {
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
-      <BreadcrumbCus items={items} />
+      <BreadCrumbCus items={items} />
       <h3 className="mb-4  title">Add Blog Category</h3>
       <div>
         <Form onFinish={formik.handleSubmit} layout="vertical">

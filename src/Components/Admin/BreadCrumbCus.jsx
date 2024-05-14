@@ -1,7 +1,7 @@
 import { HomeOutlined } from '@ant-design/icons'
 import { Breadcrumb } from 'antd'
 
-const BreadcrumbCus = ({ items }) => {
+const BreadCrumbCus = ({ items }) => {
   return (
     <Breadcrumb
       items={[
@@ -15,4 +15,4 @@ const BreadcrumbCus = ({ items }) => {
   )
 }
 
-export default BreadcrumbCus
+export default BreadCrumbCus

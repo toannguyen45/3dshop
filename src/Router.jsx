@@ -2,8 +2,6 @@ import { createBrowserRouter } from 'react-router-dom'
 import AdminLayout from './Components/Admin/Layout/AdminLayout'
 import AdminDashboard from './Pages/Admin/Dashboard/AdminDashboard'
 
-import React from 'react'
-
 import ProductsAdmin from '@pages/Admin/Products/List'
 import ProductsAdminCreate from '@pages/Admin/Products/Create'
 import ProductsAdminEdit from '@pages/Admin/Products/Edit'
@@ -16,6 +14,9 @@ import CategoriesAdminDetail from '@pages/Admin/Categories/Detail'
 
 import BlogCategoriesAdminList from '@pages/Admin/BlogCategories/List'
 import BlogCategoriesAdminCreate from '@pages/Admin/BlogCategories/Create'
+
+import BlogsAdminList from '@pages/Admin/Blogs/List'
+import BlogsAdminCreate from '@pages/Admin/Blogs/Create'
 
 import AdminNotFoundPage from '@pages/Admin/NotFound/NotFound'
 
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
       {
         path: 'blog-categories/create',
         element: <BlogCategoriesAdminCreate />,
+      },
+      {
+        path: 'blogs',
+        element: <BlogsAdminList />,
+      },
+      {
+        path: 'blogs/create',
+        element: <BlogsAdminCreate />,
       },
     ],
   },
