@@ -68,22 +68,23 @@ const Create = () => {
               theme="snow"
               className="mt-3"
               name="description"
-              //   formats={[
-              //     'header',
-              //     'bold',
-              //     'italic',
-              //     'underline',
-              //     'strike',
-              //     'blockquote',
-              //     'list',
-              //     'bullet',
-              //     'indent',
-              //     'link',
-              //     'image',
-              //   ]}
-              //   modules={'toolbar'}
-              // onChange={formik.handleChange('description')}
-              // value={formik.values.description}
+              modules={{
+                toolbar: [
+                  [{ font: [] }],
+                  [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+                  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+                  [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+                  [{ header: '1' }, { header: '2' }], // custom button values
+                  ['blockquote', 'code-block'], // blocks
+                  [{ list: 'ordered' }, { list: 'bullet' }],
+                  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+                  [{ direction: 'rtl' }], // text direction
+                  [{ align: [] }],
+                  ['link', 'image', 'video'],
+                  ['clean'], // remove formatting button
+                ],
+              }}
             />
             <div className="error">
               {/* {formik.touched.description && formik.errors.description} */}

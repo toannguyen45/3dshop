@@ -20,33 +20,13 @@ import BlogsAdminCreate from '@pages/Admin/Blogs/Create'
 
 import AdminNotFoundPage from '@pages/Admin/NotFound/NotFound'
 
+import AdminLoginPage from '@pages/Admin/Auth/Login'
+
 const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: <ClientLayout />,
-  //     children: [
-  //       {
-  //         path: "",
-  //         element: <ShopPage />,
-  //       },
-  //       {
-  //         path: "*",
-  //         element: <NotFoundPage />,
-  //       },
-  //       {
-  //         path: "mens",
-  //         element: <CategoryPage />,
-  //       },
-  //       {
-  //         path: "login",
-  //         element: <LoginSignup />,
-  //       },
-  //       {
-  //         path: "cart",
-  //         element: <CartPage />,
-  //       },
-  //     ],
-  //   },
+  {
+    path: 'admin/login',
+    element: <AdminLoginPage />,
+  },
   {
     path: 'admin',
     element: <AdminLayout />,

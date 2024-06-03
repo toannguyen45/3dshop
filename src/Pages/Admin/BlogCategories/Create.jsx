@@ -69,7 +69,7 @@ const Create = () => {
             }
           >
             <Input
-              name="name"
+              name="title"
               value={formik.values.title}
               onChange={formik.handleChange('title')}
               onBlur={formik.handleBlur('title')}

@@ -107,7 +107,7 @@ const AdminLayout = () => {
               label: t('side_menu.customer_management_label'),
             },
             {
-              key: '/admin/blogs',
+              key: '/admin/blogs-management',
               icon: <FormOutlined />,
               label: t('side_menu.blog_management_label'),
               children: [
