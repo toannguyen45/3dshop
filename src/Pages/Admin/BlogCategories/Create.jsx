@@ -3,13 +3,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import {
-  createNewblogCat,
-  resetState,
-} from '@features/BlogCategory/BlogCategorySlice'
 import { Button, Form, Input, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
+import { createNewblogCat, resetState } from '../../../Features/BlogCategory/blogCategorySlice'
 
 const Create = () => {
   const { t } = useTranslation('translation')
