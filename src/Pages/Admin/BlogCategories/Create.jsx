@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
-import { createNewblogCat, resetState } from '../../../Features/BlogCategory/blogCategorySlice'
+import { createNewblogCat, resetState } from '../../../Features/BlogCategory/BlogCategorySlice'
 
 const Create = () => {
   const { t } = useTranslation('translation')

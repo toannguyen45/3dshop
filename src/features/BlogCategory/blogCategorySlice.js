@@ -1,10 +1,11 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import blogCategoryService from './blogCategoryService'
+import BlogCategoryService from './BlogCategoryService'
+
 export const createNewblogCat = createAsyncThunk(
   'blogCategory/create-category',
   async (catData, thunkAPI) => {
     try {
-      return await blogCategoryService.createBlogCategory(catData)
+      return await BlogCategoryService.createBlogCategory(catData)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }

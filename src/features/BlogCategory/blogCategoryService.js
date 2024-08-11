@@ -7,8 +7,8 @@ const createBlogCategory = async data => {
   return response.data
 }
 
-const blogCategoryService = {
+const BlogCategoryService = {
   createBlogCategory,
 }
 
-export default blogCategoryService
+export default BlogCategoryService
