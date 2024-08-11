@@ -5,11 +5,14 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
+import { login } from '../../../Features/Auth/AuthSlice'
 
 const Login = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
   let schema = yup.object().shape({
     email: yup
@@ -27,13 +30,12 @@ const Login = () => {
     },
     validationSchema: schema,
     onSubmit: values => {
-      //   dispatch(login(values))
+        dispatch(login(values))
     },
   })
 
-  //   const authState = useSelector(state => state)
 
-  //   const { user, isError, isSuccess, isLoading, message } = authState.auth
+
 
   //   useEffect(() => {
   //     if (isSuccess) {
