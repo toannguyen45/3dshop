@@ -5,6 +5,7 @@ import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useNavigate } from 'react-router-dom'
 import { getBlogCategories } from '../../../Features/BlogCategory/BlogCategorySlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { formatDateTimeFull } from '../../../Utils/formatDate'
 
 const List = () => {
   const navigate = useNavigate()
@@ -78,11 +79,13 @@ const List = () => {
       title: 'Created At',
       dataIndex: 'created_at',
       sorter: true,
+      render: text => formatDateTimeFull(text),
     },
     {
       title: 'Updated At',
       dataIndex: 'updated_at',
       sorter: true,
+      render: text => formatDateTimeFull(text),
     },
   ]
 
