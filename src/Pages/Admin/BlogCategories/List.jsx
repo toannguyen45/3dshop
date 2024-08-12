@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import qs from 'qs'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useNavigate } from 'react-router-dom'
-import { getBlogCategories } from '../../../Features/BlogCategory/blogCategorySlice'
+import { getBlogCategories } from '../../../Features/BlogCategory/BlogCategorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatDateTimeFull } from '../../../Utils/formatDate'
 
