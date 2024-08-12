@@ -3,9 +3,57 @@ import React, { useEffect, useState } from 'react'
 import qs from 'qs'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useNavigate } from 'react-router-dom'
+import { getBlogCategories } from '../../../Features/BlogCategory/BlogCategorySlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const List = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { blogCategories, isLoading } = useSelector(state => state.blogCategory)
+
+  const [tableParams, setTableParams] = useState({
+    pagination: {
+      current: 1,
+      pageSize: 10,
+    },
+  })
+
+  const fetchData = () => {
+    dispatch(getBlogCategories(tableParams))
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [
+    tableParams.pagination?.current,
+    tableParams.pagination?.pageSize,
+    tableParams?.sortOrder,
+    tableParams?.sortField,
+    JSON.stringify(tableParams.filters),
+  ])
+
+  useEffect(() => {
+    if (blogCategories?.data) {
+      setTableParams(prev => ({
+        ...prev,
+        pagination: {
+          ...prev.pagination,
+          total: blogCategories.data.total,
+          current: blogCategories.data.current_page,
+        },
+      }))
+    }
+  }, [blogCategories])
+
+  const handleTableChange = (pagination, filters, sorter) => {
+    setTableParams({
+      pagination,
+      filters,
+      sortOrder: Array.isArray(sorter) ? undefined : sorter.order,
+      sortField: Array.isArray(sorter) ? undefined : sorter.field,
+    })
+  }
 
   const items = [
     {
@@ -15,81 +63,28 @@ const List = () => {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: 'ID',
+      dataIndex: 'id',
       sorter: true,
-      render: name => `${name.first} ${name.last}`,
       width: '20%',
     },
     {
-      title: 'Gender',
-      dataIndex: 'gender',
-      filters: [
-        {
-          text: 'Male',
-          value: 'male',
-        },
-        {
-          text: 'Female',
-          value: 'female',
-        },
-      ],
+      title: 'Title',
+      dataIndex: 'title',
+      sorter: true,
       width: '20%',
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
+      title: 'Created At',
+      dataIndex: 'created_at',
+      sorter: true,
+    },
+    {
+      title: 'Updated At',
+      dataIndex: 'updated_at',
+      sorter: true,
     },
   ]
-  const getRandomuserParams = params => ({
-    results: params.pagination?.pageSize,
-    page: params.pagination?.current,
-    ...params,
-  })
-
-  const [data, setData] = useState()
-  const [loading, setLoading] = useState(false)
-  const [tableParams, setTableParams] = useState({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  })
-  const fetchData = () => {
-    setLoading(true)
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`
-    )
-      .then(res => res.json())
-      .then(({ results }) => {
-        setData(results)
-        setLoading(false)
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        })
-      })
-  }
-  useEffect(() => {
-    fetchData()
-  }, [tableParams.pagination?.current, tableParams.pagination?.pageSize])
-  const handleTableChange = (pagination, filters, sorter) => {
-    setTableParams({
-      pagination,
-      filters,
-      ...sorter,
-    })
-
-    // `dataSource` is useless since `pageSize` changed
-    if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-      setData([])
-    }
-  }
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
@@ -106,10 +101,14 @@ const List = () => {
       <div>
         <Table
           columns={columns}
-          rowKey={record => record.login.uuid}
-          dataSource={data}
-          pagination={tableParams.pagination}
-          loading={loading}
+          rowKey={record => record.id}
+          dataSource={blogCategories?.data?.data}
+          pagination={{
+            ...tableParams.pagination,
+            showSizeChanger: true,
+            pageSizeOptions: ['5', '10', '20'],
+          }}
+          loading={isLoading}
           onChange={handleTableChange}
         />
       </div>

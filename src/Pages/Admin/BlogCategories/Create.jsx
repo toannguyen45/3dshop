@@ -1,21 +1,29 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input, Space } from 'antd'
 import { useTranslation } from 'react-i18next'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
-import { createNewblogCat, resetState } from '../../../Features/BlogCategory/BlogCategorySlice'
+import {
+  createNewblogCat,
+  resetState,
+} from '../../../Features/BlogCategory/BlogCategorySlice'
+import { toast } from 'react-toastify'
 
 const Create = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const newBlogCategory = useSelector(state => state.bCategory)
-  const { isSuccess, isError, isLoading, createBlogCategory, blogCatName } =
-    newBlogCategory
+  useEffect(() => {
+    dispatch(resetState())
+  }, [])
+
+  const { isSuccess, isError, isLoading, createBlogCategory } = useSelector(
+    state => state.blogCategory
+  )
 
   let schema = yup.object().shape({
     title: yup.string().required('Category Name is Required'),
@@ -24,7 +32,7 @@ const Create = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      title: blogCatName || '',
+      title: '',
     },
     validationSchema: schema,
     onSubmit: values => {
@@ -35,6 +43,20 @@ const Create = () => {
       }, 300)
     },
   })
+
+  useEffect(() => {
+    if (isSuccess && createBlogCategory) {
+      toast.success('Blog Category Added Successfullly!')
+      navigate('/admin/blog-categories')
+    }
+    // if (isSuccess && updatedBlog) {
+    //   toast.success('Blog Updated Successfullly!')
+    //   navigate('/admin/blog-categories')
+    // }
+    if (isError) {
+      toast.error('Something Went Wrong!')
+    }
+  }, [isSuccess, isError, isLoading])
 
   const items = [
     {

@@ -14,6 +14,8 @@ import {
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const { Header, Sider, Content } = Layout
 
@@ -169,6 +171,17 @@ const AdminLayout = () => {
             borderRadius: borderRadiusLG,
           }}
         >
+          <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            theme="light"
+          />
           <Outlet />
         </Content>
       </Layout>

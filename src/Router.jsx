@@ -21,11 +21,17 @@ import BlogsAdminCreate from '@pages/Admin/Blogs/Create'
 import AdminNotFoundPage from '@pages/Admin/NotFound/NotFound'
 
 import AdminLoginPage from '@pages/Admin/Auth/Login'
+import PrivateRoute from './PrivateRoute'
+import PublicRoute from './PublicRoute'
 
 const router = createBrowserRouter([
   {
     path: 'admin/login',
-    element: <AdminLoginPage />,
+    element: (
+      <PublicRoute>
+        <AdminLoginPage />
+      </PublicRoute>
+    ),
   },
   {
     path: 'admin',
@@ -33,59 +39,115 @@ const router = createBrowserRouter([
     children: [
       {
         path: '*',
-        element: <AdminNotFoundPage />,
+        element: (
+          <PrivateRoute>
+            <AdminNotFoundPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'dashboard',
-        element: <AdminDashboard />,
+        element: (
+          <PrivateRoute>
+            <AdminDashboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'products',
-        element: <ProductsAdmin />,
+        element: (
+          <PrivateRoute>
+            <ProductsAdmin />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'products/create',
-        element: <ProductsAdminCreate />,
+        element: (
+          <PrivateRoute>
+            <ProductsAdminCreate />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'products/edit/:id',
-        element: <ProductsAdminEdit />,
+        element: (
+          <PrivateRoute>
+            <ProductsAdminEdit />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'products/detail/:id',
-        element: <ProductsAdminDetail />,
+        element: (
+          <PrivateRoute>
+            <ProductsAdminDetail />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'categories',
-        element: <CategoriesAdmin />,
+        element: (
+          <PrivateRoute>
+            <CategoriesAdmin />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'categories/create',
-        element: <CategoriesAdminCreate />,
+        element: (
+          <PrivateRoute>
+            <CategoriesAdminCreate />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'categories/edit/:id',
-        element: <CategoriesAdminEdit />,
+        element: (
+          <PrivateRoute>
+            <CategoriesAdminEdit />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'categories/detail/:id',
-        element: <CategoriesAdminDetail />,
+        element: (
+          <PrivateRoute>
+            <CategoriesAdminDetail />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'blog-categories',
-        element: <BlogCategoriesAdminList />,
+        element: (
+          <PrivateRoute>
+            <BlogCategoriesAdminList />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'blog-categories/create',
-        element: <BlogCategoriesAdminCreate />,
+        element: (
+          <PrivateRoute>
+            <BlogCategoriesAdminCreate />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'blogs',
-        element: <BlogsAdminList />,
+        element: (
+          <PrivateRoute>
+            <BlogsAdminList />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'blogs/create',
-        element: <BlogsAdminCreate />,
+        element: (
+          <PrivateRoute>
+            <BlogsAdminCreate />
+          </PrivateRoute>
+        ),
       },
     ],
   },

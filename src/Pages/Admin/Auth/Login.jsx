@@ -11,8 +11,17 @@ const Login = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const isAuthenticated = !!localStorage.getItem('token')
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/admin/dashboard')
+    }
+  }, [isAuthenticated])
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    state => state.auth
+  )
 
   let schema = yup.object().shape({
     email: yup
@@ -30,20 +39,9 @@ const Login = () => {
     },
     validationSchema: schema,
     onSubmit: values => {
-        dispatch(login(values))
+      dispatch(login(values))
     },
   })
-
-
-
-
-  //   useEffect(() => {
-  //     if (isSuccess) {
-  //       navigate('admin/dashboard')
-  //     } else {
-  //       navigate('')
-  //     }
-  //   }, [user, isError, isSuccess, isLoading])
 
   return (
     <Flex justify="center" align="center" style={{ height: '100vh' }}>
@@ -88,6 +86,7 @@ const Login = () => {
             }
           >
             <Input
+              type="password"
               name="password"
               value={formik.values.password}
               onChange={formik.handleChange('password')}

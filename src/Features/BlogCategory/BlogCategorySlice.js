@@ -12,6 +12,17 @@ export const createNewblogCat = createAsyncThunk(
   }
 )
 
+export const getBlogCategories = createAsyncThunk(
+  'blogCategory/get-categories',
+  async (tableParams, thunkAPI) => {
+    try {
+      return await BlogCategoryService.getBlogCategories(tableParams)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
 export const resetState = createAction('Reset_all')
 
 const initialState = {
@@ -22,7 +33,7 @@ const initialState = {
   message: '',
 }
 
-export const pCategorySlice = createSlice({
+export const blogCategorySlice = createSlice({
   name: 'blogCategories',
   initialState,
   reducers: {},
@@ -43,6 +54,23 @@ export const pCategorySlice = createSlice({
         state.isSuccess = false
         state.message = action.error
       })
+      .addCase(getBlogCategories.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getBlogCategories.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.blogCategories = action.payload
+      })
+      .addCase(getBlogCategories.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
+      .addCase(resetState, () => initialState)
   },
 })
-export default pCategorySlice.reducer
+
+export default blogCategorySlice.reducer
