@@ -48,6 +48,7 @@ const Create = () => {
     if (isSuccess && updatedCategory) {
       toast.success('Category Updated Successfullly!')
       navigate('/admin/categories')
+      dispatch(resetState())
     }
     if (isError) {
       toast.error('Something Went Wrong!')
@@ -71,7 +72,6 @@ const Create = () => {
       if (id !== undefined) {
         const data = { id: id, cateData: values }
         dispatch(updateCategory(data))
-        dispatch(resetState())
       } else {
         dispatch(createNewCat(values))
         formik.resetForm()

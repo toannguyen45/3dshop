@@ -14,5 +14,9 @@
   },
   "blog_cate": {
     "title": "Title"
+  },
+  "cate": {
+    "name": "Name",
+    "description": "Description"
   }
 }

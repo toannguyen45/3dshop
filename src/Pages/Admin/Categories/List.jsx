@@ -2,13 +2,18 @@ import { Button, Flex, Space, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useNavigate } from 'react-router-dom'
-import { getCategories } from '../../../Features/Category/CategorySlice'
+import {
+  getCategories,
+  deleteCategory,
+} from '../../../Features/Category/CategorySlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { formatDateTimeFull } from '../../../Utils/formatDate'
+import CustomModal from '../../../Components/Admin/CustomModal'
 
 const List = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [open, setOpen] = useState(false)
+  const [cateId, setCateId] = useState('')
 
   const { categories, isLoading } = useSelector(state => state.category)
 
@@ -61,13 +66,21 @@ const List = () => {
     },
   ]
 
-  // const handleShow = () => {
-  //   navigate(`/admin/categories/${record.id}`)
-  // }
   const handleEdit = record => {
     navigate(`/admin/categories/${record.id}`)
   }
-  const handleDelete = () => {}
+  const handleDelete = record => {
+    showModal(record.id)
+  }
+
+  const showModal = e => {
+    setOpen(true)
+    setCateId(e)
+  }
+
+  const hideModal = () => {
+    setOpen(false)
+  }
 
   const columns = [
     {
@@ -93,13 +106,21 @@ const List = () => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          {/* <Button onClick={() => handleShow(record)}>Show</Button> */}
           <Button onClick={() => handleEdit(record)}>Edit</Button>
           <Button onClick={() => handleDelete(record)}>Delete</Button>
         </Space>
       ),
     },
   ]
+
+  const deleteACategory = e => {
+    dispatch(deleteCategory(e))
+
+    setOpen(false)
+    setTimeout(() => {
+      dispatch(getCategories())
+    }, 100)
+  }
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
@@ -125,6 +146,14 @@ const List = () => {
           }}
           loading={isLoading}
           onChange={handleTableChange}
+        />
+        <CustomModal
+          hideModal={hideModal}
+          open={open}
+          performAction={() => {
+            deleteACategory(cateId)
+          }}
+          title="Are you sure you want to delete this?"
         />
       </div>
     </Space>
