@@ -25,8 +25,20 @@ const Create = () => {
     state => state.blogCategory
   )
 
+  useEffect(() => {
+    if (isSuccess && createBlogCategory) {
+      toast.success('Blog Category Added Successfullly!')
+      navigate('/admin/blog-categories')
+      dispatch(resetState())
+    }
+    if (isError) {
+      toast.error('Something Went Wrong!')
+      dispatch(resetState())
+    }
+  }, [isSuccess, isError, isLoading])
+
   let schema = yup.object().shape({
-    title: yup.string().required('Category Name is Required'),
+    title: yup.string().required('Title is Required'),
   })
 
   const formik = useFormik({
@@ -38,25 +50,8 @@ const Create = () => {
     onSubmit: values => {
       dispatch(createNewblogCat(values))
       formik.resetForm()
-      setTimeout(() => {
-        dispatch(resetState())
-      }, 300)
     },
   })
-
-  useEffect(() => {
-    if (isSuccess && createBlogCategory) {
-      toast.success('Blog Category Added Successfullly!')
-      navigate('/admin/blog-categories')
-    }
-    // if (isSuccess && updatedBlog) {
-    //   toast.success('Blog Updated Successfullly!')
-    //   navigate('/admin/blog-categories')
-    // }
-    if (isError) {
-      toast.error('Something Went Wrong!')
-    }
-  }, [isSuccess, isError, isLoading])
 
   const items = [
     {

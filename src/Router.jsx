@@ -102,10 +102,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'categories/edit/:id',
+        path: 'categories/:id',
         element: (
           <PrivateRoute>
-            <CategoriesAdminEdit />
+            <CategoriesAdminCreate />
           </PrivateRoute>
         ),
       },

@@ -24,9 +24,33 @@ const getCategories = async (tableParams = {}) => {
   return response.data
 }
 
+const getCategory = async id => {
+  const response = await axiosInst.get(`/categories/${id}`)
+
+  return response.data
+}
+
+const updateCategory = async cate => {
+  const response = await axiosInst.put(`categories/${cate.id}`, {
+    name: cate.cateData.name,
+    description: cate.cateData.description,
+  })
+
+  return response.data
+}
+
+const deleteCategory = async id => {
+  const response = await axiosInst.delete(`/categories/${id}`)
+
+  return response.data
+}
+
 const CategoryService = {
   createCategory,
   getCategories,
+  getCategory,
+  deleteCategory,
+  updateCategory,
 }
 
 export default CategoryService

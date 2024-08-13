@@ -23,6 +23,28 @@ export const getCategories = createAsyncThunk(
   }
 )
 
+export const getCategory = createAsyncThunk(
+  'category/get-category',
+  async (id, thunkAPI) => {
+    try {
+      return await CategoryService.getCategory(id)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+export const updateCategory = createAsyncThunk(
+  'category/update-category',
+  async (category, thunkAPI) => {
+    try {
+      return await CategoryService.updateCategory(category)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
 export const resetState = createAction('Reset_all')
 
 const initialState = {
@@ -46,7 +68,7 @@ export const categorySlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        state.createCategory = action.payload
+        state.createdCategory = action.payload
       })
       .addCase(createNewCat.rejected, (state, action) => {
         state.isLoading = false
@@ -70,6 +92,37 @@ export const categorySlice = createSlice({
         state.message = action.error
       })
       .addCase(resetState, () => initialState)
+      .addCase(getCategory.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getCategory.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.cateName = action.payload.data.name
+        state.cateDesc = action.payload.data.description
+      })
+      .addCase(getCategory.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
+      .addCase(updateCategory.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.updatedCategory = action.payload
+      })
+      .addCase(updateCategory.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
   },
 })
 

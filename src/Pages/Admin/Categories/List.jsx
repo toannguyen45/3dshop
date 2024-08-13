@@ -61,6 +61,14 @@ const List = () => {
     },
   ]
 
+  // const handleShow = () => {
+  //   navigate(`/admin/categories/${record.id}`)
+  // }
+  const handleEdit = record => {
+    navigate(`/admin/categories/${record.id}`)
+  }
+  const handleDelete = () => {}
+
   const columns = [
     {
       title: 'ID',
@@ -79,6 +87,17 @@ const List = () => {
       dataIndex: 'description',
       sorter: true,
       width: '20%',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          {/* <Button onClick={() => handleShow(record)}>Show</Button> */}
+          <Button onClick={() => handleEdit(record)}>Edit</Button>
+          <Button onClick={() => handleDelete(record)}>Delete</Button>
+        </Space>
+      ),
     },
   ]
 
