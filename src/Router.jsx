@@ -24,7 +24,14 @@ import AdminLoginPage from '@pages/Admin/Auth/Login'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
+import Home from '@pages/Client/Home/Home'
+import NotFound from '@pages/NotFound/NotFound'
+
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
   {
     path: 'admin/login',
     element: (
@@ -150,6 +157,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ])
 
