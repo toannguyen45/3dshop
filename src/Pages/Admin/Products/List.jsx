@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useNavigate } from 'react-router-dom'
 import {
-  getCategories,
-  deleteCategory,
-} from '../../../Features/Category/CategorySlice'
+  getProducts,
+  deleteProduct,
+} from '../../../Features/Product/ProductSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import CustomModal from '../../../Components/Admin/CustomModal'
 
@@ -15,7 +15,7 @@ const List = () => {
   const [open, setOpen] = useState(false)
   const [cateId, setCateId] = useState('')
 
-  const { categories, isLoading } = useSelector(state => state.category)
+  const { products, isLoading } = useSelector(state => state.product)
 
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -25,7 +25,7 @@ const List = () => {
   })
 
   const fetchData = () => {
-    dispatch(getCategories(tableParams))
+    dispatch(getProducts(tableParams))
   }
 
   useEffect(() => {
@@ -39,17 +39,17 @@ const List = () => {
   ])
 
   useEffect(() => {
-    if (categories?.data) {
+    if (products?.data) {
       setTableParams(prev => ({
         ...prev,
         pagination: {
           ...prev.pagination,
-          total: categories.data.total,
-          current: categories.data.current_page,
+          total: products.data.total,
+          current: products.data.current_page,
         },
       }))
     }
-  }, [categories])
+  }, [products])
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
@@ -125,12 +125,12 @@ const List = () => {
     },
   ]
 
-  const deleteACategory = e => {
-    dispatch(deleteCategory(e))
+  const deleteAProduct = e => {
+    dispatch(deleteProduct(e))
 
     setOpen(false)
     setTimeout(() => {
-      dispatch(getCategories())
+      dispatch(getProducts())
     }, 100)
   }
 
@@ -150,7 +150,7 @@ const List = () => {
         <Table
           columns={columns}
           rowKey={record => record.id}
-          dataSource={categories?.data?.data}
+          dataSource={products?.data?.data}
           pagination={{
             ...tableParams.pagination,
             showSizeChanger: true,
@@ -163,7 +163,7 @@ const List = () => {
           hideModal={hideModal}
           open={open}
           performAction={() => {
-            deleteACategory(cateId)
+            deleteAProduct(cateId)
           }}
           title="Are you sure you want to delete this?"
         />

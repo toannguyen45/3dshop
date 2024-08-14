@@ -18,5 +18,13 @@
   "cate": {
     "name": "Name",
     "description": "Description"
+  },
+  "product": {
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "quantity": "Quantity",
+    "category": "Category",
+    "images": "Images"
   }
 }
