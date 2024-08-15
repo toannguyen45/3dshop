@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+.head-top {
+  padding: 1rem;
+  background-color: #28574b;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.padding-x-default {
+  padding-left: 7rem;
+  padding-right: 7rem;
+}
+
+.padding-y-default {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  border-bottom: 3px solid #28574b;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin-right: 3rem;
+  font-weight: bold;
+}
+
+.navbar-item {
+  margin-right: 2rem;
+  text-transform: uppercase;
+}
+
+.navbar-cart {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+.ant-carousel {
+  width: 100% !important;
+}
+
+.slide-one {
+  background-image: url('/src/assets/images/client/slide_one.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  width: 100%;
+}
+
+.slide-two {
+  background-image: url('/src/assets/images/client/slide_two.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  width: 100%;
+}
+
+.advise {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #8eecd5;
+}
+
+.advise-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.advise-form div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.advise-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.advise-form div label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.advise-form div label:last-child {
+  margin-right: 0;
+}
+
+.input-advise {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.submit-advise {
+  padding: 10px 20px;
+  background-color: #28574b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-advise:hover {
+  background-color: #89929c;
+}
+
+.site-footer {
+  background-color: #242424;
+  color: #ffffff;
+  padding: 40px 0;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content h3 {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.footer-content p {
+  margin-bottom: 30px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links li {
+  margin: 0 15px 15px;
+}
+
+.footer-links li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-links li a:hover {
+  color: #007bff;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.news-section {
+  width: 100%;
+}
+
+.news-section h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.news-items {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.news-item {
+  flex: 1;
+  margin: 0 15px;
+}
+
+.news-item .news-image {
+  background-image: url('/src/assets/images/client/slide_one.jpg');
+  position: relative;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 15px;
+}
+
+.news-item .news-image .date {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+}
+
+.news-item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.news-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.news-item a:hover {
+  color: #0056b3;
+}
+
+.view-more {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.view-more:hover {
+  background-color: #0056b3;
+}
