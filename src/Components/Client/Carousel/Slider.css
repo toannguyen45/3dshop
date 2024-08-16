@@ -1,0 +1,84 @@
+.ant-carousel {
+  width: 100% !important;
+}
+
+.slide-one,
+.slide-two {
+  background-color: #8eecd5;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.slide-one {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/src/assets/images/client/slide_four.jpg');
+}
+
+.slide-two {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/src/assets/images/client/slide_two.jpg');
+}
+
+.text-line-one,
+.text-line-two {
+  text-align: center;
+  font-weight: 700;
+}
+
+.text-line-one {
+  color: white;
+  font-size: 50px;
+}
+
+.text-line-two {
+  color: #00ff00;
+  font-size: 50px;
+}
+
+.contact-button {
+  padding: 0.5em 1.5em;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 36px;
+  cursor: pointer;
+  margin-top: 2rem;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+/* When the viewport is 768px or less, set the height to 400px */
+@media (max-width: 768px) {
+  .slide-one,
+  .slide-two {
+    height: 400px;
+  }
+  .text-line-one,
+  .text-line-two {
+    font-size: 30px;
+  }
+  .contact-button {
+    font-size: 1.75em;
+  }
+}
+
+/* When the viewport is 480px or less, set the height to 300px */
+@media (max-width: 480px) {
+  .slide-one,
+  .slide-two {
+    height: 300px;
+  }
+  .text-line-one,
+  .text-line-two {
+    font-size: 20px;
+  }
+  .contact-button {
+    font-size: 1em;
+  }
+}

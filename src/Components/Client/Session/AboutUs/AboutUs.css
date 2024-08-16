@@ -1,0 +1,94 @@
+.about-us-session {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.about-us-content {
+  flex: 7;
+  margin-right: 1em;
+}
+
+.about-us-image {
+  flex: 5;
+  margin-left: 1em;
+  width: 100%;
+}
+
+.about-us-image img {
+  width: 100%;
+  height: auto;
+}
+
+.about-us-title {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.about-us-title .title-part1 {
+  color: black;
+}
+
+.about-us-title .title-part2 {
+  color: #f4ce14;
+}
+
+.about-us-company {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+}
+
+.about-us-description {
+  margin-bottom: 1em;
+}
+
+.about-us-button {
+  padding: 0.5em 1.5em;
+  color: white;
+  background-color: #00712d;
+  border: none;
+  border-radius: 36px;
+  cursor: pointer;
+  margin-top: 2rem;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .padding-x-default {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-us-session {
+    flex-direction: column;
+  }
+
+  .about-us-content,
+  .about-us-image {
+    margin: 0;
+    flex: none;
+  }
+
+  .about-us-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .about-us-title {
+    font-size: 2em;
+  }
+
+  .about-us-company {
+    font-size: 1em;
+  }
+
+  .about-us-button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}

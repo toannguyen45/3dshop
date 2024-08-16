@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
-import { Button, Carousel, Col, Form, Input, Row } from 'antd'
-import { ShoppingCartOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
+import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import Slider from '../../../Components/Client/Carousel/Slider'
+import HeadTop from '../../../Components/Client/Layout/HeadTop/HeadTop'
+import DrawerMobile from '../../../Components/Client/DrawerMobile/DrawerMobile'
+import AboutUs from '../../../Components/Client/Session/AboutUs/AboutUs'
+import Advise from '../../../Components/Client/Session/Advise/Advise'
+import News from '../../../Components/Client/Session/News/News'
 
 const Home = () => {
+  const [open, setOpen] = useState(false)
+
+  const showDrawer = () => {
+    setOpen(true)
+  }
+  const onClose = () => {
+    setOpen(false)
+  }
+
   return (
     <div className="container">
-      <div className="head-top">Home</div>
-      <nav className="navbar padding-x-default">
+      <HeadTop />
+      <nav className="navbar padding-x-default desktop-navbar">
         <div className="navbar-left">
           <a href="/" className="navbar-logo">
-            Logo
+            3DTeam
           </a>
           <a href="/item1" className="navbar-item">
             Trang chủ
@@ -30,85 +45,25 @@ const Home = () => {
         </div>
         <div className="navbar-right">
           <a href="/cart" className="navbar-cart">
-            <ShoppingCartOutlined />
+            <ShoppingCartOutlined style={{ fontSize: '25px' }} />
           </a>
         </div>
       </nav>
-      <Carousel autoplay className="slider">
-        <div className="slide-one"></div>
-        <div className="slide-two"></div>
-      </Carousel>
-      <div class="news-section padding-x-default padding-y-default">
-        <h2>Tin tức</h2>
-        <div class="news-items">
-          <div class="news-item">
-            <div class="news-image">
-              <span class="date">01/01/2022</span>
-            </div>
-            <h3>Tiêu đề tin tức 1</h3>
-            <p>Mô tả ngắn về tin tức 1...</p>
-            <a href="#">Đọc thêm</a>
-          </div>
-          <div class="news-item">
-            <div class="news-image">
-              <span class="date">01/01/2022</span>
-            </div>
-            <h3>Tiêu đề tin tức 1</h3>
-            <p>Mô tả ngắn về tin tức 1...</p>
-            <a href="#">Đọc thêm</a>
-          </div>
-          <div class="news-item">
-            <div class="news-image">
-              <span class="date">01/01/2022</span>
-            </div>
-            <h3>Tiêu đề tin tức 1</h3>
-            <p>Mô tả ngắn về tin tức 1...</p>
-            <a href="#">Đọc thêm</a>
-          </div>
+      <nav className="mobile-navbar">
+        <div className="navbar-content">
+          <a href="/" className="navbar-logo-mobile">
+            3DTeam
+          </a>
+          <Button type="primary" onClick={showDrawer} className="navbar-button">
+            <MenuOutlined />
+          </Button>
         </div>
-        <a href="#" class="view-more">
-          Xem thêm
-        </a>
-      </div>
-      <div className="advise padding-x-default">
-        <div className="advise-left">
-          <h3 className="advise-title">Liên hệ ngay để nhận tư vấn dịch vụ</h3>
-          <form name="layout-multiple-horizontal" className="advise-form">
-            <div>
-              <label>
-                Họ và tên *
-                <input
-                  type="text"
-                  name="name"
-                  className="input-advise"
-                  required
-                />
-              </label>
-              <label>
-                Số điện thoại *
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  className="input-advise"
-                />
-              </label>
-            </div>
-            <label>
-              Nội dung *
-              <textarea
-                name="content"
-                required
-                className="input-advise"
-              ></textarea>
-            </label>
-            <button type="submit" className="submit-advise">
-              Nhận tư vấn
-            </button>
-          </form>
-        </div>
-        <div className="advise-right"></div>
-      </div>
+        <DrawerMobile onClose={onClose} open={open} />
+      </nav>
+      <Slider />
+      <AboutUs />
+      <News />
+      <Advise />
       <footer class="site-footer">
         <div class="footer-content">
           <h3>Company Name</h3>
