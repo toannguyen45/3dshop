@@ -64,11 +64,11 @@ const Home = () => {
       <AboutUs />
       <News />
       <Advise />
-      <footer class="site-footer">
-        <div class="footer-content">
+      <footer className="site-footer">
+        <div className="footer-content">
           <h3>Company Name</h3>
           <p>Address, City, Country</p>
-          <ul class="footer-links">
+          <ul className="footer-links">
             <li>
               <a href="#">About Us</a>
             </li>

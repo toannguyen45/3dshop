@@ -26,20 +26,20 @@ const DrawerMobile = ({ onClose, open }) => {
           Về chúng tôi
         </a>
         <div className="contact contact-phone">
-          <span class="label">Sđt:</span>
+          <span className="label">Sđt:</span>
           <a href="tel:0965710419" className="value">
             0965710419
           </a>
         </div>
         <div className="contact contact-email">
-          <span class="label">Email:</span>
+          <span className="label">Email:</span>
           <a href="mailto:abc@gmail.com" className="value">
             abc@gmail.com
           </a>
         </div>
         <div className="contact contact-address">
-          <span class="label">Địa chỉ:</span>
-          <span class="value">123 Đường ABC, TP.HCM</span>
+          <span className="label">Địa chỉ:</span>
+          <span className="value">123 Đường ABC, TP.HCM</span>
         </div>
         <div className="cart">
           <a href="/cart" className="navbar-cart">

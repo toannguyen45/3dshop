@@ -1,66 +1,106 @@
 .advise {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  background-color: #f5f5f5;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  text-align: center;
-  background-color: #8eecd5;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/src/assets/images/client/advise-bg.jpg');
-  background-size: cover;
-  background-position: center;
 }
 
-.advise-title {
+.advise-left,
+.advise-right {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.advise-left h2 {
+  font-size: 1em;
+  color: #e9a133;
+  margin-bottom: 0.5rem;
+}
+
+.advise-left .advise-us-title {
   font-size: 2.5em;
-  font-weight: 600;
+  margin-bottom: 0.5em;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 2rem;
-  color: white;
+  margin-bottom: 1rem;
 }
 
-.advise-form div {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+.advise-us-title .title-part1 {
+  color: black;
 }
 
-.advise-form label {
+.advise-us-title .title-part2 {
+  color: #f4ce14;
+}
+
+.advise-left .content {
+  margin-bottom: 1rem;
+}
+
+.advise-left p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.advise-left .contact {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
-  color: white;
+  gap: 1rem;
+  font-weight: 500;
+  font-size: 1em;
 }
 
-.advise-form div label {
-  flex: 1;
+.advise-left .contact svg {
+  color: #e9a133;
   margin-right: 10px;
 }
 
-.advise-form div label:last-child {
-  margin-right: 0;
+.advise-right .card-advise {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
 }
 
-.input-advise {
-  margin-top: 10px;
+.advise-right .card-advise h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2em;
+  margin-bottom: 2rem;
+}
+
+.advise-right .card-advise form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.advise-right form label {
+  margin-bottom: 10px;
+}
+
+.advise-right form input,
+.advise-right form textarea {
   padding: 10px;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
 }
 
-.submit-advise {
-  padding: 10px 20px;
-  background-color: #28574b;
+.contact-us-button {
+  padding: 0.5em 1.5em;
   color: white;
+  background-color: #00712d;
   border: none;
-  border-radius: 5px;
+  border-radius: 36px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 2rem;
+  font-size: 1em;
+  font-weight: 400;
 }
 
-.submit-advise:hover {
-  background-color: #89929c;
+@media (min-width: 768px) {
+  .advise {
+    grid-template-columns: 1fr 1fr;
+  }
 }

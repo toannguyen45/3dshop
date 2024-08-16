@@ -17,12 +17,12 @@
 
 .slide-one {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/src/assets/images/client/slide_four.jpg');
+    url('/src/assets/images/client/slide-one.jpg');
 }
 
 .slide-two {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/src/assets/images/client/slide_two.jpg');
+    url('/src/assets/images/client/slide-two.jpg');
 }
 
 .text-line-one,
