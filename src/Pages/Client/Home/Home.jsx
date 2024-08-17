@@ -39,7 +39,7 @@ const Home = () => {
           <a href="/item2" className="navbar-item">
             Tin tức
           </a>
-          <a href="/item2" className="navbar-item">
+          <a href="/ve-chung-toi" className="navbar-item">
             Về chúng tôi
           </a>
         </div>

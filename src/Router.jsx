@@ -26,11 +26,16 @@ import PublicRoute from './PublicRoute'
 
 import Home from '@pages/Client/Home/Home'
 import NotFound from '@pages/NotFound/NotFound'
+import About from '@pages/Client/About/About'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/ve-chung-toi',
+    element: <About />,
   },
   {
     path: 'admin/login',
