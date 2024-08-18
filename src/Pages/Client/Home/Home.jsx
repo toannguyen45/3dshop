@@ -13,7 +13,7 @@ const Home = () => {
         <img src='/src/assets/images/client/slide-one.jpg' className='img-slide' />
         <img src='/src/assets/images/client/slide-two.jpg' className='img-slide' />
       </Slider> */}
-      <SliderOld/>
+      {/* <SliderOld/> */}
       <AboutUs />
       <News />
       <Advise />

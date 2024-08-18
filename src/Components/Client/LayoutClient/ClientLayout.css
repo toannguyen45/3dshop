@@ -36,6 +36,7 @@
 
 .main-content {
   flex-grow: 1;
+  width: 100%;
 }
 
 .padding-x-default {
@@ -78,6 +79,7 @@
 .navbar-cart {
   display: flex;
   align-items: center;
+  text-transform: uppercase;
 }
 
 a {
@@ -140,6 +142,7 @@ a:hover {
   margin-right: 5px;
 }
 
+
 /* When the viewport is 768px or less, switch the navbar display */
 @media (max-width: 768px) {
   .padding-x-default {
@@ -168,6 +171,28 @@ a:hover {
   }
 
   .navbar-item{
-    /* font-size: 2em; */
+    font-size: 1rem;
   }
+}
+
+/* Tablet Ipad */
+@media (min-width: 768px) and (max-width: 1024.98px) {
+  .navbar-item {
+    font-size: 14px;
+  }
+
+  .padding-x-default {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .navbar-logo {
+    margin-right: 2rem;
+    font-size: 23px;
+    color: #2fa227;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  
 }

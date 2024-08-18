@@ -103,9 +103,10 @@
 }
 
 /* Responsive styles */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .news-items {
-    flex-direction: row;
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 
