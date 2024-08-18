@@ -1,21 +1,46 @@
-import { Carousel } from 'antd'
-import React from 'react'
-import './Slider.css'
+import { Button } from 'antd'
+import React, { useEffect, useState } from 'react'
+import './test.css'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
-const Slider = () => {
+const Slider = ({
+  children: slides,
+  autoSlide = false,
+  autoSlideInterval = 3000,
+}) => {
+  const [curr, setCurr] = useState(0)
+
+  const prev = () => setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
+  const next = () => setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1))
+
+  useEffect(() => {
+    if (!autoSlide) return
+    const slideInterval = setInterval(next, autoSlideInterval)
+    return () => clearInterval(slideInterval)
+  }, [])
+
   return (
-    <Carousel autoplay draggable className="slider" autoplaySpeed={5000}>
-      <div className="slide-one">
-        <p className="text-line-one">In 3D sản xuất hàng loạt</p>
-        <p className="text-line-two">Nhanh - Đẹp - Giá tốt</p>
-        <button className="contact-button">Liên hệ</button>
+    <div className='slide'>
+      <div className='slide-child' style={{ transform: `translateX(-${curr * 100}%)` }}>
+        {slides}
       </div>
-      <div className="slide-two">
-        <p className="text-line-one">Máy quét 3D laser</p>
-        <p className="text-line-two">Chính xác - Nhanh chóng</p>
-        <button className="contact-button">Liên hệ</button>
+      <div className='button-bottom'>
+        <Button type="" onClick={prev} shape="circle" icon={<LeftOutlined />} />
+        <Button type="" onClick={next} shape="circle" icon={<RightOutlined />} />
       </div>
-    </Carousel>
+
+      <div className="bottom-circle">
+        <div className="bottom-dots">
+          {slides.map((_, i) => (
+            <div key={i} className={`
+              dot
+              ${curr === i ? "dot-padding" : "dot-opacity"}
+            `} />
+          ))}
+        </div>
+      </div>
+    </div>
+
   )
 }
 

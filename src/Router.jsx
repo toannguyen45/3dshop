@@ -27,15 +27,36 @@ import PublicRoute from './PublicRoute'
 import Home from '@pages/Client/Home/Home'
 import NotFound from '@pages/NotFound/NotFound'
 import About from '@pages/Client/About/About'
+import ClientLayout from './Components/Client/LayoutClient/ClientLayout'
+import News from '@pages/Client/News/News'
+import Service from '@pages/Client/Service/Service'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/ve-chung-toi',
-    element: <About />,
+    element: <ClientLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/tin-tuc',
+        element: <News />,
+      },
+      {
+        path: '/dich-vu',
+        element: <Service />,
+      },
+      {
+        path: '/thuong-mai',
+        element: <About />,
+      },
+      {
+        path: '/ve-chung-toi',
+        element: <About />,
+      },
+    ]
   },
   {
     path: 'admin/login',
