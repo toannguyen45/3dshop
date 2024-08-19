@@ -1,0 +1,9 @@
+@mixin padding-x-default {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+@mixin padding-y-default {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}

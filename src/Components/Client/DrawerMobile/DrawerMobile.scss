@@ -1,0 +1,29 @@
+.drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .navbar-logo {
+    text-decoration: none;
+    color: #2fa227;
+    font-size: 2rem;
+  }
+
+  .navbar-item {
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: black;
+  }
+
+  .contact {
+    .label {
+      color: rgb(9, 139, 59);
+      margin-right: 5px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react'
-import './News.css'
+import './News.scss'
+import { Link } from 'react-router-dom'
 
 const News = () => {
   return (
@@ -26,7 +27,7 @@ const News = () => {
             <p>Tác giả: Admin </p>
           </div>
           <div className="card-footer">
-            <a href="#">Đọc thêm</a>
+            <Link to="/tin-tuc">Đọc tiếp</Link>
           </div>
         </div>
         <div className="news-item card-news">
@@ -46,7 +47,7 @@ const News = () => {
             <p>Tác giả: Admin </p>
           </div>
           <div className="card-footer">
-            <a href="#">Đọc thêm</a>
+            <Link to="/tin-tuc">Đọc tiếp</Link>
           </div>
         </div>
         <div className="news-item card-news">
@@ -66,13 +67,13 @@ const News = () => {
             <p>Tác giả: Admin </p>
           </div>
           <div className="card-footer">
-            <a href="#">Đọc thêm</a>
+            <Link to="/tin-tuc">Đọc tiếp</Link>
           </div>
         </div>
       </div>
-      <a href="#" className="view-more">
+      <Link to="/tin-tuc" className="view-more">
         Xem thêm
-      </a>
+      </Link>
     </div>
   )
 }

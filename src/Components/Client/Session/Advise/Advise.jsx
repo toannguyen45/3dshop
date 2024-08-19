@@ -1,5 +1,5 @@
 import React from 'react'
-import './Advise.css'
+import './Advise.scss'
 import { HomeOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons'
 
 const Advise = () => {

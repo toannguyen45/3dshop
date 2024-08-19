@@ -1,0 +1,87 @@
+@import '../../../../Styles/mixins';
+@import '../../../../Styles/variables';
+
+.session-navbar {
+  @include padding-x-default;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  border-bottom: 3px solid #28574b;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.cart {
+  margin-right: 5px;
+}
+
+.desktop-navbar {
+  .navbar-left,
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-item {
+    margin-right: 2rem;
+    text-transform: uppercase;
+  }
+
+  .navbar-logo {
+    margin-right: 3rem;
+    font-size: 30px;
+    color: #2fa227;
+  }
+
+  .navbar-cart {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover {
+    color: red;
+    text-decoration: underline;
+  }
+}
+
+/* Large  */
+@media (max-width: 1199px) {
+  .padding-x-default {
+    padding-left: $padding-x-tablet;
+    padding-right: $padding-y-tablet;
+  }
+}
+
+/* Desktop  */
+@media (max-width: 991px) {
+}
+
+/* tablets  */
+@media (max-width: 767px) {
+  .session-navbar {
+    .navbar-left {
+      .navbar-logo {
+        margin-right: 2rem;
+        font-size: 23px;
+        color: #2fa227;
+      }
+      .navbar-item {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+/* phones  */
+@media (max-width: 575px) {
+  .desktop-navbar {
+    display: none !important;
+  }
+}

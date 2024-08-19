@@ -1,5 +1,5 @@
 import React from 'react'
-import './HeadTop.css'
+import './HeadTop.scss'
 
 const HeadTop = () => {
   return (

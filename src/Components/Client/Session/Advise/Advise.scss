@@ -1,0 +1,127 @@
+@import '../../../../Styles/mixins';
+
+.advise {
+  @include padding-x-default;
+  @include padding-y-default;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background-color: #f5f5f5;
+  width: 100%;
+
+  .advise-left,
+  .advise-right {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .advise-left {
+    h2 {
+      font-size: 1em;
+      color: #e9a133;
+      margin-bottom: 0.5rem;
+    }
+    .advise-us-title {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .advise-us-title {
+      .title-part1 {
+        color: black;
+      }
+      .title-part2 {
+        color: #f4ce14;
+      }
+    }
+
+    .content {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-weight: 500;
+      font-size: 1em;
+
+      svg {
+        color: #e9a133;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .advise-right {
+    .card-advise {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+
+      h2 {
+        text-align: center;
+        font-weight: 600;
+        font-size: 2em;
+        margin-bottom: 2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        label {
+          margin-bottom: 10px;
+        }
+
+        input,
+        textarea {
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+        }
+
+        .contact-us-button {
+          padding: 0.5em 1.5em;
+          color: white;
+          background-color: #00712d;
+          border: none;
+          border-radius: 36px;
+          cursor: pointer;
+          margin-top: 2rem;
+          font-size: 1em;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+/* Large  */
+@media (max-width: 1199px) {
+}
+
+/* Desktop  */
+@media (max-width: 991px) {
+}
+
+/* tablets  */
+@media (max-width: 767px) {
+  .advise {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* phones  */
+@media (max-width: 575px) {
+}
