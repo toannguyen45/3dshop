@@ -1,22 +1,54 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './News.css'
+import './News.scss'
 
 const News = () => {
+  const newsItems = [
+    {
+      image: '/src/assets/images/client/tintuc1.jpg',
+      title: 'So sánh máy quét 3D Creality CR-Scan Otter và CR-Scan Raptor',
+      description:
+        'So sánh PETG và ABS Tổng quan [caption id="attachment_13246" align="aligncenter" width="1000"] So sánh PETG và ABS[/caption] Đặc Tính PETG ABS Nhiệt độ đầu in 220-260 °C 230-270 °C Nhiệt độ bàn in 60-80 °C 90-120 °C Vỏ bọc Tùy chọn...',
+    },
+    {
+      image: '/src/assets/images/client/tintuc2.jpg',
+      title: 'Cách hiệu chỉnh máy in 3D của bạn',
+      description:
+        'Cách hiệu chỉnh máy in 3D của bạn Điều chỉnh lớp đầu tiên [caption id="attachment_13233" align="aligncenter" width="1000"] Cách hiệu chỉnh máy in 3D của bạn lớp đầu tiên.[/caption] Là nền tảng, một lớp đầu tiên tốt là rất quan trọng...',
+    },
+  ]
+
+  const categories = ['Category 1', 'Category 2', 'Category 3']
+
   return (
-    <div className='padding-x-default padding-y-default'>
-      <div className='blog-item'>
-        <Link to="/ve-chung-toi" className="">
-          <h2 className='blog-item-title'>Máy Scan 3D công nghiệp Scantech Simscan chính hãng</h2>
-        </Link>
-        <span>
-          <p>Ngày đăng: 18/06/2023 </p>
-          <p>Tác giả: admin</p>
-          <p>
-            MÁY QUÉT 3D SIMSCAN – MÁY QÚET CẦM TAY CÔNG NGHIỆP 🌟GIỚI THIỆU MÁY SCAN 3D CÔNG NGHIỆP SCANTECH SIMSCAN CHÍNH HÃNG SIMSCAN, một máy quét 3D cầm tay có kích thước bằng lòng bàn tay, được thiết kế đặc biệt để quét 3D các khu vực hẹp và khó tiếp cận. Với vỏ hoàn […]
-          </p>
-          <button>Xem thêm</button>
-        </span>
+    <div className="blogs">
+      <div className="padding-x-default">
+        <div className="content">
+          <div className="news-column">
+            <h2>Tin tức</h2>
+            {newsItems.map((item, index) => (
+              <div key={index} className="blogs-item">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="news-item-image"
+                />
+                <h2 className="news-item-title">{item.title}</h2>
+                <p className="news-item-description">{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="category-blogs">
+            <h2>Danh mục</h2>
+            <div className="category-column">
+              {categories.map((category, index) => (
+                <p key={index} className="category">
+                  {category}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

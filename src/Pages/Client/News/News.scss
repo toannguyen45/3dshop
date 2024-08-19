@@ -1,0 +1,40 @@
+@import '../../../Styles/mixins';
+
+.blogs {
+  @include padding-x-default;
+  @include padding-y-default;
+
+  .content {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+
+    .blogs-item {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+
+      .news-item-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .news-item-title {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .news-item-description {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .category-column {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+}
