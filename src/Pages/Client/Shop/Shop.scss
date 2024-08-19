@@ -1,0 +1,32 @@
+@import '../../../Styles/mixins';
+@import '../../../Styles/variables';
+
+.shop {
+  @include padding-x-default;
+  @include padding-y-default;
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+
+    .products-column {
+      h2 {
+        text-transform: uppercase;
+        font-size: 2em;
+        font-weight: 600;
+      }
+      .divider {
+        border: 0;
+        border-top: 1px solid $btn-color;
+        margin: 0.5em 0;
+      }
+    }
+
+    .category-column {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+  }
+}

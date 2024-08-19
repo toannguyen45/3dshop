@@ -30,6 +30,7 @@ import About from '@pages/Client/About/About'
 import ClientLayout from './Components/Client/LayoutClient/ClientLayout'
 import News from '@pages/Client/News/News'
 import Service from '@pages/Client/Service/Service'
+import Shop from '@pages/Client/Shop/Shop'
 
 const router = createBrowserRouter([
   {
@@ -50,13 +51,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/thuong-mai',
-        element: <About />,
+        element: <Shop />,
       },
       {
         path: '/ve-chung-toi',
         element: <About />,
       },
-    ]
+    ],
   },
   {
     path: 'admin/login',
