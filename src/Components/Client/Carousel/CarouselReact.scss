@@ -1,0 +1,82 @@
+.carousel .slide {
+  img {
+    object-fit: cover;
+  }
+
+  .slider-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+
+    .text-line-one,
+    .text-line-two {
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .text-line-one {
+      color: white;
+      font-size: 50px;
+    }
+
+    .text-line-two {
+      color: #00ff00;
+      font-size: 50px;
+    }
+
+    .contact-button {
+      padding: 0.5em 1.5em;
+      color: black;
+      background-color: white;
+      border: none;
+      border-radius: 36px;
+      cursor: pointer;
+      margin-top: 2rem;
+      font-size: 2em;
+      font-weight: 700;
+    }
+  }
+}
+
+/* Large  */
+@media (max-width: 1199px) {
+}
+
+/* Desktop  */
+@media (max-width: 991px) {
+  .carousel .slide .slider-content {
+    .text-line-one {
+      font-size: 2.5em;
+    }
+    .text-line-two {
+      font-size: 2.5em;
+    }
+  }
+}
+
+/* tablets  */
+@media (max-width: 767px) {
+  .carousel .slide .slider-content {
+    .text-line-one {
+      font-size: 1.5em;
+    }
+    .text-line-two {
+      font-size: 1.5em;
+    }
+  }
+}
+
+/* phones  */
+@media (max-width: 575px) {
+  .carousel .slide .slider-content {
+    .text-line-one {
+      font-size: 1em;
+    }
+    .text-line-two {
+      font-size: 1em;
+    }
+  }
+}
