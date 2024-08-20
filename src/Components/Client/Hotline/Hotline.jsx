@@ -7,7 +7,7 @@ const Hotline = () => {
     <div className="contact-icons">
       <div className="img-circel fb">
         <a
-          href="https://m.me/your_page"
+          href="https://m.me/nguyenminhtoan45"
           target="_blank"
           rel="noopener noreferrer"
           className="contact-icon"
@@ -18,7 +18,7 @@ const Hotline = () => {
 
       <div className="img-circel zalo">
         <a
-          href="https://zalo.me/your_number"
+          href="https://zalo.me/0965710419"
           target="_blank"
           rel="noopener noreferrer"
           className="contact-icon"
@@ -28,7 +28,7 @@ const Hotline = () => {
       </div>
 
       <div className="img-circel phone">
-        <a href="tel:0909123123123" className="contact-icon">
+        <a href="tel:0965710419" className="contact-icon">
           <img src="/src/assets/images/client/phone.png" />
         </a>
       </div>
