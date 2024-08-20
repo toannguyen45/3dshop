@@ -1,6 +1,6 @@
 .contact-icons {
   position: fixed;
-  left: 20px;
+  right: 20px;
   bottom: 70px;
   display: flex;
   flex-direction: column;
@@ -15,18 +15,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    animation: pulseShadow 3s infinite;
   }
 
   .fb {
     background-color: #1877f2;
+    animation: pulseFb 2s infinite;
   }
+
   .zalo {
     background-color: #2196f3;
+    animation: pulseZalo 2s infinite;
   }
+
   .phone {
     background-color: #f4ce14;
+    animation: pulsePhone 2s infinite;
   }
 
   .contact-icon {
@@ -41,14 +44,38 @@
   }
 }
 
-@keyframes pulseShadow {
+@keyframes pulseFb {
   0% {
-    box-shadow: 0 0 10px 10px rgba(105, 150, 28, 0.3);
+    box-shadow: 0 0 0 0px rgba(24, 119, 242, 0.4);
   }
-  50% {
-    box-shadow: 0 0 10px 20px rgba(72, 187, 14, 0.6);
+  70% {
+    box-shadow: 0 0 0 20px rgba(24, 119, 242, 0);
   }
   100% {
-    box-shadow: 0 0 10px 10px rgba(226, 4, 4, 0.3);
+    box-shadow: 0 0 0 0px rgba(24, 119, 242, 0);
+  }
+}
+
+@keyframes pulseZalo {
+  0% {
+    box-shadow: 0 0 0 0px rgba(33, 150, 243, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(33, 150, 243, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(33, 150, 243, 0);
+  }
+}
+
+@keyframes pulsePhone {
+  0% {
+    box-shadow: 0 0 0 0px rgba(244, 206, 20, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(244, 206, 20, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(244, 206, 20, 0);
   }
 }

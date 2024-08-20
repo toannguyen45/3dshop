@@ -12,7 +12,7 @@ const Hotline = () => {
           rel="noopener noreferrer"
           className="contact-icon"
         >
-          <img src="/src/assets/images/client/Facebook.png" />
+          <img src="/src/assets/images/client/mess.png" />
         </a>
       </div>
 
@@ -23,7 +23,7 @@ const Hotline = () => {
           rel="noopener noreferrer"
           className="contact-icon"
         >
-          <img src="/src/assets/images/client/zalo-icon.png" />
+          <img src="/src/assets/images/client/zalo.png" />
         </a>
       </div>
 
