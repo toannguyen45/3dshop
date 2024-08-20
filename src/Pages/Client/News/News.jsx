@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './News.scss'
 import { Button, Pagination } from 'antd'
+import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadCrumbCustom'
 
 const News = () => {
   const newsItems = [
@@ -32,8 +33,18 @@ const News = () => {
   const indexOfFirstNews = indexOfLastNews - newsPerPage
   const currentNewsItems = newsItems.slice(indexOfFirstNews, indexOfLastNews)
 
+  const items = [
+    {
+      title: 'Tin tức',
+    },
+  ]
+
   return (
     <div className="blogs">
+      <div className="breadcrumb">
+        <BreadCrumbCustom items={items} />
+      </div>
+
       <div className="padding-x-default">
         <div className="content">
           <div className="news-column">
@@ -46,7 +57,7 @@ const News = () => {
                   alt={item.title}
                   className="news-item-image"
                 />
-                <h2 className="news-item-title">{item.title}</h2>
+                <h3 className="news-item-title">{item.title}</h3>
                 <div className="news-item-meta">
                   <span className="meta-label">Ngày đăng: </span>
                   <span className="meta-data">{item.date}</span>
@@ -58,6 +69,7 @@ const News = () => {
               </div>
             ))}
             <Pagination
+              className="pagination-custom"
               current={currentPage}
               total={newsItems.length}
               pageSize={newsPerPage}
@@ -65,7 +77,7 @@ const News = () => {
             />
           </div>
           <div className="category-blogs">
-            <h2>Danh mục</h2>
+            <h3>Danh mục</h3>
             <hr className="divider" />
             <div className="category-column">
               {categories.map((category, index) => (

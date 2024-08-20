@@ -20,7 +20,7 @@ const NavbarMobile = () => {
         <a href="/" className="navbar-logo-mobile">
           3DTeam
         </a>
-        <Button type="primary" onClick={showDrawer} className="navbar-button">
+        <Button onClick={showDrawer} className="navbar-button">
           <MenuOutlined />
         </Button>
       </div>

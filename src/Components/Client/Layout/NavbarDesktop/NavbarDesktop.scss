@@ -26,6 +26,11 @@
   .navbar-item {
     margin-right: 2rem;
     text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .active {
+    color: $color-green;
   }
 
   .navbar-logo {
@@ -38,6 +43,7 @@
     display: flex;
     align-items: center;
     text-transform: uppercase;
+    font-weight: 500;
   }
 
   a {
@@ -46,8 +52,8 @@
   }
 
   a:hover {
-    color: red;
-    text-decoration: underline;
+    // color: red;
+    text-decoration: none;
   }
 }
 

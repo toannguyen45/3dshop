@@ -5,6 +5,7 @@ import './ClientLayout.scss'
 import Footer from '../Layout/Footer/Footer'
 import NavbarDesktop from '../Layout/NavbarDesktop/NavbarDesktop'
 import NavbarMobile from '../Layout/NavbarMobile/NavbarMobile'
+import Hotline from '../Hotline/Hotline'
 
 const ClientLayout = () => {
   return (
@@ -16,7 +17,7 @@ const ClientLayout = () => {
       <main className="main-content">
         <Outlet />
       </main>
-
+      <Hotline />
       <Footer />
     </div>
   )

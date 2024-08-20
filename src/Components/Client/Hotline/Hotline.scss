@@ -1,0 +1,54 @@
+.contact-icons {
+  position: fixed;
+  left: 20px;
+  bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .img-circel {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    animation: pulseShadow 3s infinite;
+  }
+
+  .fb {
+    background-color: #1877f2;
+  }
+  .zalo {
+    background-color: #2196f3;
+  }
+  .phone {
+    background-color: #f4ce14;
+  }
+
+  .contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 27px;
+      max-height: 25px;
+    }
+  }
+}
+
+@keyframes pulseShadow {
+  0% {
+    box-shadow: 0 0 10px 10px rgba(105, 150, 28, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px 20px rgba(72, 187, 14, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px 10px rgba(226, 4, 4, 0.3);
+  }
+}

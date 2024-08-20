@@ -2,7 +2,7 @@ import { ShoppingCartOutlined } from '@ant-design/icons'
 import { Drawer } from 'antd'
 import React from 'react'
 import './DrawerMobile.scss'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const DrawerMobile = ({ onClose, open }) => {
   return (
@@ -11,21 +11,21 @@ const DrawerMobile = ({ onClose, open }) => {
         <Link to="/" className="navbar-logo">
           3DTeam
         </Link>
-        <Link to="/" className="navbar-item">
+        <NavLink to="/" exact className="navbar-item" onClick={onClose}>
           Trang chủ
-        </Link>
-        <Link to="/dich-vu" className="navbar-item">
-          Dich vụ
-        </Link>
-        <Link to="/thuong-mai" className="navbar-item">
+        </NavLink>
+        <NavLink to="/dich-vu" className="navbar-item" onClick={onClose}>
+          Dịch vụ
+        </NavLink>
+        <NavLink to="/thuong-mai" className="navbar-item" onClick={onClose}>
           Thương mại
-        </Link>
-        <Link to="/tin-tuc" className="navbar-item">
+        </NavLink>
+        <NavLink to="/tin-tuc" className="navbar-item" onClick={onClose}>
           Tin tức
-        </Link>
-        <Link to="/ve-chung-toi" className="navbar-item">
+        </NavLink>
+        <NavLink to="/ve-chung-toi" className="navbar-item" onClick={onClose}>
           Về chúng tôi
-        </Link>
+        </NavLink>
         <div className="contact contact-phone">
           <span className="label">Sđt:</span>
           <a href="tel:0965710419" className="value">
