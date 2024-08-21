@@ -1,0 +1,12 @@
+@import '../../../Styles/variables';
+
+.back-to-top {
+  position: fixed;
+  bottom: 280px;
+  right: 20px;
+  .back-to-top__button {
+    border: 2px solid black;
+    background-color: transparent;
+    color: black;
+  }
+}

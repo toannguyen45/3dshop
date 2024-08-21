@@ -6,6 +6,7 @@ import Footer from '../Layout/Footer/Footer'
 import NavbarDesktop from '../Layout/NavbarDesktop/NavbarDesktop'
 import NavbarMobile from '../Layout/NavbarMobile/NavbarMobile'
 import Hotline from '../Hotline/Hotline'
+import BackToTop from '../BackToTop/BackToTop'
 
 const ClientLayout = () => {
   return (
@@ -17,6 +18,7 @@ const ClientLayout = () => {
       <main className="main-content">
         <Outlet />
       </main>
+      <BackToTop />
       <Hotline />
       <Footer />
     </div>
