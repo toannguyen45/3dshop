@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import './News.scss'
 import { Button, Pagination } from 'antd'
 import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadCrumbCustom'
+import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 
 const News = () => {
   const newsItems = [
     {
-      image: '/src/assets/images/client/tintuc1.jpg',
+      image: '/images/client/tintuc1.jpg',
       title: 'So sánh máy quét 3D Creality CR-Scan Otter và CR-Scan Raptor',
       description:
         'So sánh PETG và ABS Tổng quan [caption id="attachment_13246" align="aligncenter" width="1000"] So sánh PETG và ABS[/caption] Đặc Tính PETG ABS Nhiệt độ đầu in 220-260 °C 230-270 °C Nhiệt độ bàn in 60-80 °C 90-120 °C Vỏ bọc Tùy chọn...',
@@ -15,7 +16,7 @@ const News = () => {
       date: '2022-01-01',
     },
     {
-      image: '/src/assets/images/client/tintuc2.jpg',
+      image: '/images/client/tintuc2.jpg',
       title: 'Cách hiệu chỉnh máy in 3D của bạn',
       description:
         'Cách hiệu chỉnh máy in 3D của bạn Điều chỉnh lớp đầu tiên [caption id="attachment_13233" align="aligncenter" width="1000"] Cách hiệu chỉnh máy in 3D của bạn lớp đầu tiên.[/caption] Là nền tảng, một lớp đầu tiên tốt là rất quan trọng...',
@@ -41,6 +42,8 @@ const News = () => {
 
   return (
     <div className="blogs">
+      <MetaSeo title="Tin tức" description="Tin tức" />
+
       <div className="breadcrumb">
         <BreadCrumbCustom items={items} />
       </div>

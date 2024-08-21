@@ -1,6 +1,7 @@
 import React from 'react'
 import './About.scss'
 import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadCrumbCustom'
+import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 
 const About = () => {
   const items = [
@@ -11,6 +12,8 @@ const About = () => {
 
   return (
     <div className="map">
+      <MetaSeo title="Về chúng tôi" description="Về chúng tôi" />
+
       <div className="breadcrumb">
         <BreadCrumbCustom items={items} />
       </div>
@@ -44,6 +47,7 @@ const About = () => {
             <hr className="divider" />
             <div className="iframe">
               <iframe
+                title="google-map"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30693.35086193358!2d108.229051!3d15.92641!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142055478f34195%3A0xd31e007ff153f292!2zY2jhu6MgVGhhbmggUXXDvXQ!5e0!3m2!1svi!2sus!4v1724130074087!5m2!1svi!2sus"
                 width="800"
                 height="600"

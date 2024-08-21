@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Pagination, Select, Button } from 'antd'
 import './Shop.scss'
+import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 
 const { Option } = Select
 
@@ -53,6 +54,8 @@ const Shop = () => {
 
   return (
     <div className="shop">
+      <MetaSeo title="Thương mại" description="Thương mại" />
+
       <div className="content">
         <div className="category-column">
           <h2>Categories</h2>

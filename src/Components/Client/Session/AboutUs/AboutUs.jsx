@@ -21,7 +21,12 @@ const AboutUs = () => {
         <button className="about-us-button">Xem thêm</button>
       </div>
       <div className="about-us-image">
-        <img src="./src/assets/images/client/team.jpg" alt="Team Image" />
+        <img
+          src="/images/client/team.jpg"
+          alt="Team Image"
+          width={100}
+          height={100}
+        />
       </div>
     </div>
   )

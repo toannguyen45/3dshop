@@ -14,7 +14,7 @@ const CarouselReact = () => {
     >
       <div>
         <img
-          src="/src/assets/images/client/slide-one-new.jpg"
+          src="/images/client/slide-one-new.jpg"
           className="carousel-img"
           alt="slide-one"
         />
@@ -25,7 +25,7 @@ const CarouselReact = () => {
       </div>
       <div>
         <img
-          src="/src/assets/images/client/slide-two-new.jpg"
+          src="/images/client/slide-two-new.jpg"
           className="carousel-img"
           alt="slide-two"
         />
