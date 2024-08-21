@@ -2,7 +2,8 @@
 @import '../../../Styles/variables';
 
 .blogs {
-  @include padding-x-default;
+  padding-left: 10rem;
+  padding-right: 10rem;
   padding-top: 1rem;
   padding-bottom: 3rem;
 
@@ -22,12 +23,14 @@
         font-weight: 600;
         color: $btn-color;
       }
+
       .divider {
         border: 0;
         border-top: 1px solid $btn-color;
         margin-top: 0.5rem;
         margin-bottom: 1.5rem;
       }
+
       .pagination-custom {
         text-align: center;
       }
@@ -45,16 +48,19 @@
         height: 200px;
         object-fit: cover;
       }
+
       .news-item-title {
         padding: 0.5rem 0;
         font-size: 1.2rem;
         font-weight: 600;
         text-transform: uppercase;
       }
+
       .news-item-description {
         padding: 0.5rem 0;
         font-size: 1rem;
       }
+
       .news-item-meta {
         display: flex;
         padding: 0.5rem 0;
@@ -104,24 +110,29 @@
 
 /* Large  */
 @media (max-width: 1199px) {
+  .blogs {
+    padding-left: $padding-x-tablet;
+    padding-right: $padding-y-tablet;
+    .padding-x-default {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 /* Desktop  */
-@media (max-width: 991px) {
-}
+@media (max-width: 991px) {}
 
 /* tablets  */
-@media (max-width: 767px) {
-}
+@media (max-width: 767px) {}
 
 /* phones  */
 @media (max-width: 575px) {
   .blogs {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
     .padding-x-default {
       padding-left: 0;
       padding-right: 0;
+
       .content {
         grid-template-columns: 1fr;
       }
