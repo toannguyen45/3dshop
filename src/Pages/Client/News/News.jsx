@@ -56,6 +56,7 @@ const News = () => {
             {currentNewsItems.map((item, index) => (
               <div key={index} className="blogs-item">
                 <img
+                  loading="lazy"
                   src={item.image}
                   alt={item.title}
                   className="news-item-image"

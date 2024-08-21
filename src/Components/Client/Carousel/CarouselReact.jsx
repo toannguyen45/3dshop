@@ -13,22 +13,30 @@ const CarouselReact = () => {
       emulateTouch={true}
     >
       <div>
-        <img
-          src="/images/client/slide-one-new.jpg"
-          className="carousel-img"
-          alt="slide-one"
-        />
+        <div className="carousel-img-wrapper">
+          <img
+            loading="lazy"
+            src="/images/client/slide-one-new.jpg"
+            className="carousel-img"
+            alt="slide-one"
+          />
+        </div>
+
         <div className="slider-content">
           <p className="text-line-one">In 3D sản xuất hàng loạt</p>
           <p className="text-line-two">Nhanh - Đẹp - Giá tốt</p>
         </div>
       </div>
       <div>
-        <img
-          src="/images/client/slide-two-new.jpg"
-          className="carousel-img"
-          alt="slide-two"
-        />
+        <div className="carousel-img-wrapper">
+          <img
+            loading="lazy"
+            src="/images/client/slide-two-new.jpg"
+            className="carousel-img"
+            alt="slide-two"
+          />
+        </div>
+
         <div className="slider-content">
           <p className="text-line-one">In 3D sản xuất hàng loạt</p>
           <p className="text-line-two">Nhanh - Đẹp - Giá tốt</p>

@@ -77,7 +77,7 @@ const Shop = () => {
           </Select>
           {currentProducts.map((product, index) => (
             <div key={index} className="product">
-              <img src={product.image} alt={product.name} />
+              <img src={product.image} alt={product.name} loading="lazy" />
               <h2>{product.name}</h2>
               <p>{product.description}</p>
               <p>${product.price}</p>

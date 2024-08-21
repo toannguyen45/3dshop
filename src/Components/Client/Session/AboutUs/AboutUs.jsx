@@ -26,6 +26,7 @@ const AboutUs = () => {
           alt="Team Image"
           width={100}
           height={100}
+          loading="lazy"
         />
       </div>
     </div>
