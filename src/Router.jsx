@@ -142,14 +142,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'categories/detail/:id',
-        element: (
-          <PrivateRoute>
-            <CategoriesAdminDetail />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: 'blog-categories',
         element: (
           <PrivateRoute>
