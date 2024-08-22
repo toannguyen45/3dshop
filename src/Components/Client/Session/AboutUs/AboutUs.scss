@@ -1,8 +1,11 @@
 @import '../../../../Styles/mixins';
+@import '../../../../Styles/variables';
 
 .about-us-session {
-  @include padding-x-default;
-  @include padding-y-default;
+  padding-left: $padding-x-desk;
+  padding-right: $padding-y-desk;
+  padding-top: $padding-top-desk;
+  padding-bottom: $padding-bot-desk;
 
   display: flex;
   justify-content: space-between;
@@ -41,7 +44,7 @@
       border: none;
       border-radius: 36px;
       cursor: pointer;
-      margin-top: 2rem;
+      margin: 2rem auto;
       font-size: 1em;
       font-weight: 400;
     }
@@ -54,7 +57,8 @@
 
     img {
       width: 100%;
-      height: auto;
+      min-height: 50vh; // Adjust this value as needed
+      aspect-ratio: 3 / 2;
       background-color: antiquewhite;
     }
   }
@@ -62,10 +66,25 @@
 
 /* Large  */
 @media (max-width: 1199px) {
+  .about-us-session {
+    padding-left: $padding-x-tablet;
+    padding-right: $padding-y-tablet;
+  }
 }
 
 /* Desktop  */
 @media (max-width: 991px) {
+  .about-us-session {
+    flex-direction: column;
+
+    .about-us-image {
+      margin-left: 0;
+    }
+
+    .about-us-button {
+      margin: 1rem auto;
+    }
+  }
 }
 
 /* tablets  */
@@ -93,8 +112,7 @@
       }
 
       .about-us-button {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin: 1rem auto;
       }
     }
 

@@ -3,7 +3,7 @@ import './AboutUs.scss'
 
 const AboutUs = () => {
   return (
-    <div className="about-us-session padding-x-default padding-y-default">
+    <div className="about-us-session">
       <div className="about-us-content">
         <h2 className="about-us-title">
           <span className="title-part1">Về</span>
@@ -22,11 +22,9 @@ const AboutUs = () => {
       </div>
       <div className="about-us-image">
         <img
-          src="/images/client/team.webp"
-          alt="Team Image"
-          width={100}
-          height={100}
-          loading="lazy"
+          src="/images/client/team-size.webp"
+          alt="team-img"
+          loading="eager"
         />
       </div>
     </div>
