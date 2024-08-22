@@ -27,6 +27,7 @@ import NotFoundClient from '@pages/NotFoundClient/NotFoundClient'
 import About from '@pages/Client/About/About'
 import ClientLayout from './Components/Client/LayoutClient/ClientLayout'
 import Blogs from '@pages/Client/Blogs/Blogs'
+import Blog from '@pages/Client/Blog/Blog'
 import Service from '@pages/Client/Service/Service'
 import Shop from '@pages/Client/Shop/Shop'
 
@@ -40,9 +41,14 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: '/tin-tuc/:id',
+        element: <Blog />,
+      },
+      {
         path: '/tin-tuc',
         element: <Blogs />,
       },
+
       {
         path: '/dich-vu',
         element: <Service />,

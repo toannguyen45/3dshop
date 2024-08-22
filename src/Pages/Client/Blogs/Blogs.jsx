@@ -47,48 +47,46 @@ const Blogs = () => {
         <BreadCrumbCustom items={items} />
       </div>
 
-      <div className="padding-x-default">
-        <div className="content">
-          <div className="news-column">
-            <h2>Tin tức</h2>
-            <hr className="divider" />
-            {currentNewsItems.map((item, index) => (
-              <div key={index} className="blogs-item">
-                <img
-                  loading="lazy"
-                  src={item.image}
-                  alt={item.title}
-                  className="news-item-image"
-                />
-                <h3 className="news-item-title">{item.title}</h3>
-                <div className="news-item-meta">
-                  <span className="meta-label">Ngày đăng: </span>
-                  <span className="meta-data">{item.date}</span>
-                  <span className="meta-label">Tác giả: </span>
-                  <span className="meta-data">{item.author}</span>
-                </div>
-                <p className="news-item-description">{item.description}</p>
-                <Button className="news-item-more">Xem thêm</Button>
+      <div className="content">
+        <div className="news-column">
+          <h2>Tin tức</h2>
+          <hr className="divider" />
+          {currentNewsItems.map((item, index) => (
+            <div key={index} className="blogs-item">
+              <img
+                loading="lazy"
+                src={item.image}
+                alt={item.title}
+                className="news-item-image"
+              />
+              <h3 className="news-item-title">{item.title}</h3>
+              <div className="news-item-meta">
+                <span className="meta-label">Ngày đăng: </span>
+                <span className="meta-data">{item.date}</span>
+                <span className="meta-label">Tác giả: </span>
+                <span className="meta-data">{item.author}</span>
               </div>
-            ))}
-            <Pagination
-              className="pagination-custom"
-              current={currentPage}
-              total={newsItems.length}
-              pageSize={newsPerPage}
-              onChange={page => setCurrentPage(page)}
-            />
-          </div>
-          <div className="category-blogs">
-            <h3>Danh mục</h3>
-            <hr className="divider" />
-            <div className="category-column">
-              {categories.map((category, index) => (
-                <p key={index} className="category">
-                  {category}
-                </p>
-              ))}
+              <p className="news-item-description">{item.description}</p>
+              <Button className="news-item-more">Xem thêm</Button>
             </div>
+          ))}
+          <Pagination
+            className="pagination-custom"
+            current={currentPage}
+            total={newsItems.length}
+            pageSize={newsPerPage}
+            onChange={page => setCurrentPage(page)}
+          />
+        </div>
+        <div className="category-blogs">
+          <h3>Danh mục</h3>
+          <hr className="divider" />
+          <div className="category-column">
+            {categories.map((category, index) => (
+              <p key={index} className="category">
+                {category}
+              </p>
+            ))}
           </div>
         </div>
       </div>
