@@ -2,12 +2,12 @@ import { UploadOutlined } from '@ant-design/icons'
 import { Button, Upload } from 'antd'
 import React from 'react'
 
-const UploadFile = ({ value, onChange }) => {
+const UploadFile = ({ value, onChange, maxCount }) => {
   const handleChange = info => {
     let fileList = [...info.fileList]
 
     // Limit the number of uploaded files
-    fileList = fileList.slice(-3)
+    fileList = fileList.slice(-maxCount)
 
     // Update formik field
     onChange(fileList)
@@ -16,13 +16,13 @@ const UploadFile = ({ value, onChange }) => {
   return (
     <Upload
       listType="picture"
-      maxCount={3}
+      maxCount={maxCount}
       multiple
       fileList={value}
       onChange={handleChange}
-      beforeUpload={() => false} // prevent auto uploading
+      beforeUpload={() => false}
     >
-      <Button icon={<UploadOutlined />}>Upload (Max: 3)</Button>
+      <Button icon={<UploadOutlined />}>Upload (Max: {maxCount})</Button>
     </Upload>
   )
 }

@@ -125,7 +125,6 @@ const ProductCreate = () => {
             >
               <Select.Option value="male">Select option</Select.Option>
               {categories?.data?.data.map((item, j) => {
-                console.log(item, 'item')
                 return (
                   <Select.Option key={j} value={String(item?.id)}>
                     {item.name}
@@ -214,6 +213,7 @@ const ProductCreate = () => {
           </Form.Item>
           <Form.Item label={t('product.images')} required>
             <UploadFile
+              maxCount={3}
               value={formik.values.images}
               onChange={value => formik.setFieldValue('images', value)}
             />

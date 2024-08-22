@@ -26,5 +26,12 @@
     "quantity": "Quantity",
     "category": "Category",
     "images": "Images"
+  },
+  "blog": {
+    "title": "Title",
+    "content": "Content",
+    "category": "Category",
+    "image": "Image",
+    "author": "Author"
   }
 }

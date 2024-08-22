@@ -179,6 +179,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: 'blogs/:id',
+        element: (
+          <PrivateRoute>
+            <BlogsAdminCreate />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
