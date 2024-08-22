@@ -56,10 +56,11 @@
     width: 100%;
 
     img {
+      max-width: 100%;
       width: 100%;
-      min-height: 50vh; // Adjust this value as needed
-      aspect-ratio: 3 / 2;
+      height: auto;
       background-color: antiquewhite;
+      object-fit: cover;
     }
   }
 }

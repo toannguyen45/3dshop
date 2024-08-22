@@ -40,7 +40,7 @@ const News = () => {
           <div className="news-item card-news" key={newsItem.id}>
             <a href="#">
               <div className="news-image">
-                <img src={newsItem.imageUrl} alt={newsItem.title} />{' '}
+                <img src={newsItem.imageUrl} alt={newsItem.title} />
                 <span className="date">{newsItem.date}</span>
               </div>
             </a>

@@ -25,6 +25,8 @@ const AboutUs = () => {
           src="/images/client/team-size.webp"
           alt="team-img"
           loading="eager"
+          width={481}
+          height={321}
         />
       </div>
     </div>

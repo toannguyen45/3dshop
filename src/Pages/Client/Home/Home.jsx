@@ -1,5 +1,4 @@
 import React from 'react'
-import './Home.css'
 import AboutUs from '../../../Components/Client/Session/AboutUs/AboutUs'
 import Advise from '../../../Components/Client/Session/Advise/Advise'
 import News from '../../../Components/Client/Session/News/News'

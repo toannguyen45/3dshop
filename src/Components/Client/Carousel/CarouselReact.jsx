@@ -19,6 +19,8 @@ const CarouselReact = () => {
             src="/images/client/slide-one-new.jpg"
             className="carousel-img"
             alt="slide-one"
+            width={1536}
+            height={650}
           />
         </div>
 
@@ -34,6 +36,8 @@ const CarouselReact = () => {
             src="/images/client/slide-two-new.jpg"
             className="carousel-img"
             alt="slide-two"
+            width={1536}
+            height={650}
           />
         </div>
 
