@@ -15,7 +15,7 @@ import {
   updateCategory,
 } from '../../../Features/Category/CategorySlice'
 
-const Create = () => {
+const CateCreate = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -146,4 +146,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default CateCreate

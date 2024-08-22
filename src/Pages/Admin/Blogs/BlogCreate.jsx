@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
-const Create = () => {
+const BlogCreate = () => {
   const { t } = useTranslation('translation')
 
   const items = [
@@ -100,4 +100,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default BlogCreate

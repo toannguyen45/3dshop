@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './News.scss'
+import './Blogs.scss'
 import { Button, Pagination } from 'antd'
 import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadCrumbCustom'
 import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 
-const News = () => {
+const Blogs = () => {
   const newsItems = [
     {
       image: '/images/client/tintuc1.jpg',
@@ -97,4 +96,4 @@ const News = () => {
   )
 }
 
-export default News
+export default Blogs

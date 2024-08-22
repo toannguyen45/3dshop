@@ -7,7 +7,7 @@ import { getBlogCategories } from '../../../Features/BlogCategory/BlogCategorySl
 import { useDispatch, useSelector } from 'react-redux'
 import { formatDateTimeFull } from '../../../Utils/formatDate'
 
-const List = () => {
+const BlogCateList = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -119,4 +119,4 @@ const List = () => {
   )
 }
 
-export default List
+export default BlogCateList

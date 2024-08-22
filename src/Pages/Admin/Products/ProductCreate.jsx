@@ -17,7 +17,7 @@ import {
 import { getCategories } from '../../../Features/Category/CategorySlice'
 import UploadFile from '../../../Components/Admin/UploadFile'
 
-const Create = () => {
+const ProductCreate = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -228,4 +228,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default ProductCreate

@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 
-const List = () => {
+const BlogList = () => {
   const navigate = useNavigate()
 
   const items = [
@@ -26,4 +26,4 @@ const List = () => {
   )
 }
 
-export default List
+export default BlogList

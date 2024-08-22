@@ -1,73 +1,44 @@
-import { Button, Flex, Space, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
-import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
-import { useNavigate } from 'react-router-dom'
-import {
-  getCategories,
-  deleteCategory,
-} from '../../../Features/Category/CategorySlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { Button, Flex, Space, Table } from 'antd'
+import BreadCrumbCus from '../../../Components/Admin/BreadCrumbCus'
+import { getProducts } from '../../../Features/Product/ProductSlice'
 import CustomModal from '../../../Components/Admin/CustomModal'
 
-const List = () => {
+const ProductList = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
-  const [cateId, setCateId] = useState('')
-
-  const { categories, isLoading } = useSelector(state => state.category)
 
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
       pageSize: 10,
     },
+    filters: {},
+    sortField: null,
+    sortOrder: null,
   })
 
-  const fetchData = () => {
-    dispatch(getCategories(tableParams))
-  }
+  const { products, isLoading } = useSelector(state => state.product)
 
   useEffect(() => {
-    fetchData()
-  }, [
-    tableParams.pagination?.current,
-    tableParams.pagination?.pageSize,
-    tableParams?.sortOrder,
-    tableParams?.sortField,
-    JSON.stringify(tableParams.filters),
-  ])
-
-  useEffect(() => {
-    if (categories?.data) {
-      setTableParams(prev => ({
-        ...prev,
-        pagination: {
-          ...prev.pagination,
-          total: categories.data.total,
-          current: categories.data.current_page,
-        },
-      }))
-    }
-  }, [categories])
+    dispatch(getProducts())
+  }, [])
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
       pagination,
       filters,
-      sortOrder: Array.isArray(sorter) ? undefined : sorter.order,
-      sortField: Array.isArray(sorter) ? undefined : sorter.field,
+      sortField: sorter.field,
+      sortOrder: sorter.order,
     })
+    dispatch(getProducts(tableParams))
   }
 
-  const items = [
-    {
-      title: 'Blog Categories',
-    },
-  ]
-
   const handleEdit = record => {
-    navigate(`/admin/categories/${record.id}`)
+    navigate(`/admin/products/${record.id}`)
   }
   const handleDelete = record => {
     showModal(record.id)
@@ -81,6 +52,18 @@ const List = () => {
   const hideModal = () => {
     setOpen(false)
   }
+
+  const deleteAProduct = e => {
+    dispatch(deleteProduct(e))
+
+    setOpen(false)
+  }
+
+  const items = [
+    {
+      title: 'Products',
+    },
+  ]
 
   const columns = [
     {
@@ -96,8 +79,20 @@ const List = () => {
       width: '20%',
     },
     {
-      title: 'Description',
-      dataIndex: 'description',
+      title: 'Category',
+      dataIndex: 'category',
+      sorter: true,
+      width: '20%',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      sorter: true,
+      width: '20%',
+    },
+    {
+      title: 'Quantity',
+      dataIndex: 'quantity',
       sorter: true,
       width: '20%',
     },
@@ -113,45 +108,36 @@ const List = () => {
     },
   ]
 
-  const deleteACategory = e => {
-    dispatch(deleteCategory(e))
-
-    setOpen(false)
-    setTimeout(() => {
-      dispatch(getCategories())
-    }, 100)
-  }
-
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       <BreadCrumbCus items={items} />
-      <h3 className="mb-4  title">Category</h3>
+      <h3 className="mb-4  title">Products</h3>
       <Flex justify="space-between">
         <Button
           type="primary"
-          onClick={() => navigate('/admin/categories/create')}
+          onClick={() => navigate('/admin/products/create')}
         >
-          Add Category
+          Add Product
         </Button>
       </Flex>
       <div>
         <Table
           columns={columns}
           rowKey={record => record.id}
-          dataSource={categories?.data?.data}
+          dataSource={products?.data?.data}
+          loading={isLoading}
           pagination={{
             ...tableParams.pagination,
             showSizeChanger: true,
             pageSizeOptions: ['5', '10', '20'],
           }}
-          loading={isLoading}
           onChange={handleTableChange}
         />
         <CustomModal
           hideModal={hideModal}
           open={open}
           performAction={() => {
-            deleteACategory(cateId)
+            deleteAProduct(cateId)
           }}
           title="Are you sure you want to delete this?"
         />
@@ -160,4 +146,4 @@ const List = () => {
   )
 }
 
-export default List
+export default ProductList

@@ -2,21 +2,19 @@ import { createBrowserRouter } from 'react-router-dom'
 import AdminLayout from './Components/Admin/Layout/AdminLayout'
 import AdminDashboard from './Pages/Admin/Dashboard/AdminDashboard'
 
-import ProductsAdmin from '@pages/Admin/Products/List'
-import ProductsAdminCreate from '@pages/Admin/Products/Create'
-import ProductsAdminEdit from '@pages/Admin/Products/Edit'
-import ProductsAdminDetail from '@pages/Admin/Products/Detail'
+import ProductsAdmin from '@pages/Admin/Products/ProductList'
+import ProductsAdminCreate from '@pages/Admin/Products/ProductCreate'
+import ProductsAdminEdit from '@pages/Admin/Products/ProductEdit'
+import ProductsAdminDetail from '@pages/Admin/Products/ProductDetail'
 
-import CategoriesAdmin from '@pages/Admin/Categories/List'
-import CategoriesAdminCreate from '@pages/Admin/Categories/Create'
-import CategoriesAdminEdit from '@pages/Admin/Categories/Edit'
-import CategoriesAdminDetail from '@pages/Admin/Categories/Detail'
+import CategoriesAdmin from '@pages/Admin/Categories/CateList'
+import CategoriesAdminCreate from '@pages/Admin/Categories/CateCreate'
 
-import BlogCategoriesAdminList from '@pages/Admin/BlogCategories/List'
-import BlogCategoriesAdminCreate from '@pages/Admin/BlogCategories/Create'
+import BlogCategoriesAdminList from '@pages/Admin/BlogCategories/BlogCateList'
+import BlogCategoriesAdminCreate from '@pages/Admin/BlogCategories//BlogCateCreate'
 
-import BlogsAdminList from '@pages/Admin/Blogs/List'
-import BlogsAdminCreate from '@pages/Admin/Blogs/Create'
+import BlogsAdminList from '@pages/Admin/Blogs/BlogList'
+import BlogsAdminCreate from '@pages/Admin/Blogs/BlogCreate'
 
 import AdminNotFoundPage from '@pages/Admin/NotFound/NotFound'
 
@@ -28,7 +26,7 @@ import Home from '@pages/Client/Home/Home'
 import NotFound from '@pages/NotFound/NotFound'
 import About from '@pages/Client/About/About'
 import ClientLayout from './Components/Client/LayoutClient/ClientLayout'
-import News from '@pages/Client/News/News'
+import Blogs from '@pages/Client/Blogs/Blogs'
 import Service from '@pages/Client/Service/Service'
 import Shop from '@pages/Client/Shop/Shop'
 
@@ -43,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tin-tuc',
-        element: <News />,
+        element: <Blogs />,
       },
       {
         path: '/dich-vu',

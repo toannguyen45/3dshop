@@ -12,7 +12,7 @@ import {
 } from '../../../Features/BlogCategory/BlogCategorySlice'
 import { toast } from 'react-toastify'
 
-const Create = () => {
+const BlogCateCreate = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -98,4 +98,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default BlogCateCreate

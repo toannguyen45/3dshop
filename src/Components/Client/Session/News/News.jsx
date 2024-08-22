@@ -2,6 +2,32 @@ import React from 'react'
 import './News.scss'
 import { Link } from 'react-router-dom'
 
+const newsData = [
+  {
+    id: 1,
+    imageUrl: 'https://via.placeholder.com/300x200',
+    title: 'Tin tức 1',
+    description: 'Mô tả tin tức 1',
+    date: '01/01/2021',
+    author: 'Nguyễn Văn A',
+  },
+  {
+    id: 2,
+    imageUrl: 'https://via.placeholder.com/300x200',
+    title: 'Tin tức 2',
+    description: 'Mô tả tin tức 2',
+    date: '02/01/2021',
+    author: 'Nguyễn Văn B',
+  },
+  {
+    id: 3,
+    imageUrl: 'https://via.placeholder.com/300x200',
+    title: 'Tin tức 3',
+    description: 'Mô tả tin tức 3',
+    date: '03/01/2021',
+    author: 'Nguyễn Văn C',
+  },
+]
 const News = () => {
   return (
     <div className="news-section padding-x-default padding-y-default">
@@ -10,66 +36,24 @@ const News = () => {
         <span className="title-part2"> nổi bật</span>
       </h2>
       <div className="news-items">
-        <div className="news-item card-news">
-          <a href="#">
-            <div className="news-image">
-              <span className="date">01 TH01, 2024</span>
+        {newsData.map(newsItem => (
+          <div className="news-item card-news" key={newsItem.id}>
+            <a href="#">
+              <div className="news-image">
+                <img src={newsItem.imageUrl} alt={newsItem.title} />{' '}
+                <span className="date">{newsItem.date}</span>
+              </div>
+            </a>
+            <div className="card-body">
+              <h3>{newsItem.title}</h3>
+              <p>{newsItem.description}</p>
+              <p>Tác giả: {newsItem.author}</p>
             </div>
-          </a>
-          <div className="card-body">
-            <h3>Cách hiệu chỉnh máy in 3D của bạn</h3>
-            <p>
-              Cách hiệu chỉnh máy in 3D của bạn Điều chỉnh lớp đầu tiên [caption
-              id="attachment_13233" align="aligncenter" width="1000"] Cách hiệu
-              chỉnh máy in 3D của bạn lớp đầu tiên.[/caption] Là nền tảng, một
-              lớp đầu tiên tốt là rất quan trọng...
-            </p>
-            <p>Tác giả: Admin </p>
-          </div>
-          <div className="card-footer">
-            <Link to="/tin-tuc">Đọc tiếp</Link>
-          </div>
-        </div>
-        <div className="news-item card-news">
-          <a href="#">
-            <div className="news-image">
-              <span className="date">01 TH01, 2024</span>
+            <div className="card-footer">
+              <Link to="/tin-tuc">Đọc tiếp</Link>
             </div>
-          </a>
-          <div className="card-body">
-            <h3>Cách hiệu chỉnh máy in 3D của bạn</h3>
-            <p>
-              Cách hiệu chỉnh máy in 3D của bạn Điều chỉnh lớp đầu tiên [caption
-              id="attachment_13233" align="aligncenter" width="1000"] Cách hiệu
-              chỉnh máy in 3D của bạn lớp đầu tiên.[/caption] Là nền tảng, một
-              lớp đầu tiên tốt là rất quan trọng...
-            </p>
-            <p>Tác giả: Admin </p>
           </div>
-          <div className="card-footer">
-            <Link to="/tin-tuc">Đọc tiếp</Link>
-          </div>
-        </div>
-        <div className="news-item card-news">
-          <a href="#">
-            <div className="news-image">
-              <span className="date">01 TH01, 2024</span>
-            </div>
-          </a>
-          <div className="card-body">
-            <h3>Cách hiệu chỉnh máy in 3D của bạn</h3>
-            <p>
-              Cách hiệu chỉnh máy in 3D của bạn Điều chỉnh lớp đầu tiên [caption
-              id="attachment_13233" align="aligncenter" width="1000"] Cách hiệu
-              chỉnh máy in 3D của bạn lớp đầu tiên.[/caption] Là nền tảng, một
-              lớp đầu tiên tốt là rất quan trọng...
-            </p>
-            <p>Tác giả: Admin </p>
-          </div>
-          <div className="card-footer">
-            <Link to="/tin-tuc">Đọc tiếp</Link>
-          </div>
-        </div>
+        ))}
       </div>
       <Link to="/tin-tuc" className="view-more">
         Xem thêm
