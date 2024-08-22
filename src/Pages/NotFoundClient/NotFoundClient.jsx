@@ -1,7 +1,7 @@
 import React from 'react'
 
-const NotFound = () => {
+const NotFoundClient = () => {
   return <div>NotFound 404</div>
 }
 
-export default NotFound
+export default NotFoundClient

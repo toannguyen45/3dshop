@@ -15,7 +15,7 @@ const CarouselReact = () => {
       <div>
         <div className="carousel-img-wrapper">
           <img
-            loading="lazy"
+            loading="eager"
             src="/images/client/slide-one-new.jpg"
             className="carousel-img"
             alt="slide-one"
@@ -30,7 +30,7 @@ const CarouselReact = () => {
       <div>
         <div className="carousel-img-wrapper">
           <img
-            loading="lazy"
+            loading="eager"
             src="/images/client/slide-two-new.jpg"
             className="carousel-img"
             alt="slide-two"

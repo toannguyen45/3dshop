@@ -22,7 +22,7 @@ const AboutUs = () => {
       </div>
       <div className="about-us-image">
         <img
-          src="/images/client/team.jpg"
+          src="/images/client/team.webp"
           alt="Team Image"
           width={100}
           height={100}

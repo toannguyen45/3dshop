@@ -23,7 +23,7 @@ import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 
 import Home from '@pages/Client/Home/Home'
-import NotFound from '@pages/NotFound/NotFound'
+import NotFoundClient from '@pages/NotFoundClient/NotFoundClient'
 import About from '@pages/Client/About/About'
 import ClientLayout from './Components/Client/LayoutClient/ClientLayout'
 import Blogs from '@pages/Client/Blogs/Blogs'
@@ -177,7 +177,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFound />,
+    element: <NotFoundClient />,
   },
 ])
 
