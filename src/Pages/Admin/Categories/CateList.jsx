@@ -125,7 +125,7 @@ const CateList = () => {
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       <BreadCrumbCus items={items} />
-      <h3 className="mb-4  title">Category</h3>
+      <h3 className="mb-4  title">Categories</h3>
       <Flex justify="space-between">
         <Button
           type="primary"
