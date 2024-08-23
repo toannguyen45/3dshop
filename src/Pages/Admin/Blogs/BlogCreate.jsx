@@ -17,6 +17,7 @@ import { useFormik } from 'formik'
 import { getBlogCategories } from '../../../Features/BlogCategory/BlogCategorySlice'
 import UploadFile from '../../../Components/Admin/UploadFile'
 import { toast } from 'react-toastify'
+import './BlogCreate.scss'
 
 const BlogCreate = () => {
   const { t } = useTranslation('translation')
@@ -57,6 +58,11 @@ const BlogCreate = () => {
     blogAuthor,
     blogImage,
     blogCategory,
+    blogSlug,
+    metaTitle,
+    metaDescription,
+    metaKeyword,
+    blogSummary,
   } = useSelector(state => state.blog)
 
   const { blogCategories } = useSelector(state => state.blogCategory)
@@ -74,12 +80,13 @@ const BlogCreate = () => {
     }
     if (isError) {
       toast.error('Something Went Wrong!')
-      dispatch(resetState())
     }
   }, [isSuccess, isError, isLoading])
 
   let schema = yup.object().shape({
     title: yup.string().required('Title is Required'),
+    summary: yup.string().required('Summary is Required'),
+    slug: yup.string().required('Slug is Required'),
     content: yup.string().required('Content is Required'),
     author: yup.string().required('Author is Required'),
     category: yup.string().required('Category is Required'),
@@ -90,10 +97,15 @@ const BlogCreate = () => {
     enableReinitialize: true,
     initialValues: {
       title: blogTitle || '',
+      slug: blogSlug || '',
+      summary: blogSummary || '',
       content: blogContent || '',
       author: blogAuthor || '',
       image: null,
       category: blogCategory ? String(blogCategory) : null,
+      meta_title: metaTitle || '',
+      meta_description: metaDescription || '',
+      meta_keyword: metaKeyword || '',
     },
     validationSchema: schema,
     onSubmit: values => {
@@ -104,9 +116,14 @@ const BlogCreate = () => {
         const formData = new FormData()
 
         formData.append('title', values.title)
+        formData.append('slug', values.slug)
+        formData.append('summary', values.summary)
         formData.append('content', values.content)
         formData.append('author', values.author)
         formData.append('category_id', values.category)
+        formData.append('meta_title', values.meta_title)
+        formData.append('meta_description', values.meta_description)
+        formData.append('meta_keyword', values.meta_keyword)
 
         // Add image to formData
         if (values.image && values.image.length > 0) {
@@ -141,6 +158,25 @@ const BlogCreate = () => {
             <Input
               name="title"
               value={formik.values.title}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </Form.Item>
+          <Form.Item
+            label={t('blog.slug')}
+            required
+            validateStatus={
+              formik.errors.slug && formik.touched.slug ? 'error' : ''
+            }
+            help={
+              formik.errors.slug && formik.touched.slug
+                ? formik.errors.slug
+                : ''
+            }
+          >
+            <Input
+              name="slug"
+              value={formik.values.slug}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
@@ -183,6 +219,25 @@ const BlogCreate = () => {
             </Select>
           </Form.Item>
           <Form.Item
+            label={t('blog.summary')}
+            required
+            validateStatus={
+              formik.errors.summary && formik.touched.summary ? 'error' : ''
+            }
+            help={
+              formik.errors.summary && formik.touched.summary
+                ? formik.errors.summary
+                : ''
+            }
+          >
+            <Input
+              name="summary"
+              value={formik.values.summary}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </Form.Item>
+          <Form.Item
             label={t('blog.content')}
             required
             validateStatus={
@@ -196,7 +251,7 @@ const BlogCreate = () => {
           >
             <ReactQuill
               theme="snow"
-              className="mt-3"
+              className="react-quill"
               name="content"
               onChange={formik.handleChange('content')}
               value={formik.values.content}
@@ -227,6 +282,74 @@ const BlogCreate = () => {
               onChange={value => formik.setFieldValue('image', value)}
             />
           </Form.Item>
+
+          <div className="seo">
+            <h2 className="seo-title">SEO</h2>
+            <Form.Item
+              label={t('blog.meta_title')}
+              validateStatus={
+                formik.errors.meta_title && formik.touched.meta_title
+                  ? 'error'
+                  : ''
+              }
+              help={
+                formik.errors.meta_title && formik.touched.meta_title
+                  ? formik.errors.meta_title
+                  : ''
+              }
+            >
+              <Input
+                name="meta_title"
+                value={formik.values.meta_title}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={t('blog.meta_description')}
+              validateStatus={
+                formik.errors.meta_description &&
+                formik.touched.meta_description
+                  ? 'error'
+                  : ''
+              }
+              help={
+                formik.errors.meta_description &&
+                formik.touched.meta_description
+                  ? formik.errors.meta_description
+                  : ''
+              }
+            >
+              <Input
+                name="meta_description"
+                value={formik.values.meta_description}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={t('blog.meta_keyword')}
+              validateStatus={
+                formik.errors.meta_keyword && formik.touched.meta_keyword
+                  ? 'error'
+                  : ''
+              }
+              help={
+                formik.errors.meta_keyword && formik.touched.meta_keyword
+                  ? formik.errors.meta_keyword
+                  : ''
+              }
+            >
+              <Input
+                name="meta_keyword"
+                value={formik.values.meta_keyword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </Form.Item>
+          </div>
 
           <Button type="primary" htmlType="submit">
             Submit

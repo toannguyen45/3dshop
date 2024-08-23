@@ -1,0 +1,15 @@
+.seo {
+  border: 1px solid black;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 15px;
+
+  .react-quill {
+    height: 150px;
+  }
+  .seo-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+}

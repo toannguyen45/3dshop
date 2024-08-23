@@ -56,6 +56,30 @@ export const deleteBlog = createAsyncThunk(
   }
 )
 
+export const getBlogClient = createAsyncThunk(
+  'blog/get-blog-client',
+  async (id, thunkAPI) => {
+    try {
+      return await BlogService.getBlogClient(id)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+export const getBlogsClient = createAsyncThunk(
+  'blog/get-blogs-client',
+  async ({ currentPage, category = null }, thunkAPI) => {
+    console.log('currentPage', currentPage)
+    console.log('category', category)
+    try {
+      return await BlogService.getBlogsClient(currentPage, category)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
 export const resetState = createAction('Reset_all')
 
 const initialState = {
@@ -103,15 +127,23 @@ export const blogSlice = createSlice({
         state.message = action.error
       })
       .addCase(resetState, () => initialState)
+      .addCase(getBlog.pending, state => {
+        state.isLoading = true
+      })
       .addCase(getBlog.fulfilled, (state, action) => {
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
         state.blogTitle = action.payload.data.title
         state.blogContent = action.payload.data.content
+        state.blogSummary = action.payload.data.summary
         state.blogAuthor = action.payload.data.author
         state.blogImage = action.payload.data.image
         state.blogCategory = action.payload.data.blog_category.id
+        state.blogSlug = action.payload.data.slug
+        state.metaTitle = action.payload.data.meta_title
+        state.metaDescription = action.payload.data.meta_description
+        state.metaKeyword = action.payload.data.meta_keyword
       })
       .addCase(getBlog.rejected, (state, action) => {
         state.isLoading = false
@@ -144,6 +176,36 @@ export const blogSlice = createSlice({
         state.deletedBlog = action.payload
       })
       .addCase(deleteBlog.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
+      .addCase(getBlogClient.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getBlogClient.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.blog = action.payload.data
+      })
+      .addCase(getBlogClient.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
+      .addCase(getBlogsClient.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getBlogsClient.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.blogsClient = action.payload.data
+      })
+      .addCase(getBlogsClient.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.isSuccess = false

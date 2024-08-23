@@ -41,14 +41,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/tin-tuc/:id',
-        element: <Blog />,
-      },
-      {
         path: '/tin-tuc',
         element: <Blogs />,
       },
-
+      {
+        path: '/tin-tuc/:slug',
+        element: <Blog />,
+      },
       {
         path: '/dich-vu',
         element: <Service />,

@@ -23,6 +23,17 @@ export const getBlogCategories = createAsyncThunk(
   }
 )
 
+export const getBlogCatesClient = createAsyncThunk(
+  'blogCategory/get-categories-client',
+  async (_, thunkAPI) => {
+    try {
+      return await BlogCategoryService.getBlogCatesClient()
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
 export const resetState = createAction('Reset_all')
 
 const initialState = {
@@ -64,6 +75,21 @@ export const blogCategorySlice = createSlice({
         state.blogCategories = action.payload
       })
       .addCase(getBlogCategories.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
+      .addCase(getBlogCatesClient.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getBlogCatesClient.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.blogCategoriesClient = action.payload
+      })
+      .addCase(getBlogCatesClient.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.isSuccess = false

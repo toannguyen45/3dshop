@@ -1,43 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Blogs.scss'
-import { Button, Pagination } from 'antd'
+import { Pagination } from 'antd'
 import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadCrumbCustom'
 import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBlogsClient } from '../../../Features/Blog/BlogSlice'
+import { formatDateTimeFull } from '../../../Utils/formatDate'
+import { storage_url } from '../../../Utils/baseUrl'
+import { Link } from 'react-router-dom'
+
+import { getBlogCatesClient } from '../../../Features/BlogCategory/BlogCategorySlice'
 
 const Blogs = () => {
-  const newsItems = [
-    {
-      image: '/images/client/tintuc1.jpg',
-      title: 'So sánh máy quét 3D Creality CR-Scan Otter và CR-Scan Raptor',
-      description:
-        'So sánh PETG và ABS Tổng quan [caption id="attachment_13246" align="aligncenter" width="1000"] So sánh PETG và ABS[/caption] Đặc Tính PETG ABS Nhiệt độ đầu in 220-260 °C 230-270 °C Nhiệt độ bàn in 60-80 °C 90-120 °C Vỏ bọc Tùy chọn...',
-      author: 'Tác giả 1',
-      date: '2022-01-01',
-    },
-    {
-      image: '/images/client/tintuc2.jpg',
-      title: 'Cách hiệu chỉnh máy in 3D của bạn',
-      description:
-        'Cách hiệu chỉnh máy in 3D của bạn Điều chỉnh lớp đầu tiên [caption id="attachment_13233" align="aligncenter" width="1000"] Cách hiệu chỉnh máy in 3D của bạn lớp đầu tiên.[/caption] Là nền tảng, một lớp đầu tiên tốt là rất quan trọng...',
-      author: 'Tác giả 2',
-      date: '2022-01-02',
-    },
-  ]
+  const dispatch = useDispatch()
 
-  const categories = ['Category 1', 'Category 2', 'Category 3']
+  const { blogsClient, isLoading } = useSelector(state => state.blog)
+  const { blogCategoriesClient, isLoading: isLoadingCates } = useSelector(
+    state => state.blogCategory
+  )
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [newsPerPage] = useState(2)
 
-  const indexOfLastNews = currentPage * newsPerPage
-  const indexOfFirstNews = indexOfLastNews - newsPerPage
-  const currentNewsItems = newsItems.slice(indexOfFirstNews, indexOfLastNews)
+  const fetchData = () => {
+    dispatch(getBlogsClient({ currentPage, category: 1 }))
+  }
+
+  useEffect(() => {
+    dispatch(getBlogCatesClient())
+  }, [])
+
+  useEffect(() => {
+    fetchData()
+  }, [currentPage])
+
+  const categories = ['Category 1', 'Category 2', 'Category 3']
 
   const items = [
     {
       title: 'Tin tức',
     },
   ]
+
+  console.log('blogCategoriesClient', blogCategoriesClient)
 
   return (
     <div className="blogs">
@@ -51,30 +55,38 @@ const Blogs = () => {
         <div className="news-column">
           <h2>Tin tức</h2>
           <hr className="divider" />
-          {currentNewsItems.map((item, index) => (
-            <div key={index} className="blogs-item">
-              <img
-                loading="lazy"
-                src={item.image}
-                alt={item.title}
-                className="news-item-image"
-              />
-              <h3 className="news-item-title">{item.title}</h3>
-              <div className="news-item-meta">
-                <span className="meta-label">Ngày đăng: </span>
-                <span className="meta-data">{item.date}</span>
-                <span className="meta-label">Tác giả: </span>
-                <span className="meta-data">{item.author}</span>
+          {isLoading ? (
+            <div>Đang tải...</div>
+          ) : (
+            blogsClient?.data?.map((item, index) => (
+              <div key={item.id} className="blogs-item">
+                <img
+                  loading="lazy"
+                  src={`${storage_url}/${item.image}`}
+                  alt={item.title}
+                  className="news-item-image"
+                />
+                <h3 className="news-item-title">{item.title}</h3>
+                <div className="news-item-meta">
+                  <span className="meta-label">Ngày đăng: </span>
+                  <span className="meta-data">
+                    {formatDateTimeFull(item.created_at)}
+                  </span>
+                  <span className="meta-label">Tác giả: </span>
+                  <span className="meta-data">{item.author}</span>
+                </div>
+                <p className="news-item-description">{item.summary}</p>
+                <Link to={`/tin-tuc/${item.slug}`} className="news-item-more">
+                  Xem thêm
+                </Link>
               </div>
-              <p className="news-item-description">{item.description}</p>
-              <Button className="news-item-more">Xem thêm</Button>
-            </div>
-          ))}
+            ))
+          )}
           <Pagination
             className="pagination-custom"
             current={currentPage}
-            total={newsItems.length}
-            pageSize={newsPerPage}
+            total={blogsClient?.total}
+            pageSize={5}
             onChange={page => setCurrentPage(page)}
           />
         </div>
@@ -82,10 +94,16 @@ const Blogs = () => {
           <h3>Danh mục</h3>
           <hr className="divider" />
           <div className="category-column">
-            {categories.map((category, index) => (
-              <p key={index} className="category">
-                {category}
-              </p>
+            {blogCategoriesClient?.data.map((item, index) => (
+              <button
+                key={item?.id}
+                onClick={() =>
+                  dispatch(getBlogsClient({ currentPage, category: item.id }))
+                }
+                className="category-item"
+              >
+                {item.title}
+              </button>
             ))}
           </div>
         </div>

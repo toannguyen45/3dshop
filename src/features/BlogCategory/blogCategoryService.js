@@ -25,9 +25,16 @@ const getBlogCategories = async (tableParams = {}) => {
   return response.data
 }
 
+const getBlogCatesClient = async () => {
+  const response = await axiosInst.get(`/blog-cates-client`)
+
+  return response.data
+}
+
 const BlogCategoryService = {
   createBlogCategory,
   getBlogCategories,
+  getBlogCatesClient,
 }
 
 export default BlogCategoryService

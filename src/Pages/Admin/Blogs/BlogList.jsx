@@ -99,13 +99,10 @@ const BlogList = () => {
       width: '20%',
     },
     {
-      title: 'Content',
-      dataIndex: 'content',
+      title: 'Summary',
+      dataIndex: 'summary',
       sorter: true,
       width: '30%',
-      render: (text, record) => (
-        <div dangerouslySetInnerHTML={{ __html: record.content }} />
-      ),
     },
     {
       title: 'Action',

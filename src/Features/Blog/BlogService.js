@@ -46,12 +46,28 @@ const deleteBlog = async id => {
   return response.data
 }
 
+const getBlogClient = async slug => {
+  const response = await axiosInst.get(`/blogs-client/${slug}`)
+
+  return response.data
+}
+
+const getBlogsClient = async (currentPage, category) => {
+  const response = await axiosInst.get(
+    `/blogs-client?page=${currentPage}&danhmuc=${category}`
+  )
+
+  return response.data
+}
+
 const BlogService = {
   createBlog,
   getBlogs,
   updateBlog,
   deleteBlog,
   getBlog,
+  getBlogClient,
+  getBlogsClient,
 }
 
 export default BlogService

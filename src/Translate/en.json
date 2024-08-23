@@ -29,9 +29,14 @@
   },
   "blog": {
     "title": "Title",
+    "slug": "Slug",
+    "summary": "Summary",
     "content": "Content",
     "category": "Category",
     "image": "Image",
-    "author": "Author"
+    "author": "Author",
+    "meta_title": "Meta Title",
+    "meta_description": "Meta Description",
+    "meta_keyword": "Meta Keyword"
   }
 }
