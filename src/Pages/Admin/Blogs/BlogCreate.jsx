@@ -14,7 +14,6 @@ import {
 } from '../../../Features/Blog/BlogSlice'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
-import { getBlogCategories } from '../../../Features/BlogCategory/BlogCategorySlice'
 import UploadFile from '../../../Components/Admin/UploadFile'
 import { toast } from 'react-toastify'
 import './BlogCreate.scss'
@@ -36,10 +35,6 @@ const BlogCreate = () => {
   ]
 
   useEffect(() => {
-    dispatch(getBlogCategories())
-  }, [])
-
-  useEffect(() => {
     if (id !== undefined) {
       dispatch(getBlog(id))
     } else {
@@ -57,15 +52,12 @@ const BlogCreate = () => {
     blogContent,
     blogAuthor,
     blogImage,
-    blogCategory,
     blogSlug,
     metaTitle,
     metaDescription,
     metaKeyword,
     blogSummary,
   } = useSelector(state => state.blog)
-
-  const { blogCategories } = useSelector(state => state.blogCategory)
 
   useEffect(() => {
     if (isSuccess && createdBlog) {
@@ -89,10 +81,8 @@ const BlogCreate = () => {
     slug: yup.string().required('Slug is Required'),
     content: yup.string().required('Content is Required'),
     author: yup.string().required('Author is Required'),
-    category: yup.string().required('Category is Required'),
   })
 
-  console.log(blogTitle, blogContent, blogAuthor, blogImage)
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -102,7 +92,6 @@ const BlogCreate = () => {
       content: blogContent || '',
       author: blogAuthor || '',
       image: null,
-      category: blogCategory ? String(blogCategory) : null,
       meta_title: metaTitle || '',
       meta_description: metaDescription || '',
       meta_keyword: metaKeyword || '',
@@ -120,7 +109,6 @@ const BlogCreate = () => {
         formData.append('summary', values.summary)
         formData.append('content', values.content)
         formData.append('author', values.author)
-        formData.append('category_id', values.category)
         formData.append('meta_title', values.meta_title)
         formData.append('meta_description', values.meta_description)
         formData.append('meta_keyword', values.meta_keyword)
@@ -136,6 +124,10 @@ const BlogCreate = () => {
       }
     },
   })
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
@@ -199,24 +191,6 @@ const BlogCreate = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-          </Form.Item>
-          <Form.Item label={t('blog.category')}>
-            <Select
-              placeholder="Select a option and change input text above"
-              name="category"
-              onChange={formik.handleChange('category')}
-              onBlur={formik.handleBlur('category')}
-              value={formik.values.category}
-            >
-              <Select.Option value="male">Select option</Select.Option>
-              {blogCategories?.data?.data.map((item, j) => {
-                return (
-                  <Select.Option key={j} value={String(item?.id)}>
-                    {item.title}
-                  </Select.Option>
-                )
-              })}
-            </Select>
           </Form.Item>
           <Form.Item
             label={t('blog.summary')}

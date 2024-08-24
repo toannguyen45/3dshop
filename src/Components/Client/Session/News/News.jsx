@@ -1,34 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './News.scss'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBlogsHome } from '../../../../Features/Blog/BlogSlice'
 
-const newsData = [
-  {
-    id: 1,
-    imageUrl: 'https://via.placeholder.com/300x200',
-    title: 'Tin tức 1',
-    description: 'Mô tả tin tức 1',
-    date: '01/01/2021',
-    author: 'Nguyễn Văn A',
-  },
-  {
-    id: 2,
-    imageUrl: 'https://via.placeholder.com/300x200',
-    title: 'Tin tức 2',
-    description: 'Mô tả tin tức 2',
-    date: '02/01/2021',
-    author: 'Nguyễn Văn B',
-  },
-  {
-    id: 3,
-    imageUrl: 'https://via.placeholder.com/300x200',
-    title: 'Tin tức 3',
-    description: 'Mô tả tin tức 3',
-    date: '03/01/2021',
-    author: 'Nguyễn Văn C',
-  },
-]
 const News = () => {
+  const dispatch = useDispatch()
+
+  const { blogsHome, isLoading } = useSelector(state => state.blog)
+
+  useEffect(() => {
+    dispatch(getBlogsHome())
+  }, [])
+
   return (
     <div className="news-section padding-x-default padding-y-default">
       <h2>
@@ -36,7 +20,7 @@ const News = () => {
         <span className="title-part2"> nổi bật</span>
       </h2>
       <div className="news-items">
-        {newsData.map(newsItem => (
+        {blogsHome?.map(newsItem => (
           <div className="news-item card-news" key={newsItem.id}>
             <a href="#">
               <div className="news-image">
@@ -50,7 +34,7 @@ const News = () => {
               <p>Tác giả: {newsItem.author}</p>
             </div>
             <div className="card-footer">
-              <Link to="/tin-tuc">Đọc tiếp</Link>
+              <Link to={`/tin-tuc/${newsItem.slug}`}>Đọc tiếp</Link>
             </div>
           </div>
         ))}

@@ -52,10 +52,16 @@ const getBlogClient = async slug => {
   return response.data
 }
 
-const getBlogsClient = async (currentPage, category) => {
+const getBlogsClient = async (currentPage) => {
   const response = await axiosInst.get(
-    `/blogs-client?page=${currentPage}&danhmuc=${category}`
+    `/blogs-client?page=${currentPage}`
   )
+
+  return response.data
+}
+
+const getBlogsHome = async () => {
+  const response = await axiosInst.get('/blogs-home')
 
   return response.data
 }
@@ -68,6 +74,7 @@ const BlogService = {
   getBlog,
   getBlogClient,
   getBlogsClient,
+  getBlogsHome
 }
 
 export default BlogService

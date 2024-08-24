@@ -69,11 +69,20 @@ export const getBlogClient = createAsyncThunk(
 
 export const getBlogsClient = createAsyncThunk(
   'blog/get-blogs-client',
-  async ({ currentPage, category = null }, thunkAPI) => {
-    console.log('currentPage', currentPage)
-    console.log('category', category)
+  async (currentPage, thunkAPI) => {
     try {
-      return await BlogService.getBlogsClient(currentPage, category)
+      return await BlogService.getBlogsClient(currentPage)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+export const getBlogsHome = createAsyncThunk(
+  'blog/get-blogs-home',
+  async (_, thunkAPI) => {
+    try {
+      return await BlogService.getBlogsHome()
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -139,7 +148,6 @@ export const blogSlice = createSlice({
         state.blogSummary = action.payload.data.summary
         state.blogAuthor = action.payload.data.author
         state.blogImage = action.payload.data.image
-        state.blogCategory = action.payload.data.blog_category.id
         state.blogSlug = action.payload.data.slug
         state.metaTitle = action.payload.data.meta_title
         state.metaDescription = action.payload.data.meta_description
@@ -206,6 +214,21 @@ export const blogSlice = createSlice({
         state.blogsClient = action.payload.data
       })
       .addCase(getBlogsClient.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.error
+      })
+      .addCase(getBlogsHome.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getBlogsHome.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isError = false
+        state.isSuccess = true
+        state.blogsHome = action.payload.data
+      })
+      .addCase(getBlogsHome.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.isSuccess = false

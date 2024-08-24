@@ -9,39 +9,26 @@ import { formatDateTimeFull } from '../../../Utils/formatDate'
 import { storage_url } from '../../../Utils/baseUrl'
 import { Link } from 'react-router-dom'
 
-import { getBlogCatesClient } from '../../../Features/BlogCategory/BlogCategorySlice'
-
 const Blogs = () => {
   const dispatch = useDispatch()
 
   const { blogsClient, isLoading } = useSelector(state => state.blog)
-  const { blogCategoriesClient, isLoading: isLoadingCates } = useSelector(
-    state => state.blogCategory
-  )
 
   const [currentPage, setCurrentPage] = useState(1)
 
   const fetchData = () => {
-    dispatch(getBlogsClient({ currentPage, category: 1 }))
+    dispatch(getBlogsClient(currentPage))
   }
-
-  useEffect(() => {
-    dispatch(getBlogCatesClient())
-  }, [])
 
   useEffect(() => {
     fetchData()
   }, [currentPage])
-
-  const categories = ['Category 1', 'Category 2', 'Category 3']
 
   const items = [
     {
       title: 'Tin tức',
     },
   ]
-
-  console.log('blogCategoriesClient', blogCategoriesClient)
 
   return (
     <div className="blogs">
@@ -89,23 +76,6 @@ const Blogs = () => {
             pageSize={5}
             onChange={page => setCurrentPage(page)}
           />
-        </div>
-        <div className="category-blogs">
-          <h3>Danh mục</h3>
-          <hr className="divider" />
-          <div className="category-column">
-            {blogCategoriesClient?.data.map((item, index) => (
-              <button
-                key={item?.id}
-                onClick={() =>
-                  dispatch(getBlogsClient({ currentPage, category: item.id }))
-                }
-                className="category-item"
-              >
-                {item.title}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </div>
