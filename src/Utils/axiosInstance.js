@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-import { logout } from '../Features/Auth/AuthSlice'
 import { base_url } from './baseUrl'
 
 // Create an axios instance
@@ -28,10 +27,10 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => response,
   error => {
-    // Check if error response status is 401 - Unauthorized
     if (error.response.status === 401) {
       // If it is, logout the user
-      logout()
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
     }
 
     return Promise.reject(error)

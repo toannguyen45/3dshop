@@ -10,9 +10,6 @@ import ProductsAdminDetail from '@pages/Admin/Products/ProductDetail'
 import CategoriesAdmin from '@pages/Admin/Categories/CateList'
 import CategoriesAdminCreate from '@pages/Admin/Categories/CateCreate'
 
-import BlogCategoriesAdminList from '@pages/Admin/BlogCategories/BlogCateList'
-import BlogCategoriesAdminCreate from '@pages/Admin/BlogCategories//BlogCateCreate'
-
 import BlogsAdminList from '@pages/Admin/Blogs/BlogList'
 import BlogsAdminCreate from '@pages/Admin/Blogs/BlogCreate'
 
@@ -143,22 +140,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CategoriesAdminCreate />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'blog-categories',
-        element: (
-          <PrivateRoute>
-            <BlogCategoriesAdminList />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'blog-categories/create',
-        element: (
-          <PrivateRoute>
-            <BlogCategoriesAdminCreate />
           </PrivateRoute>
         ),
       },

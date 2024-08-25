@@ -6,22 +6,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { login } from '../../../Features/Auth/AuthSlice'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const isAuthenticated = !!localStorage.getItem('token')
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/admin/dashboard')
-    }
-  }, [isAuthenticated])
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     state => state.auth
   )
+
+  useEffect(() => {
+    if (isSuccess && user) {
+      toast.success('Login Successfullly!')
+      navigate('/admin/dashboard')
+    }
+  }, [isSuccess, isError, isLoading])
 
   let schema = yup.object().shape({
     email: yup

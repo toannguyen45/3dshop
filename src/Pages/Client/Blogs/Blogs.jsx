@@ -9,6 +9,7 @@ import { formatDateTimeFull } from '../../../Utils/formatDate'
 import { storage_url } from '../../../Utils/baseUrl'
 import { Link } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import SkeletonBlogs from './SkeletonBlogs'
 
 const Blogs = () => {
   const dispatch = useDispatch()
@@ -44,16 +45,10 @@ const Blogs = () => {
           <h2>Tin tức</h2>
           <hr className="divider" />
           {isLoading ? (
-            <div>Đang tải...</div>
+            <SkeletonBlogs amount={3} />
           ) : (
             blogsClient?.data?.map((item, index) => (
               <div key={item.id} className="blogs-item">
-                {/* <LazyLoadImage
-                  alt={item.title}
-                  effect="blur"
-                  src={`${storage_url}/${item.image}`} // use normal <img> attributes as props
-                   className="news-item-image"
-                /> */}
                 <img
                   loading="lazy"
                   src={`${storage_url}/${item.image}`}

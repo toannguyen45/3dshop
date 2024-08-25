@@ -1,0 +1,18 @@
+@import '../../../Styles/variables';
+
+.card-skeleton {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+
+  .image-skeleton {
+    margin-bottom: 1rem;
+  }
+
+  .button-skeleton {
+    width: 124px;
+    padding: 0.5em 1.5em;
+    margin-top: 1rem;
+  }
+}

@@ -8,14 +8,14 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ShopOutlined,
-  SnippetsOutlined,
   TeamOutlined,
 } from '@ant-design/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../Features/Auth/AuthSlice'
 
 const { Header, Sider, Content } = Layout
 
@@ -27,6 +27,15 @@ const AdminLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      dispatch(logout())
+      navigate('/admin/login')
+    }
+  }, [dispatch, history])
 
   const items = [
     {
@@ -159,17 +168,6 @@ const AdminLayout = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <ToastContainer
-            position="top-right"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={true}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            theme="light"
-          />
           <Outlet />
         </Content>
       </Layout>

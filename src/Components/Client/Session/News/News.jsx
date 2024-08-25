@@ -3,6 +3,7 @@ import './News.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogsHome } from '../../../../Features/Blog/BlogSlice'
+import { storage_url } from '../../../../Utils/baseUrl'
 
 const News = () => {
   const dispatch = useDispatch()
@@ -24,7 +25,10 @@ const News = () => {
           <div className="news-item card-news" key={newsItem.id}>
             <a href="#">
               <div className="news-image">
-                <img src={newsItem.imageUrl} alt={newsItem.title} />
+                <img
+                  src={`${storage_url}/${newsItem.image}`}
+                  alt={newsItem.title}
+                />
                 <span className="date">{newsItem.date}</span>
               </div>
             </a>

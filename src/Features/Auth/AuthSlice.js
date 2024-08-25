@@ -45,12 +45,13 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.isSuccess = false
-        state.message = action.payload || action.error.message
+        state.message = action.payload.message || action.error.message
       })
       .addCase(logout, state => {
         state.user = null
         state.message = ''
         localStorage.removeItem('user')
+        localStorage.removeItem('token')
       })
   },
 })
