@@ -8,12 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { formatDateTimeFull } from '../../../Utils/formatDate'
 
 const Blog = () => {
-  const items = [
-    {
-      title: 'Tin tức',
-    },
-  ]
-
   const { slug } = useParams()
   const dispatch = useDispatch()
 
@@ -22,6 +16,16 @@ const Blog = () => {
   useEffect(() => {
     dispatch(getBlogClient(slug))
   }, [])
+
+  const items = [
+    {
+      href: '/tin-tuc',
+      title: 'Tin tức',
+    },
+    {
+      title: blog?.title
+    }
+  ]
 
   if (isLoading) {
     return <div className="blog">Đang tải...</div>
