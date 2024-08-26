@@ -1,7 +1,11 @@
 import React from 'react'
 import './AboutUs.scss'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useNavigate } from 'react-router-dom'
 
 const AboutUs = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="about-us-session">
       <div className="about-us-content">
@@ -18,15 +22,20 @@ const AboutUs = () => {
           Chúng tôi cung cấp các thiết bị, dịch vụ và giải pháp 3D trọn gói cho
           cá nhân, doanh nghiệp, các xưởng sản xuất.
         </p>
-        <button className="about-us-button">Xem thêm</button>
+        <button
+          className="about-us-button"
+          onClick={() => navigate('/ve-chung-toi')}
+        >
+          Xem thêm
+        </button>
       </div>
       <div className="about-us-image">
-        <img
-          src="/images/client/team-size.webp"
-          alt="team-img"
-          loading="eager"
-          width={481}
+        <LazyLoadImage
+          src="/images/client/team.jpg"
+          width={'100%'}
           height={321}
+          alt="team-img"
+          effect="blur"
         />
       </div>
     </div>

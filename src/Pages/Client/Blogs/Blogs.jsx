@@ -8,7 +8,6 @@ import { getBlogsClient } from '../../../Features/Blog/BlogSlice'
 import { formatDateTimeFull } from '../../../Utils/formatDate'
 import { storage_url } from '../../../Utils/baseUrl'
 import { Link } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import SkeletonBlogs from './SkeletonBlogs'
 
 const Blogs = () => {

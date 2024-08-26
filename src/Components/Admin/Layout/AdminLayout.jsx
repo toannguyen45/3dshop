@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../Features/Auth/AuthSlice'
+import ScrollToTop from '../../ScrollToTop/ScrollToTop'
 
 const { Header, Sider, Content } = Layout
 
@@ -61,6 +62,7 @@ const AdminLayout = () => {
         minHeight: '100vh',
       }}
     >
+      <ScrollToTop />
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div
           style={{

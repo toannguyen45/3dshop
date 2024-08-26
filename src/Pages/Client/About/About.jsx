@@ -23,21 +23,21 @@ const About = () => {
           <h2 className="title">Công ty in 3D 3DTeam</h2>
           <hr className="divider" />
           <p className="body">
-            3DTeam là công ty in 3D hàng đầu tại Đà Nẵng. Chúng tôi cung cấp
-            các dịch vụ in 3D chất lượng cao và giá cả phải chăng. Với đội ngũ
-            kỹ sư chuyên nghiệp, chúng tôi cam kết mang đến cho khách hàng
-            những sản phẩm in 3D chất lượng nhất. Chuyên cung cấp các dịch vụ
-            in 3D như in 3D nhanh, in 3D mẫu, in 3D công nghiệp, in 3D quảng
-            cáo, in 3D quà tặng, in 3D kiến trúc, in 3D y tế, in 3D giáo dục,
-            in 3D ngành công nghiệp, in 3D ngành nghệ thuật, in 3D ngành xây
+            3DTeam là công ty in 3D hàng đầu tại Đà Nẵng. Chúng tôi cung cấp các
+            dịch vụ in 3D chất lượng cao và giá cả phải chăng. Với đội ngũ kỹ sư
+            chuyên nghiệp, chúng tôi cam kết mang đến cho khách hàng những sản
+            phẩm in 3D chất lượng nhất. Chuyên cung cấp các dịch vụ in 3D như in
+            3D nhanh, in 3D mẫu, in 3D công nghiệp, in 3D quảng cáo, in 3D quà
+            tặng, in 3D kiến trúc, in 3D y tế, in 3D giáo dục, in 3D ngành công
+            nghiệp, in 3D ngành nghệ thuật, in 3D ngành xây
           </p>
           <h6>CTY TNHH 3D SERVICES VIỆT NAM</h6>
           <h6>Mã số DN: 0314724035</h6>
           <h6>Ngày cấp: 09/11/2017</h6>
           <h6>Cơ quan cấp: Sở kế hoạch và đầu tư Thành phố Hồ Chí Minh</h6>
           <h6>
-            Văn phòng: 70 Đường D2, P. Tăng Nhơn Phú A, TP. Thủ Đức, TP. Hồ
-            Chí Minh
+            Văn phòng: 70 Đường D2, P. Tăng Nhơn Phú A, TP. Thủ Đức, TP. Hồ Chí
+            Minh
           </h6>
           <h6>Tel: 0937777943 – 0368779150</h6>
         </div>
@@ -58,14 +58,13 @@ const About = () => {
                 width: '100%',
                 height: '100%',
               }}
-              allowfullscreen
+              allowFullScreen
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>
       </div>
-
     </div>
   )
 }

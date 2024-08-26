@@ -97,7 +97,7 @@
           color: white;
           background-color: #00712d;
           border: none;
-          border-radius: 36px;
+          border-radius: 10px;
           cursor: pointer;
           margin-top: 2rem;
           font-size: 1em;
@@ -109,10 +109,12 @@
 }
 
 /* Large  */
-@media (max-width: 1199px) {}
+@media (max-width: 1199px) {
+}
 
 /* Desktop  */
-@media (max-width: 991px) {}
+@media (max-width: 991px) {
+}
 
 /* tablets  */
 @media (max-width: 767px) {
@@ -122,4 +124,5 @@
 }
 
 /* phones  */
-@media (max-width: 575px) {}
+@media (max-width: 575px) {
+}

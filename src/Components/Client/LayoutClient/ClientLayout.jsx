@@ -7,10 +7,12 @@ import NavbarDesktop from '../Layout/NavbarDesktop/NavbarDesktop'
 import NavbarMobile from '../Layout/NavbarMobile/NavbarMobile'
 import Hotline from '../Hotline/Hotline'
 import BackToTop from '../BackToTop/BackToTop'
+import ScrollToTop from '../../ScrollToTop/ScrollToTop'
 
 const ClientLayout = () => {
   return (
     <div className="container">
+      <ScrollToTop />
       <HeadTop />
       <NavbarDesktop />
       <NavbarMobile />
