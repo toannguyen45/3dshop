@@ -16,12 +16,13 @@ const CarouselReact = () => {
     >
       <div>
         <div className="carousel-img-wrapper">
-          <LazyLoadImage
+          <img
+            loading="eager"
             src="/images/client/slide-one-new.jpg"
-            width={'100%'}
-            height={650}
+            className="carousel-img"
             alt="slide-one"
-            effect="blur"
+            width={1536}
+            height={650}
           />
         </div>
 
@@ -35,12 +36,13 @@ const CarouselReact = () => {
       </div>
       <div>
         <div className="carousel-img-wrapper">
-          <LazyLoadImage
+          <img
+            loading="eager"
             src="/images/client/slide-two-new.jpg"
-            width={'100%'}
+            className="carousel-img"
+            alt="slide-one"
+            width={1536}
             height={650}
-            alt="slide-two"
-            effect="blur"
           />
         </div>
 

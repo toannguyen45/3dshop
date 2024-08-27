@@ -2,12 +2,11 @@
   .carousel-img-wrapper {
     position: relative;
 
-    .img {
+    .carousel-img {
       width: 100%;
-      max-width: 100%;
-      height: auto;
       object-fit: cover;
-      background-color: beige;
+      background-color: beige !important;
+      height: 650;
     }
 
     &::after {
@@ -66,36 +65,39 @@
 
 /* Desktop  */
 @media (max-width: 991px) {
-  .carousel .slide .slider-content {
-    .text-line-one {
-      font-size: 2.5em;
+  .carousel {
+    .carousel-img-wrapper {
+      .carousel-img {
+        height: 400px;
+      }
     }
-    .text-line-two {
-      font-size: 2em;
+    .slider-content {
+      padding: 1.5rem;
+      .text-line-one {
+        font-size: 2.5em;
+      }
+      .text-line-two {
+        font-size: 2em;
+      }
     }
   }
 }
 
 /* tablets  */
 @media (max-width: 767px) {
-  .carousel .slide .slider-content {
-    .text-line-one {
-      font-size: 2em;
-    }
-    .text-line-two {
-      font-size: 1.5em;
-    }
-  }
 }
 
 /* phones  */
 @media (max-width: 575px) {
-  .carousel .slide .slider-content {
-    .text-line-one {
-      font-size: 1.3em;
-    }
-    .text-line-two {
-      font-size: 1em;
+  .carousel {
+    .slider-content {
+      padding: 1.5rem;
+      .text-line-one {
+        font-size: 2em;
+      }
+      .text-line-two {
+        font-size: 1.2em;
+      }
     }
   }
 }
