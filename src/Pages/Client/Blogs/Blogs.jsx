@@ -44,7 +44,7 @@ const Blogs = () => {
           <h2>Tin tức</h2>
           <hr className="divider" />
           {isLoading ? (
-            <SkeletonBlogs amount={3} />
+            <SkeletonBlogs amount={1} />
           ) : (
             blogsClient?.data?.map((item, index) => (
               <div key={item.id} className="blogs-item">
