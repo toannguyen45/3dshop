@@ -36,9 +36,9 @@ export const getBlog = createAsyncThunk(
 
 export const updateBlog = createAsyncThunk(
   'blog/update-blog',
-  async (blog, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      return await BlogService.updateBlog(blog)
+      return await BlogService.updateBlog(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }

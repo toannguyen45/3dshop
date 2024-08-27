@@ -5,6 +5,8 @@ import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteBlog, getBlogs } from '../../../Features/Blog/BlogSlice'
 import CustomModal from '../../../Components/Admin/CustomModal'
+import { storage_url } from '../../../Utils/baseUrl'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const BlogList = () => {
   const navigate = useNavigate()
@@ -72,7 +74,7 @@ const BlogList = () => {
 
   const showModal = e => {
     setOpen(true)
-    setCateId(e)
+    setBlogId(e)
   }
 
   const hideModal = () => {
@@ -84,7 +86,22 @@ const BlogList = () => {
       title: 'ID',
       dataIndex: 'id',
       sorter: true,
-      width: '20%',
+      width: '10%',
+    },
+    {
+      title: 'Image',
+      dataIndex: 'image',
+      sorter: true,
+      width: '30%',
+      render: (text, record) => (
+        <LazyLoadImage
+          src={`${storage_url}/${record.image}`}
+          alt={record.title}
+          effect="blur"
+          width={'100%'}
+          height={'auto'}
+        />
+      ),
     },
     {
       title: 'Title',
@@ -151,7 +168,7 @@ const BlogList = () => {
           hideModal={hideModal}
           open={open}
           performAction={() => {
-            deleteACategory(cateId)
+            deleteABlog(blogId)
           }}
           title="Are you sure you want to delete this?"
         />

@@ -24,7 +24,7 @@ const BlogsData = () => {
   return (
     isSuccess && (
       <>
-        {blogsClient.data.map(item => (
+        {blogsClient?.data.map(item => (
           <div key={item.id} className="blogs-item">
             <LazyLoadImage
               src={`${storage_url}/${item.image}`}

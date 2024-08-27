@@ -1,5 +1,5 @@
-import { Button, Form, Input, Select, Space } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Form, Input, Space } from 'antd'
+import React, { useEffect, useState } from 'react'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useTranslation } from 'react-i18next'
 import ReactQuill from 'react-quill'
@@ -14,9 +14,9 @@ import {
 } from '../../../Features/Blog/BlogSlice'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
-import UploadFile from '../../../Components/Admin/UploadFile'
 import { toast } from 'react-toastify'
 import './BlogCreate.scss'
+import { storage_url } from '../../../Utils/baseUrl'
 
 const BlogCreate = () => {
   const { t } = useTranslation('translation')
@@ -59,6 +59,13 @@ const BlogCreate = () => {
     blogSummary,
   } = useSelector(state => state.blog)
 
+  const [previewImage, setPreviewImage] = useState(
+    blogImage ? `${storage_url}/${blogImage}` : null
+  )
+  useEffect(() => {
+    setPreviewImage(blogImage ? `${storage_url}/${blogImage}` : null)
+  }, [blogImage])
+
   useEffect(() => {
     if (isSuccess && createdBlog) {
       toast.success('Blog Added Successfullly!')
@@ -81,6 +88,26 @@ const BlogCreate = () => {
     slug: yup.string().required('Slug is Required'),
     content: yup.string().required('Content is Required'),
     author: yup.string().required('Author is Required'),
+    image: yup
+      .mixed()
+      .nullable()
+      .test(
+        'fileSize',
+        'File too large',
+        value =>
+          !value ||
+          !(value instanceof FileList) ||
+          (value[0] && value[0].size <= 1048576) // 1MB
+      )
+      .test(
+        'fileFormat',
+        'Unsupported Format',
+        value =>
+          !value ||
+          !(value instanceof FileList) ||
+          (value[0] &&
+            ['image/jpg', 'image/jpeg', 'image/png'].includes(value[0].type))
+      ),
   })
 
   const formik = useFormik({
@@ -98,27 +125,27 @@ const BlogCreate = () => {
     },
     validationSchema: schema,
     onSubmit: values => {
+      const formData = new FormData()
+
+      formData.append('title', values.title)
+      formData.append('slug', values.slug)
+      formData.append('summary', values.summary)
+      formData.append('content', values.content)
+      formData.append('author', values.author)
+      formData.append('meta_title', values.meta_title)
+      formData.append('meta_description', values.meta_description)
+      formData.append('meta_keyword', values.meta_keyword)
+
+      // Add image to formData
+      if (values.image && values.image.length > 0) {
+        // Assuming that the image is stored as a File object in `values.image`
+        formData.append('image', values.image[0])
+      }
+
       if (id !== undefined) {
-        const data = { id: id, data: values }
-        dispatch(updateBlog(data))
+        formData.append('id', id)
+        dispatch(updateBlog({ id: id, data: formData }))
       } else {
-        const formData = new FormData()
-
-        formData.append('title', values.title)
-        formData.append('slug', values.slug)
-        formData.append('summary', values.summary)
-        formData.append('content', values.content)
-        formData.append('author', values.author)
-        formData.append('meta_title', values.meta_title)
-        formData.append('meta_description', values.meta_description)
-        formData.append('meta_keyword', values.meta_keyword)
-
-        // Add image to formData
-        if (values.image && values.image.length > 0) {
-          // Assuming that the image is stored as a File object in `values.image`
-          formData.append('image', values.image[0].originFileObj)
-        }
-
         dispatch(createNewBlog(formData))
         formik.resetForm()
       }
@@ -249,12 +276,40 @@ const BlogCreate = () => {
             />
           </Form.Item>
 
-          <Form.Item label={t('blog.image')} required>
-            <UploadFile
-              maxCount={1}
-              value={formik.values.images}
-              onChange={value => formik.setFieldValue('image', value)}
+          <Form.Item
+            label={t('blog.image')}
+            required
+            validateStatus={
+              formik.errors.image && formik.touched.image ? 'error' : ''
+            }
+            help={
+              formik.errors.image && formik.touched.image
+                ? formik.errors.image
+                : ''
+            }
+          >
+            <input
+              type="file"
+              name="image"
+              onChange={e => {
+                if (e.target.files && e.target.files[0]) {
+                  let img = URL.createObjectURL(e.target.files[0])
+                  setPreviewImage(img)
+                } else {
+                  // If user deletes the current image without choosing a new one
+                  setPreviewImage(null)
+                }
+                formik.setFieldValue('image', e.target.files)
+              }}
             />
+            {previewImage && (
+              <img
+                src={previewImage}
+                alt="Preview"
+                width={'50%'}
+                style={{ marginTop: '1rem' }}
+              />
+            )}
           </Form.Item>
 
           <div className="seo">

@@ -31,11 +31,8 @@ const getBlog = async id => {
   return response.data
 }
 
-const updateBlog = async blog => {
-  const response = await axiosInst.put(`blogs/${blog.id}`, {
-    name: blog.data.name,
-    description: blog.data.description,
-  })
+export const updateBlog = async ({ id, data }) => {
+  const response = await axiosInst.post(`/blogs/${id}`, data)
 
   return response.data
 }
@@ -52,10 +49,8 @@ const getBlogClient = async slug => {
   return response.data
 }
 
-const getBlogsClient = async (currentPage) => {
-  const response = await axiosInst.get(
-    `/blogs-client?page=${currentPage}`
-  )
+const getBlogsClient = async currentPage => {
+  const response = await axiosInst.get(`/blogs-client?page=${currentPage}`)
 
   return response.data
 }
@@ -74,7 +69,7 @@ const BlogService = {
   getBlog,
   getBlogClient,
   getBlogsClient,
-  getBlogsHome
+  getBlogsHome,
 }
 
 export default BlogService
