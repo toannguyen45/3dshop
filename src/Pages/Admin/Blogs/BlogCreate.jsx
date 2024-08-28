@@ -88,26 +88,52 @@ const BlogCreate = () => {
     slug: yup.string().required('Slug is Required'),
     content: yup.string().required('Content is Required'),
     author: yup.string().required('Author is Required'),
-    image: yup
-      .mixed()
-      .nullable()
-      .test(
-        'fileSize',
-        'File too large',
-        value =>
-          !value ||
-          !(value instanceof FileList) ||
-          (value[0] && value[0].size <= 1048576) // 1MB
-      )
-      .test(
-        'fileFormat',
-        'Unsupported Format',
-        value =>
-          !value ||
-          !(value instanceof FileList) ||
-          (value[0] &&
-            ['image/jpg', 'image/jpeg', 'image/png'].includes(value[0].type))
-      ),
+    image:
+      id !== undefined
+        ? yup
+            .mixed()
+            .nullable()
+            .test(
+              'fileSize',
+              'File too large',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                (value[0] && value[0].size <= 2097152) // 1MB
+            )
+            .test(
+              'fileFormat',
+              'Unsupported Format',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                (value[0] &&
+                  ['image/jpg', 'image/jpeg', 'image/png'].includes(
+                    value[0].type
+                  ))
+            )
+        : yup
+            .mixed()
+            .required('image is Required')
+            .test(
+              'fileSize',
+              'File too large',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                (value[0] && value[0].size <= 2097152) // 1MB
+            )
+            .test(
+              'fileFormat',
+              'Unsupported Format',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                (value[0] &&
+                  ['image/jpg', 'image/jpeg', 'image/png'].includes(
+                    value[0].type
+                  ))
+            ),
   })
 
   const formik = useFormik({
