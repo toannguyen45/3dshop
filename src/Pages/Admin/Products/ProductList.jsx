@@ -102,8 +102,8 @@ const ProductList = () => {
             src={`${storage_url}/${record.images[0].image}`}
             alt={record.title}
             effect="blur"
-            width={'100%'}
-            height={'auto'}
+            width={200}
+            height={200}
           />
         )
       },

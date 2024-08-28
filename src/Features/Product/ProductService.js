@@ -30,11 +30,8 @@ const getProduct = async id => {
   return response.data
 }
 
-const updateProduct = async data => {
-  const response = await axiosInst.put(`products/${data.id}`, {
-    name: data.productData.name,
-    description: data.productData.description,
-  })
+const updateProduct = async ({ id, data }) => {
+  const response = await axiosInst.post(`products/${id}`, data)
 
   return response.data
 }

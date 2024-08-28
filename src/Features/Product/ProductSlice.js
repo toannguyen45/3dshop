@@ -115,6 +115,7 @@ export const productSlice = createSlice({
         state.prodPrice = action.payload.data.price
         state.prodQuantity = action.payload.data.quantity
         state.prodImages = action.payload.data.images
+        state.prodCategoryId = action.payload.data.category_id
       })
       .addCase(getProduct.rejected, (state, action) => {
         state.isLoading = false

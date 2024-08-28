@@ -13,6 +13,7 @@ import {
   createNewProduct,
   getProduct,
   resetState,
+  updateProduct,
 } from '../../../Features/Product/ProductSlice'
 
 import { getCategories } from '../../../Features/Category/CategorySlice'
@@ -56,6 +57,7 @@ const ProductCreate = () => {
     prodPrice,
     prodQuantity,
     prodImages,
+    prodCategoryId,
   } = useSelector(state => state.product)
 
   const { categories } = useSelector(state => state.category)
@@ -99,32 +101,62 @@ const ProductCreate = () => {
     price: yup.number().required('Price is Required'),
     category: yup.string().required('Category is Required'),
     quantity: yup.number().required('Quantity is Required'),
-    images: yup
-      .mixed()
-      .required('Images are Required')
-      .test(
-        'fileSize',
-        'File too large',
-        value =>
-          !value ||
-          !(value instanceof FileList) ||
-          Array.from(value).every(file => file.size <= 2097152) // 2MB
-      )
-      .test(
-        'fileFormat',
-        'Unsupported Format',
-        value =>
-          !value ||
-          !(value instanceof FileList) ||
-          Array.from(value).every(file =>
-            ['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)
-          )
-      )
-      .test(
-        'maxFiles',
-        'Too many files',
-        value => !value || !(value instanceof FileList) || value.length <= 4
-      ),
+    images:
+      id !== undefined
+        ? yup
+            .mixed()
+            .nullable()
+            .test(
+              'fileSize',
+              'File too large',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                Array.from(value).every(file => file.size <= 2097152) // 2MB
+            )
+            .test(
+              'fileFormat',
+              'Unsupported Format',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                Array.from(value).every(file =>
+                  ['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)
+                )
+            )
+            .test(
+              'maxFiles',
+              'Too many files',
+              value =>
+                !value || !(value instanceof FileList) || value.length <= 4
+            )
+        : yup
+            .mixed()
+            .required('Images are Required')
+            .test(
+              'fileSize',
+              'File too large',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                Array.from(value).every(file => file.size <= 2097152) // 2MB
+            )
+            .test(
+              'fileFormat',
+              'Unsupported Format',
+              value =>
+                !value ||
+                !(value instanceof FileList) ||
+                Array.from(value).every(file =>
+                  ['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)
+                )
+            )
+            .test(
+              'maxFiles',
+              'Too many files',
+              value =>
+                !value || !(value instanceof FileList) || value.length <= 4
+            ),
   })
 
   const formik = useFormik({
@@ -133,7 +165,7 @@ const ProductCreate = () => {
       name: prodName || '',
       description: prodDesc || '',
       price: prodPrice || '',
-      category: null,
+      category: prodCategoryId ? String(prodCategoryId) : null,
       quantity: prodQuantity || '',
       images: null,
     },
@@ -141,9 +173,11 @@ const ProductCreate = () => {
     onSubmit: values => {
       const formData = new FormData()
 
-      Array.from(values.images).forEach((file, index) => {
-        formData.append(`images[${index}]`, file)
-      })
+      if (values.image && values.image.length > 0) {
+        Array.from(values.images).forEach((file, index) => {
+          formData.append(`images[${index}]`, file)
+        })
+      }
 
       // append other fields
       formData.append('name', values.name)
@@ -152,8 +186,13 @@ const ProductCreate = () => {
       formData.append('category_id', values.category)
       formData.append('quantity', values.quantity)
 
-      dispatch(createNewProduct(formData))
-      formik.resetForm()
+      if (id !== undefined) {
+        formData.append('id', id)
+        dispatch(updateProduct({ id: id, data: formData }))
+      } else {
+        dispatch(createNewProduct(formData))
+        formik.resetForm()
+      }
     },
   })
 
@@ -324,7 +363,7 @@ const ProductCreate = () => {
             </div>
           </Form.Item>
 
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={isLoading}>
             Submit
           </Button>
         </Form>

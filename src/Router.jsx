@@ -104,10 +104,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'products/edit/:id',
+        path: 'products/:id',
         element: (
           <PrivateRoute>
-            <ProductsAdminEdit />
+            <ProductsAdminCreate />
           </PrivateRoute>
         ),
       },
