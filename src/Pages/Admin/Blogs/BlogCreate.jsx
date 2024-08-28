@@ -185,7 +185,7 @@ const BlogCreate = () => {
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       <BreadCrumbCus items={items} />
-      <h3 className="mb-4  title">Add Blog</h3>
+      <h3 className="mb-4  title">{id !== undefined ? 'Edit' : 'Add'} Blog</h3>
       <div>
         <Form onFinish={formik.handleSubmit} layout="vertical">
           <Form.Item
