@@ -3,9 +3,9 @@ import ProductService from './ProductService'
 
 export const createNewProduct = createAsyncThunk(
   'product/create-product',
-  async (productData, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      return await ProductService.createProduct(productData)
+      return await ProductService.createProduct(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -110,8 +110,11 @@ export const productSlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        // state.cateName = action.payload.data.name
-        // state.cateDesc = action.payload.data.description
+        state.prodName = action.payload.data.name
+        state.prodDesc = action.payload.data.description
+        state.prodPrice = action.payload.data.price
+        state.prodQuantity = action.payload.data.quantity
+        state.prodImages = action.payload.data.images
       })
       .addCase(getProduct.rejected, (state, action) => {
         state.isLoading = false

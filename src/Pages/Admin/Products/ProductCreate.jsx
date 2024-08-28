@@ -1,9 +1,9 @@
-import { Space, Form, Button, Input, Select, Upload } from 'antd'
+import { Space, Form, Button, Input, Select } from 'antd'
 import { useFormik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import * as yup from 'yup'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { toast } from 'react-toastify'
@@ -11,26 +11,71 @@ import { toast } from 'react-toastify'
 import ReactQuill from 'react-quill'
 import {
   createNewProduct,
+  getProduct,
   resetState,
 } from '../../../Features/Product/ProductSlice'
 
 import { getCategories } from '../../../Features/Category/CategorySlice'
-import UploadFile from '../../../Components/Admin/UploadFile'
 
 const ProductCreate = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { id } = useParams()
+
+  const items = [
+    {
+      href: '/admin/products',
+      title: 'Product',
+    },
+    {
+      title: 'Add',
+    },
+  ]
 
   useEffect(() => {
     dispatch(getCategories())
   }, [])
 
-  const { isSuccess, isError, isLoading, createdProduct } = useSelector(
-    state => state.product
-  )
+  useEffect(() => {
+    if (id !== undefined) {
+      dispatch(getProduct(id))
+    } else {
+      dispatch(resetState())
+    }
+  }, [id])
+
+  const {
+    isSuccess,
+    isError,
+    isLoading,
+    createdProduct,
+    updatedProduct,
+    prodName,
+    prodDesc,
+    prodPrice,
+    prodQuantity,
+    prodImages,
+  } = useSelector(state => state.product)
 
   const { categories } = useSelector(state => state.category)
+
+  const [previewImages, setPreviewImages] = useState([])
+
+  const handleImageChange = e => {
+    formik.setFieldValue('images', e.target.files)
+
+    // Create URL for each selected file
+    const filesArray = Array.from(e.target.files).map(file =>
+      URL.createObjectURL(file)
+    )
+
+    // Store URLs in the state
+    setPreviewImages(filesArray)
+
+    // Free memory when component is unmounted
+    return () => filesArray.forEach(url => URL.revokeObjectURL(url))
+  }
 
   useEffect(() => {
     if (isSuccess && createdProduct) {
@@ -38,9 +83,13 @@ const ProductCreate = () => {
       navigate('/admin/products')
       dispatch(resetState())
     }
+    if (isSuccess && updatedProduct) {
+      toast.success('Product Updated Successfullly!')
+      navigate('/admin/products')
+      dispatch(resetState())
+    }
     if (isError) {
       toast.error('Something Went Wrong!')
-      dispatch(resetState())
     }
   }, [isSuccess, isError, isLoading])
 
@@ -50,24 +99,52 @@ const ProductCreate = () => {
     price: yup.number().required('Price is Required'),
     category: yup.string().required('Category is Required'),
     quantity: yup.number().required('Quantity is Required'),
+    images: yup
+      .mixed()
+      .required('Images are Required')
+      .test(
+        'fileSize',
+        'File too large',
+        value =>
+          !value ||
+          !(value instanceof FileList) ||
+          Array.from(value).every(file => file.size <= 2097152) // 2MB
+      )
+      .test(
+        'fileFormat',
+        'Unsupported Format',
+        value =>
+          !value ||
+          !(value instanceof FileList) ||
+          Array.from(value).every(file =>
+            ['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)
+          )
+      )
+      .test(
+        'maxFiles',
+        'Too many files',
+        value => !value || !(value instanceof FileList) || value.length <= 4
+      ),
   })
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name: '',
-      description: '',
-      price: '',
+      name: prodName || '',
+      description: prodDesc || '',
+      price: prodPrice || '',
       category: null,
-      quantity: '',
-      images: [],
+      quantity: prodQuantity || '',
+      images: null,
     },
     validationSchema: schema,
     onSubmit: values => {
       const formData = new FormData()
-      values.images.forEach(file => {
-        formData.append('images[]', file.originFileObj)
+
+      Array.from(values.images).forEach((file, index) => {
+        formData.append(`images[${index}]`, file)
       })
+
       // append other fields
       formData.append('name', values.name)
       formData.append('description', values.description)
@@ -80,20 +157,16 @@ const ProductCreate = () => {
     },
   })
 
-  const items = [
-    {
-      href: '/admin/products',
-      title: 'Product',
-    },
-    {
-      title: 'Add',
-    },
-  ]
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       <BreadCrumbCus items={items} />
-      <h3 className="mb-4  title">Add Product</h3>
+      <h3 className="mb-4  title">
+        {id !== undefined ? 'Edit' : 'Add'} Product
+      </h3>
       <div>
         <Form onFinish={formik.handleSubmit} layout="vertical">
           <Form.Item
@@ -211,12 +284,44 @@ const ProductCreate = () => {
               onBlur={formik.handleBlur}
             />
           </Form.Item>
-          <Form.Item label={t('product.images')} required>
-            <UploadFile
-              maxCount={3}
-              value={formik.values.images}
-              onChange={value => formik.setFieldValue('images', value)}
+
+          <Form.Item
+            label={t('product.images')}
+            required
+            validateStatus={
+              formik.errors.images && formik.touched.images ? 'error' : ''
+            }
+            help={
+              formik.errors.images && formik.touched.images
+                ? formik.errors.images
+                : ''
+            }
+          >
+            <input
+              type="file"
+              name="images"
+              multiple
+              onChange={handleImageChange}
             />
+            <div
+              className="preview-images"
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '3px',
+                marginTop: '10px',
+              }}
+            >
+              {previewImages.map((url, idx) => (
+                <img
+                  key={idx}
+                  src={url}
+                  alt="Preview"
+                  width="200"
+                  height={200}
+                />
+              ))}
+            </div>
           </Form.Item>
 
           <Button type="primary" htmlType="submit">
