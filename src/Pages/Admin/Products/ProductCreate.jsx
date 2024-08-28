@@ -30,7 +30,7 @@ const ProductCreate = () => {
       title: 'Product',
     },
     {
-      title: 'Add',
+      title: id !== undefined ? 'Edit' : 'Add',
     },
   ]
 
@@ -125,10 +125,10 @@ const ProductCreate = () => {
                 )
             )
             .test(
-              'maxFiles',
-              'Too many files',
+              'exactFiles',
+              'Must provide exactly 4 files',
               value =>
-                !value || !(value instanceof FileList) || value.length <= 4
+                !value || (value instanceof FileList && value.length === 4)
             )
         : yup
             .mixed()
@@ -152,10 +152,9 @@ const ProductCreate = () => {
                 )
             )
             .test(
-              'maxFiles',
-              'Too many files',
-              value =>
-                !value || !(value instanceof FileList) || value.length <= 4
+              'exactFiles',
+              'Must provide exactly 4 files',
+              value => value instanceof FileList && value.length === 4
             ),
   })
 
