@@ -1,15 +1,11 @@
 import React from 'react'
 import './Footer.scss'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <footer className="site-footer">
-      <div className="footer-logo">
-        <img
-          src="https://www.royalcanin.com/~/media/Royal-Canin/Feature-Images/RC_logo.png"
-          alt="Royal Canin"
-        />
-      </div>
+      <div className="footer-logo">3DTeam</div>
       <div className="footer-content">
         <div className="footer-column">
           <h3>Company Name</h3>
