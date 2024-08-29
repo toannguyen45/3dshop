@@ -74,6 +74,10 @@
           align-items: center;
           gap: 1rem;
 
+          .active {
+            color: red !important;
+          }
+
           .grid-view-btn {
             background-color: white;
             cursor: pointer;
@@ -200,5 +204,40 @@
         }
       }
     }
+  }
+}
+
+/* Large  */
+@media (max-width: 1199px) {
+  .shop {
+    padding-left: $padding-x-tablet;
+    padding-right: $padding-y-tablet;
+  }
+}
+
+/* Desktop  */
+@media (max-width: 991px) {
+  .shop {
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .category-column {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* tablets  */
+@media (max-width: 767px) {
+}
+
+/* phones  */
+@media (max-width: 575px) {
+  .shop {
+    padding-left: $padding-x-tablet;
+    padding-right: $padding-x-tablet;
   }
 }

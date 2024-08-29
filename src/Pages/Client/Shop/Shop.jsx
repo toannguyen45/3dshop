@@ -73,13 +73,13 @@ const Shop = () => {
             <div className="product-view-options">
               <button
                 onClick={() => setViewMode('grid')}
-                className="grid-view-btn"
+                className={`grid-view-btn ${viewMode === 'grid' ? 'active' : ''}`}
               >
                 <AppstoreOutlined className="grid-icon icon-order" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className="list-view-grid"
+                className={`list-view-grid ${viewMode === 'list' ? 'active' : ''}`}
               >
                 <UnorderedListOutlined className="list-icon icon-order" />
               </button>
