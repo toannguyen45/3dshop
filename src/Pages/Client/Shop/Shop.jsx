@@ -103,6 +103,7 @@ const Shop = () => {
                       loading="lazy"
                       width={'100%'}
                       height={100}
+                      className="product-image"
                     />
                     <div className="product-title">
                       <h2>{product.name}</h2>
@@ -127,6 +128,7 @@ const Shop = () => {
                     loading="lazy"
                     width={'30%'}
                     height={100}
+                    className="product-image"
                   />
                   <div className="product-info">
                     <Link to={`/products/${product.id}`}>
@@ -142,13 +144,15 @@ const Shop = () => {
             </div>
           )}
 
-          <Pagination
-            className="pagination-custom"
-            current={currentPage}
-            total={products?.total}
-            pageSize={20}
-            onChange={page => setCurrentPage(page)}
-          />
+          <div className="pagination-bottom">
+            <Pagination
+              className="pagination-custom"
+              current={currentPage}
+              total={products?.total}
+              pageSize={20}
+              onChange={page => setCurrentPage(page)}
+            />
+          </div>
         </div>
       </div>
     </div>

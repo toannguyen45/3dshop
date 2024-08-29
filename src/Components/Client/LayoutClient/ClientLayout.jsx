@@ -1,28 +1,35 @@
-import React from 'react'
-import HeadTop from '../Layout/HeadTop/HeadTop'
+import React, { lazy, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import './ClientLayout.scss'
-import Footer from '../Layout/Footer/Footer'
-import NavbarDesktop from '../Layout/NavbarDesktop/NavbarDesktop'
-import NavbarMobile from '../Layout/NavbarMobile/NavbarMobile'
-import Hotline from '../Hotline/Hotline'
-import BackToTop from '../BackToTop/BackToTop'
 import ScrollToTop from '../../ScrollToTop/ScrollToTop'
+import Spinner from '../../Spinner/Spinner'
+
+const HeadTop = lazy(() => import('../Layout/HeadTop/HeadTop'))
+const Footer = lazy(() => import('../Layout/Footer/Footer'))
+const NavbarDesktop = lazy(
+  () => import('../Layout/NavbarDesktop/NavbarDesktop')
+)
+const NavbarMobile = lazy(() => import('../Layout/NavbarMobile/NavbarMobile'))
+const Hotline = lazy(() => import('../Hotline/Hotline'))
+const BackToTop = lazy(() => import('../BackToTop/BackToTop'))
 
 const ClientLayout = () => {
   return (
     <div className="container">
-      <ScrollToTop />
-      <HeadTop />
-      <NavbarDesktop />
-      <NavbarMobile />
+      <Suspense fallback={<Spinner />}>
+        <ScrollToTop />
+        <HeadTop />
+        <NavbarDesktop />
+        <NavbarMobile />
 
-      <main className="main-content">
-        <Outlet />
-      </main>
-      <BackToTop />
-      <Hotline />
-      <Footer />
+        <main className="main-content">
+          <Outlet />
+        </main>
+
+        <BackToTop />
+        <Hotline />
+        <Footer />
+      </Suspense>
     </div>
   )
 }
