@@ -1,0 +1,30 @@
+.product-skeleton-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  width: 100%;
+
+  .card-product {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+    .image-skeleton {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+/* phones  */
+@media (max-width: 575px) {
+  .card-product {
+    width: 100%;
+  }
+}

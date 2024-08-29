@@ -10,6 +10,7 @@ import { getCategories } from '../../../Features/Category/CategorySlice'
 import { Link } from 'react-router-dom'
 import { AppstoreOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { formatPrice } from '../../../Utils/format'
+import SkeletonProd from './SkeletonProd'
 
 const { Option } = Select
 
@@ -92,7 +93,9 @@ const Shop = () => {
             </Select>
           </div>
 
-          {viewMode === 'grid' ? (
+          {isLoading ? (
+            <SkeletonProd amount={2} />
+          ) : viewMode === 'grid' ? (
             <div className="product-grid">
               {products?.data?.data?.map((product, index) => (
                 <div key={index} className="product-card">
