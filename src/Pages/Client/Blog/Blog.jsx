@@ -5,7 +5,7 @@ import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 import { getBlogClient } from '../../../Features/Blog/BlogSlice'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { formatDateTimeFull } from '../../../Utils/formatDate'
+import { formatDateTimeFull } from '../../../Utils/format'
 import { Skeleton } from 'antd'
 
 const Blog = () => {

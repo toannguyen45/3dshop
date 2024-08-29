@@ -121,7 +121,12 @@ const ProductCreate = () => {
                 !value ||
                 !(value instanceof FileList) ||
                 Array.from(value).every(file =>
-                  ['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)
+                  [
+                    'image/jpg',
+                    'image/jpeg',
+                    'image/png',
+                    'image/webp',
+                  ].includes(file.type)
                 )
             )
             .test(
@@ -148,7 +153,12 @@ const ProductCreate = () => {
                 !value ||
                 !(value instanceof FileList) ||
                 Array.from(value).every(file =>
-                  ['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)
+                  [
+                    'image/jpg',
+                    'image/jpeg',
+                    'image/png',
+                    'image/webp',
+                  ].includes(file.type)
                 )
             )
             .test(
@@ -172,7 +182,7 @@ const ProductCreate = () => {
     onSubmit: values => {
       const formData = new FormData()
 
-      if (values.image && values.image.length > 0) {
+      if (values.images && values.images.length > 0) {
         Array.from(values.images).forEach((file, index) => {
           formData.append(`images[${index}]`, file)
         })

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogsHome } from '../../../../Features/Blog/BlogSlice'
 import { storage_url } from '../../../../Utils/baseUrl'
-import { formatDateTimeFull } from '../../../../Utils/formatDate'
+import { formatDateTimeFull } from '../../../../Utils/format'
 
 const News = () => {
   const dispatch = useDispatch()

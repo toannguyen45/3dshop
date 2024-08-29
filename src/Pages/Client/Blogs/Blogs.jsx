@@ -5,7 +5,7 @@ import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadC
 import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogsClient } from '../../../Features/Blog/BlogSlice'
-import { formatDateTimeFull } from '../../../Utils/formatDate'
+import { formatDateTimeFull } from '../../../Utils/format'
 import { storage_url } from '../../../Utils/baseUrl'
 import { Link } from 'react-router-dom'
 import SkeletonBlogs from './SkeletonBlogs'

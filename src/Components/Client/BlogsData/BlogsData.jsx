@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { formatDateTimeFull } from '../../../Utils/formatDate'
+import { formatDateTimeFull } from '../../../Utils/format'
 import { storage_url } from '../../../Utils/baseUrl'
 import { Link } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
