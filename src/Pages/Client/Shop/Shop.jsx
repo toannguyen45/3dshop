@@ -99,7 +99,7 @@ const Shop = () => {
             <div className="product-grid">
               {products?.data?.data?.map((product, index) => (
                 <div key={index} className="product-card">
-                  <Link to={`/products/${product.id}`} className="product-link">
+                  <Link to={`/san-pham/${product.id}`} className="product-link">
                     <img
                       src={`${storage_url}/${product.images[0].image}`}
                       alt={product.name}
