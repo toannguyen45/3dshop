@@ -6,7 +6,7 @@ const BreadCrumbCustom = ({ items }) => {
   return (
     <Breadcrumb
       className="custom-breadcrumb"
-      separator=">>"
+      separator="/"
       items={[
         {
           href: '/',

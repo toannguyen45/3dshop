@@ -27,6 +27,7 @@ import Blogs from '@pages/Client/Blogs/Blogs'
 import Blog from '@pages/Client/Blog/Blog'
 import Service from '@pages/Client/Service/Service'
 import Shop from '@pages/Client/Shop/Shop'
+import ProductDetail from '@pages/Client/ProductDetail/ProductDetail'
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/thuong-mai',
         element: <Shop />,
+      },
+      {
+        path: '/san-pham/:slug',
+        element: <ProductDetail />,
       },
       {
         path: '/ve-chung-toi',
