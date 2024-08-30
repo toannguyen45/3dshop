@@ -11,7 +11,7 @@ const DrawerMobile = ({ onClose, open }) => {
         <Link to="/" className="navbar-logo">
           3DTeam
         </Link>
-        <NavLink to="/" exact className="navbar-item" onClick={onClose}>
+        <NavLink to="/" className="navbar-item" onClick={onClose}>
           Trang chủ
         </NavLink>
         <NavLink to="/dich-vu" className="navbar-item" onClick={onClose}>

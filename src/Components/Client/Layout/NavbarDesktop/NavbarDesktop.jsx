@@ -10,7 +10,7 @@ const NavbarDesktop = () => {
         <Link to="/" className="navbar-logo">
           3DTeam
         </Link>
-        <NavLink to="/" exact className="navbar-item">
+        <NavLink to="/" className="navbar-item">
           Trang chủ
         </NavLink>
         <NavLink to="/dich-vu" className="navbar-item">
