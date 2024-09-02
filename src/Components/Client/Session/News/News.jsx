@@ -25,7 +25,7 @@ const News = () => {
         {blogsHome?.length > 0 ? (
           blogsHome?.map(newsItem => (
             <div className="news-item card-news" key={newsItem.id}>
-              <a href="#">
+              <Link  to={`/tin-tuc/${newsItem.slug}`}>
                 <div className="news-image">
                   <img
                     src={`${storage_url}/${newsItem.image}`}
@@ -35,7 +35,7 @@ const News = () => {
                     {formatDateTimeFull(newsItem.created_at)}
                   </span>
                 </div>
-              </a>
+              </Link>
               <div className="card-body">
                 <h3>{newsItem.title}</h3>
                 <p>{newsItem.description}</p>
