@@ -7,6 +7,7 @@
   padding-bottom: 3rem;
 
   .content {
+    margin-bottom: 2rem;
     width: 100%;
     display: flex;
     gap: 1.5rem;
@@ -97,6 +98,34 @@
       }
     }
   }
+
+  .description {
+    .title {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid $btn-color;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        text-align: center;
+        background-color: beige;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {}
@@ -110,7 +139,7 @@
       display: flex;
       flex-direction: column;
 
-      .image-container{
+      .image-container {
         width: 100%;
       }
 

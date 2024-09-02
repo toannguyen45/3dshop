@@ -9,6 +9,7 @@
   .content {
     .blog-column {
       padding: 0 15rem;
+
       h2 {
         text-transform: uppercase;
         font-size: 2em;
@@ -45,6 +46,14 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          text-align: center;
+          background-color: beige;
+        }
       }
     }
 
@@ -91,12 +100,10 @@
 }
 
 /* Desktop  */
-@media (max-width: 991px) {
-}
+@media (max-width: 991px) {}
 
 /* tablets  */
-@media (max-width: 767px) {
-}
+@media (max-width: 767px) {}
 
 /* phones  */
 @media (max-width: 575px) {

@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: '/san-pham/:slug',
+        path: '/san-pham/:id',
         element: <ProductDetail />,
       },
       {

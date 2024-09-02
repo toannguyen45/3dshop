@@ -53,14 +53,18 @@ const Shop = () => {
           <h2>Danh mục</h2>
           <hr className="divider" />
           <ul className="cate-list">
-            {categories?.data?.data.map(category => (
-              <li key={category.id}>
-                <label>
-                  <input type="checkbox" value={category.name} />
-                  {category.name}
-                </label>
-              </li>
-            ))}
+            {categories?.data?.data.length > 0 ? (
+              categories?.data?.data.map(category => (
+                <li key={category.id}>
+                  <label>
+                    <input type="checkbox" value={category.name} />
+                    {category.name}
+                  </label>
+                </li>
+              ))
+            ) : (
+              <p>Không có danh mục nào</p>
+            )}
           </ul>
         </div>
         <div className="products-column">

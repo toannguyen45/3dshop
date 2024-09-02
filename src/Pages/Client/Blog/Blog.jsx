@@ -16,7 +16,7 @@ const Blog = () => {
 
   useEffect(() => {
     dispatch(getBlogClient(slug))
-  }, [])
+  }, [slug])
 
   const items = [
     {
