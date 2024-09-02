@@ -6,11 +6,12 @@ import BreadCrumbCustom from '../../../Components/Client/BreadCrumbCustom/BreadC
 import MetaSeo from '../../../Components/MetaSeo/MetaSeo'
 import { formatPrice } from '../../../Utils/format'
 import { InputNumber } from 'antd'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 const ProductDetail = () => {
   const { slug } = useParams()
   const dispatch = useDispatch()
-  const [image, setImage] = useState('')
 
   const items = [
     {
@@ -29,37 +30,12 @@ const ProductDetail = () => {
     category: 'Máy in',
   }
 
-  const data = [
-    {
-      id: 1,
-      largeImage: 'https://via.placeholder.com/400',
-      smallImg: 'https://via.placeholder.com/80',
-    },
-    {
-      id: 2,
-      largeImage: 'https://via.placeholder.com/400',
-      smallImg: 'https://via.placeholder.com/80',
-    },
-    {
-      id: 3,
-      largeImage: 'https://via.placeholder.com/400',
-      smallImg: 'https://via.placeholder.com/80',
-    },
-  ]
-
-  const [currentImage, setCurrentImage] = useState(0)
-
-  const goBack = () => {
-    setCurrentImage(prev => (prev - 1 + data.length) % data.length)
-  }
-
-  const goForward = () => {
-    setCurrentImage(prev => (prev + 1) % data.length)
-  }
-
-  const setValue = idx => {
-    setCurrentImage(idx)
-  }
+  const smallImages = [
+    '/images/client/product/MAY-QUET-3D-CR-SCAN-LIZARD-1.webp',
+    '/images/client/product/MAY-QUET-3D-CR-SCAN-LIZARD-2.webp',
+    '/images/client/product/MAY-QUET-3D-CR-SCAN-LIZARD-3.webp',
+    '/images/client/product/MAY-QUET-3D-CR-SCAN-LIZARD-4.webp'
+  ];
 
   return (
     <div className="product">
@@ -70,45 +46,21 @@ const ProductDetail = () => {
       </div>
 
       <div className="content">
-        <div className="imageContainer">
-          <div className="largeImageContainer">
-            <img
-              className="largeImage"
-              src={data[currentImage].largeImage}
-              alt="sneakers-photo"
-            />
-          </div>
-          <div className="mobileImageContainer">
-            <img
-              onClick={goBack}
-              className="goBackIcon"
-              src={data[currentImage].largeImage}
-              alt="go-back"
-            />
-            <img
-              className="mobileImage"
-              src={data[currentImage].largeImage}
-              alt="sneakers-photo"
-            />
-            <img
-              onClick={goForward}
-              className="goForwardIcon"
-              src={data[currentImage].largeImage}
-              alt="go-forward"
-            />
-          </div>
-          <div className="smallImagesContainer">
-            {data.map((img, idx) => (
-              <div key={img.id} className="singleImage">
-                <img
-                  onClick={() => setValue(idx)}
-                  className="smallImage"
-                  src={img.smallImg}
-                  alt="product-photo"
-                />
+        <div className="image-container">
+          <Carousel
+            autoPlay
+            infiniteLoop
+            stopOnHover
+            showThumbs={true}
+            emulateTouch={true}
+            dynamicHeight
+          >
+            {smallImages.map((src, index) => (
+              <div key={index} className='small-img-child' onClick={() => handleThumbnailClick(src)}>
+                <img src={src} className='small-img-item' alt={`small-img-${index}`} width={'100%'} height={'100%'} loading='lazy'/>
               </div>
             ))}
-          </div>
+          </Carousel>
         </div>
 
         <div className="product-info">

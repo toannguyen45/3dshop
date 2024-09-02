@@ -55,13 +55,6 @@
       flex-direction: column;
       gap: 20px;
 
-      .poster-shop {
-        background-color: beige;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-
       .product-controls {
         display: flex;
         justify-content: space-between;
@@ -252,13 +245,14 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
 
       .category-column {
         width: 100%;
       }
       .products-column {
         width: 100%;
+        gap: 1.5rem;
 
         .product-list {
           .product-card {

@@ -64,12 +64,6 @@ const Shop = () => {
           </ul>
         </div>
         <div className="products-column">
-          <img
-            src="/images/client/poster-shop.jpg"
-            width={'100%'}
-            alt="poster-shop"
-            className="poster-shop"
-          />
           <div className="product-controls">
             <div className="product-view-options">
               <button

@@ -11,74 +11,11 @@
     display: flex;
     gap: 1.5rem;
 
-    .imageContainer {
-      width: 50%;
+    .image-container {
       display: flex;
+      width: 50%;
       flex-direction: column;
-      justify-content: space-between;
-
-      .largeImageContainer {
-        display: block;
-        width: 100%;
-
-        .largeImage {
-          object-fit: cover;
-          cursor: pointer;
-          border-radius: 15px;
-          width: 100%;
-          height: 400px;
-        }
-      }
-
-      .mobileImageContainer {
-        .goBackIcon {
-          background-color: white;
-          border-radius: 50%;
-          padding: 4px;
-          position: absolute;
-          top: 15%;
-          left: 6px;
-          cursor: pointer;
-        }
-
-        .mobileImage {
-          width: 100%;
-          height: 300px;
-          object-fit: cover;
-        }
-
-        .goForwardIcon {
-          background-color: white;
-          border-radius: 50%;
-          padding: 4px;
-          position: absolute;
-          top: 15%;
-          left: 82%;
-          cursor: pointer;
-        }
-      }
-
-      .smallImagesContainer {
-        display: none;
-        margin-top: 7px;
-        justify-content: space-between;
-        width: 400px;
-        width: 100%;
-
-        .singleImage {
-          .smallImage {
-            width: 80px;
-            cursor: pointer;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 3px solid orange;
-
-            &:hover {
-              opacity: 0.25;
-            }
-          }
-        }
-      }
+      gap: 0.5rem;
     }
 
     .product-info {
@@ -162,18 +99,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .imageContainer {
-    .largeImageContainer,
-    .smallImagesContainer {
-      display: block;
-    }
-
-    .mobileImageContainer {
-      display: none;
-    }
-  }
-}
+@media screen and (min-width: 768px) {}
 
 @media (max-width: 767px) {
   .product {
@@ -184,10 +110,8 @@
       display: flex;
       flex-direction: column;
 
-      .imageContainer {
-        .mobileImageContainer {
-          display: block;
-        }
+      .image-container{
+        width: 100%;
       }
 
       .product-info {
@@ -198,10 +122,4 @@
 }
 
 /* Large  */
-@media (max-width: 1199px) {
-  .imageContainer {
-    .mobileImageContainer {
-      display: block;
-    }
-  }
-}
+@media (max-width: 1199px) {}
