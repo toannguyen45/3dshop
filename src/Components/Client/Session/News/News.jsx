@@ -25,7 +25,7 @@ const News = () => {
         {blogsHome?.length > 0 ? (
           blogsHome?.map(newsItem => (
             <div className="news-item card-news" key={newsItem.id}>
-              <Link  to={`/tin-tuc/${newsItem.slug}`}>
+              <Link to={`/tin-tuc/${newsItem.slug}`}>
                 <div className="news-image">
                   <img
                     src={`${storage_url}/${newsItem.image}`}
@@ -47,7 +47,7 @@ const News = () => {
             </div>
           ))
         ) : (
-          <p>Không có dữ liệu</p>
+          <p className="news-empty">Không có dữ liệu</p>
         )}
       </div>
       <Link to="/tin-tuc" className="view-more">

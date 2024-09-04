@@ -27,7 +27,7 @@ const NavbarDesktop = () => {
         </NavLink>
       </div>
       <div className="navbar-right">
-        <a href="/cart" className="navbar-cart">
+        <a href="/gio-hang" className="navbar-cart">
           <span>
             <ShoppingCartOutlined size={50} className="cart" />
             Giỏ hàng

@@ -43,7 +43,7 @@ const DrawerMobile = ({ onClose, open }) => {
           <span className="value">123 Đường ABC, TP.HCM</span>
         </div>
         <div className="cart">
-          <a href="/cart" className="navbar-cart">
+          <a href="/gio-hang" className="navbar-cart">
             <span>
               <ShoppingCartOutlined size={50} className="cart" />
               Giỏ hàng

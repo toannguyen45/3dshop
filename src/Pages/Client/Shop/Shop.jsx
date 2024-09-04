@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 import { AppstoreOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { formatPrice } from '../../../Utils/format'
 import SkeletonProd from './SkeletonProd'
+import { addToCart } from '../../../Features/Cart/CartSlice'
 
 const { Option } = Select
 
@@ -19,9 +20,16 @@ const Shop = () => {
   const [viewMode, setViewMode] = useState('grid')
 
   const { products, isLoading } = useSelector(state => state.product)
+
   const { categories, isLoading: isLoadingCate } = useSelector(
     state => state.category
   )
+
+  const cart = useSelector(state => state.cart)
+
+  const handleAddToCart = product => {
+    dispatch(addToCart(product))
+  }
 
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -97,25 +105,37 @@ const Shop = () => {
             <div className="product-grid">
               {products?.data?.data?.map((product, index) => (
                 <div key={index} className="product-card">
-                  <Link to={`/san-pham/${product.id}`} className="product-link">
-                    <img
-                      src={`${storage_url}/${product.images[0].image}`}
-                      alt={product.name}
-                      loading="lazy"
-                      width={'100%'}
-                      height={100}
-                      className="product-image"
-                    />
-                    <div className="product-title">
-                      <h2>{product.name}</h2>
-                    </div>
-                    <div className="product-bottom">
-                      <p className="product-price">
-                        {formatPrice(product.price)} đ
-                      </p>
-                      <button className="add-to-cart">Thêm vào giỏ hàng</button>
-                    </div>
-                  </Link>
+                  <div className="product-info">
+                    <Link
+                      to={`/san-pham/${product.id}`}
+                      className="product-link"
+                    >
+                      <img
+                        src={`${storage_url}/${product.images[0].image}`}
+                        alt={product.name}
+                        loading="lazy"
+                        width={'100%'}
+                        height={100}
+                        className="product-image"
+                      />
+                      <div className="product-title">
+                        <h2>{product.name}</h2>
+                      </div>
+                      <div className="product-bottom">
+                        <p className="product-price">
+                          {formatPrice(product.price)} đ
+                        </p>
+                      </div>
+                    </Link>
+                    <button
+                      className="add-to-cart"
+                      onClick={() => {
+                        handleAddToCart(product)
+                      }}
+                    >
+                      Thêm vào giỏ hàng
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -132,13 +152,20 @@ const Shop = () => {
                     className="product-image"
                   />
                   <div className="product-info">
-                    <Link to={`/products/${product.id}`}>
+                    <Link to={`/san-pham/${product.id}`}>
                       <h2 className="product-title">{product.name}</h2>
                       <p className="product-price">
                         {formatPrice(product.price)} đ
                       </p>
                     </Link>
-                    <button className="add-to-cart">Thêm vào giỏ hàng</button>
+                    <button
+                      className="add-to-cart"
+                      onClick={() => {
+                        handleAddToCart(product)
+                      }}
+                    >
+                      Thêm vào giỏ hàng
+                    </button>
                   </div>
                 </div>
               ))}

@@ -29,6 +29,11 @@
     width: 100%;
     margin-bottom: 30px;
 
+    .news-empty {
+      width: 100%;
+      text-align: center;
+    }
+
     .news-item {
       flex: 1;
       margin: 0 5px;

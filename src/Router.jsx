@@ -28,6 +28,7 @@ import Blog from '@pages/Client/Blog/Blog'
 import Service from '@pages/Client/Service/Service'
 import Shop from '@pages/Client/Shop/Shop'
 import ProductDetail from '@pages/Client/ProductDetail/ProductDetail'
+import ShoppingCart from '@pages/Client/ShoppingCart/ShoppingCart'
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: '/ve-chung-toi',
         element: <About />,
+      },
+      {
+        path: '/gio-hang',
+        element: <ShoppingCart />,
       },
     ],
   },
