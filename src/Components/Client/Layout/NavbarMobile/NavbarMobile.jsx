@@ -17,12 +17,13 @@ const NavbarMobile = () => {
   return (
     <nav className="mobile-navbar">
       <div className="navbar-content">
+        <button onClick={showDrawer} className="navbar-button">
+          <MenuOutlined />
+        </button>
         <a href="/" className="navbar-logo-mobile">
           3DTeam
         </a>
-        <Button onClick={showDrawer} className="navbar-button">
-          <MenuOutlined />
-        </Button>
+
       </div>
       <DrawerMobile onClose={onClose} open={open} />
     </nav>

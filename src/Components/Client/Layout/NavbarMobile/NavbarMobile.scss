@@ -17,9 +17,9 @@
 
     .navbar-button {
       position: absolute;
-      right: 1em;
-      background-color: #28574b;
-      color: white;
+      left: 1.5rem;
+      font-size: 1.5rem;
+      background-color: white;
     }
   }
 }
@@ -43,10 +43,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #f8f9fa;
-    border-bottom: 3px solid $color-green;
+    background-color: white;
+    border-bottom: 1px solid $color-green;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    z-index: 99;
+    position: sticky;
+    top: 0;
 
     .navbar-content {
       .navbar-logo-mobile {
