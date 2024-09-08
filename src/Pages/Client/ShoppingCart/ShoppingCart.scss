@@ -35,7 +35,6 @@
     .summary {
       flex: 1;
       .card-total {
-        border-radius: 10px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -67,7 +66,7 @@
           padding: 0.5em 1.5em;
           border: 1px solid #00712d;
           background-color: white;
-          border-radius: 10px;
+
           cursor: pointer;
           transition: background-color 0.3s ease;
 
