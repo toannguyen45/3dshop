@@ -2,6 +2,7 @@ import React from 'react'
 import './AboutUs.scss'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate } from 'react-router-dom'
+import ButtonCustom from '../../../ButtonCustom/ButtonCustom'
 
 const AboutUs = () => {
   const navigate = useNavigate()
@@ -22,12 +23,13 @@ const AboutUs = () => {
           Chúng tôi cung cấp các thiết bị, dịch vụ và giải pháp 3D trọn gói cho
           cá nhân, doanh nghiệp, các xưởng sản xuất.
         </p>
-        <button
+        {/* <button
           className="about-us-button"
           onClick={() => navigate('/ve-chung-toi')}
         >
           Xem thêm
-        </button>
+        </button> */}
+        <ButtonCustom title="Xem thêm" onClick={() => navigate('/ve-chung-toi')} />
       </div>
       <div className="about-us-image">
         <LazyLoadImage

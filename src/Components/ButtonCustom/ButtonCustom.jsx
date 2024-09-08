@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './ButtonCustom.scss'
 
-const ButtonCustom = () => {
+const ButtonCustom = ({ title, onClick }) => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <button className="custom-button" onClick={onClick}>
+      {title}
+    </button>
+  );
+};
 
-export default ButtonCustom
+export default ButtonCustom;

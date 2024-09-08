@@ -1,0 +1,13 @@
+@import '../../Styles/variables';
+
+.custom-button{
+    text-transform: uppercase;
+    padding: 1em 2em;
+    background-color: $color-primary;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: black;
+    font-weight: 700;
+}
