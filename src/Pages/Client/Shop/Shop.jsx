@@ -28,7 +28,13 @@ const Shop = () => {
   const cart = useSelector(state => state.cart)
 
   const handleAddToCart = product => {
-    dispatch(addToCart(product))
+    const data = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      images: product.images,
+    }
+    dispatch(addToCart({ item: data, quantity: 1 }));
   }
 
   const [currentPage, setCurrentPage] = useState(1)

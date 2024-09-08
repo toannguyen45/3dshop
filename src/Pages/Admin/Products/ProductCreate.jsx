@@ -17,6 +17,7 @@ import {
 } from '../../../Features/Product/ProductSlice'
 
 import { getCategories } from '../../../Features/Category/CategorySlice'
+import { storage_url } from '../../../Utils/baseUrl'
 
 const ProductCreate = () => {
   const { t } = useTranslation('translation')
@@ -62,21 +63,26 @@ const ProductCreate = () => {
 
   const { categories } = useSelector(state => state.category)
 
-  const [previewImages, setPreviewImages] = useState([])
+  const [previewImages, setPreviewImages] = useState(prodImages)
+
+  useEffect(() => {
+    setPreviewImages(prodImages)
+  }, [prodImages])
 
   const handleImageChange = e => {
-    formik.setFieldValue('images', e.target.files)
+    if (e.target.files.length > 0) {
+      formik.setFieldValue('images', e.target.files)
 
-    // Create URL for each selected file
-    const filesArray = Array.from(e.target.files).map(file =>
-      URL.createObjectURL(file)
-    )
+      // Create URL for each selected file
+      const filesArray = Array.from(e.target.files).map(file =>
+        URL.createObjectURL(file)
+      )
 
-    // Store URLs in the state
-    setPreviewImages(filesArray)
+      // Store URLs in the state
+      setPreviewImages(filesArray)
 
-    // Free memory when component is unmounted
-    return () => filesArray.forEach(url => URL.revokeObjectURL(url))
+      return () => filesArray.forEach(url => URL.revokeObjectURL(url))
+    } else setPreviewImages(null)
   }
 
   useEffect(() => {
@@ -104,68 +110,68 @@ const ProductCreate = () => {
     images:
       id !== undefined
         ? yup
-            .mixed()
-            .nullable()
-            .test(
-              'fileSize',
-              'File too large',
-              value =>
-                !value ||
-                !(value instanceof FileList) ||
-                Array.from(value).every(file => file.size <= 2097152) // 2MB
-            )
-            .test(
-              'fileFormat',
-              'Unsupported Format',
-              value =>
-                !value ||
-                !(value instanceof FileList) ||
-                Array.from(value).every(file =>
-                  [
-                    'image/jpg',
-                    'image/jpeg',
-                    'image/png',
-                    'image/webp',
-                  ].includes(file.type)
-                )
-            )
-            .test(
-              'exactFiles',
-              'Must provide exactly 4 files',
-              value =>
-                !value || (value instanceof FileList && value.length === 4)
-            )
+          .mixed()
+          .nullable()
+          .test(
+            'fileSize',
+            'File too large',
+            value =>
+              !value ||
+              !(value instanceof FileList) ||
+              Array.from(value).every(file => file.size <= 2097152) // 2MB
+          )
+          .test(
+            'fileFormat',
+            'Unsupported Format',
+            value =>
+              !value ||
+              !(value instanceof FileList) ||
+              Array.from(value).every(file =>
+                [
+                  'image/jpg',
+                  'image/jpeg',
+                  'image/png',
+                  'image/webp',
+                ].includes(file.type)
+              )
+          )
+          .test(
+            'exactFiles',
+            'Must provide exactly 4 files',
+            value =>
+              !value || (value instanceof FileList && value.length === 4)
+          )
         : yup
-            .mixed()
-            .required('Images are Required')
-            .test(
-              'fileSize',
-              'File too large',
-              value =>
-                !value ||
-                !(value instanceof FileList) ||
-                Array.from(value).every(file => file.size <= 2097152) // 2MB
-            )
-            .test(
-              'fileFormat',
-              'Unsupported Format',
-              value =>
-                !value ||
-                !(value instanceof FileList) ||
-                Array.from(value).every(file =>
-                  [
-                    'image/jpg',
-                    'image/jpeg',
-                    'image/png',
-                    'image/webp',
-                  ].includes(file.type)
-                )
-            )
-            .test(
-              'exactFiles',
-              'Must provide exactly 4 files',
-              value => value instanceof FileList && value.length === 4
-            ),
+          .mixed()
+          .required('Images are Required')
+          .test(
+            'fileSize',
+            'File too large',
+            value =>
+              !value ||
+              !(value instanceof FileList) ||
+              Array.from(value).every(file => file.size <= 2097152) // 2MB
+          )
+          .test(
+            'fileFormat',
+            'Unsupported Format',
+            value =>
+              !value ||
+              !(value instanceof FileList) ||
+              Array.from(value).every(file =>
+                [
+                  'image/jpg',
+                  'image/jpeg',
+                  'image/png',
+                  'image/webp',
+                ].includes(file.type)
+              )
+          )
+          .test(
+            'exactFiles',
+            'Must provide exactly 4 files',
+            value => value instanceof FileList && value.length === 4
+          ),
   })
 
   const formik = useFormik({
@@ -360,15 +366,19 @@ const ProductCreate = () => {
                 marginTop: '10px',
               }}
             >
-              {previewImages.map((url, idx) => (
-                <img
-                  key={idx}
-                  src={url}
-                  alt="Preview"
-                  width="200"
-                  height={200}
-                />
-              ))}
+              {previewImages && previewImages?.map((item, index) => {
+                console.log(item, 'item')
+                return (
+                  <img
+                    key={index}
+                    src={`${storage_url}/${item.image}`}
+                    alt="Preview"
+                    width="200"
+                    height={200}
+                  />
+                )
+              }
+              )}
             </div>
           </Form.Item>
 

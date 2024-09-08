@@ -2,7 +2,6 @@ import React from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
 import './CarouselReact.scss'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 
 const CarouselReact = () => {
@@ -13,6 +12,8 @@ const CarouselReact = () => {
       stopOnHover
       showThumbs={false}
       emulateTouch={true}
+      showArrows={false}
+      showStatus={false}
     >
       <div>
         <div className="carousel-img-wrapper">

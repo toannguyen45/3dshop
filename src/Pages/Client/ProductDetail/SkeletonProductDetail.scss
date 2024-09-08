@@ -1,0 +1,16 @@
+.skeleton-detail {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .image-skeleton {
+        width: 100%;
+        flex: 2;
+    }
+
+    .info-skeleton {
+        width: 100%;
+        flex: 1;
+    }
+}

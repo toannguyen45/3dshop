@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 // Lấy state giỏ hàng từ localStorage, nếu có
 const loadCartFromLocalStorage = () => {
@@ -11,17 +11,21 @@ export const cartSlice = createSlice({
   initialState: loadCartFromLocalStorage,
   reducers: {
     addToCart: (state, action) => {
-      const item = action.payload
-      const existingItem = state.find(i => i.id === item.id)
+      const { item, quantity } = action.payload;
+
+      const existingItem = state.find(i => i.id === item.id);
 
       if (existingItem) {
-        existingItem.quantity += 1
+        // Nếu sản phẩm đã có trong giỏ hàng, tăng số lượng
+        existingItem.quantity += quantity;
       } else {
-        state.push({ ...item, quantity: 1 })
+        console.log("Action Payload:", action.payload); // Log payload để kiểm tra
+        // Nếu sản phẩm chưa có, thêm mới vào giỏ hàng với số lượng
+        state.push({ ...item, quantity });
       }
 
-      // Lưu giỏ hàng vào localStorage
-      localStorage.setItem('cart', JSON.stringify(state))
+      // Lưu giỏ hàng vào localStorage với cấu trúc đúng
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     removeFromCart: (state, action) => {
       const updatedCart = state.filter(item => item.id !== action.payload)
@@ -45,7 +49,7 @@ export const cartSlice = createSlice({
       localStorage.setItem('cart', JSON.stringify(state))
     },
   },
-  extraReducers: builder => {},
+  extraReducers: builder => { },
 })
 
 export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions

@@ -10,11 +10,14 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { getProduct } from '../../../Features/Product/ProductSlice'
 import { storage_url } from '../../../Utils/baseUrl'
+import { addToCart } from '../../../Features/Cart/CartSlice'
+import SkeletonProductDetail from './SkeletonProductDetail'
 
 const ProductDetail = () => {
   // const { slug } = useParams()
   const dispatch = useDispatch()
   const { id } = useParams()
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     if (id !== undefined) {
@@ -34,6 +37,12 @@ const ProductDetail = () => {
     prodCate,
   } = useSelector(state => state.product)
 
+  const handleAddToCart = (data) => {
+    console.log("Product Data:", data);    // Log sản phẩm
+    console.log("Quantity:", quantity);    // Log số lượng
+    dispatch(addToCart({ item: data, quantity: Number(quantity) }))
+  }
+
   const items = [
     {
       href: '/thuong-mai',
@@ -44,7 +53,6 @@ const ProductDetail = () => {
     },
   ]
 
-  console.log()
   return (
     <div className="product">
       <MetaSeo title={prodName} description={'sanpham'} keyword={'sanpham'} />
@@ -53,7 +61,7 @@ const ProductDetail = () => {
         <BreadCrumbCustom items={items} />
       </div>
       <div className="content">
-        {isLoading ? <p>Loading...</p> : (
+        {isLoading ? <SkeletonProductDetail /> : (
           <>
             <div className="image-container">
               <Carousel
@@ -89,9 +97,16 @@ const ProductDetail = () => {
               <hr className="divider" />
               <div className="quantity-selector">
                 <span className="quantity-label">Số lượng: </span>
-                <InputNumber min={1} defaultValue={1} />
+                <InputNumber min={1} defaultValue={quantity} onChange={e => setQuantity(Number(e.target.value))} />
               </div>
-              <button className="add-to-cart">Thêm vào giỏ hàng</button>
+              <button className="add-to-cart" onClick={() => {
+                handleAddToCart({
+                  id: Number(id),
+                  name: prodName,
+                  price: prodPrice,
+                  images: prodImages
+                })
+              }}>Thêm vào giỏ hàng</button>
               <p className="product-category">
                 <span className="category-label">Danh mục: </span>
                 {prodCate?.name}
