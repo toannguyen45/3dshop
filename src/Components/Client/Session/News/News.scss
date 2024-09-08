@@ -17,13 +17,16 @@
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 30px;
+
     .title-part1 {
       color: white;
     }
+
     .title-part2 {
       color: $color-primary;
     }
   }
+
   .news-items {
     display: flex;
     justify-content: space-between;
@@ -68,7 +71,7 @@
         position: relative;
         height: 200px;
         margin-bottom: 15px;
-        transition: transform 0.3s ease-in-out;
+        // transition: transform 0.3s ease-in-out;
 
         img {
           width: 100%;
@@ -87,20 +90,22 @@
         }
       }
 
-      :hover {
-        .news-image {
-          transform: scale(1.05);
-        }
-      }
+      // :hover {
+      //   .news-image {
+      //     transform: scale(1.05);
+      //   }
+      // }
 
       .card-body {
         h3 {
-          font-size: 18px;
+          text-transform: uppercase;
+          font-size: 1.5em;
           margin-bottom: 10px;
           font-weight: 500;
         }
+
         p {
-          font-size: 14px;
+          font-size: 1em;
           margin-bottom: 10px;
         }
       }
@@ -114,12 +119,10 @@
 }
 
 /* Large  */
-@media (max-width: 1199px) {
-}
+@media (max-width: 1199px) {}
 
 /* Desktop  */
-@media (max-width: 991px) {
-}
+@media (max-width: 991px) {}
 
 /* tablets  */
 @media (max-width: 767px) {
@@ -132,5 +135,4 @@
 }
 
 /* phones  */
-@media (max-width: 575px) {
-}
+@media (max-width: 575px) {}

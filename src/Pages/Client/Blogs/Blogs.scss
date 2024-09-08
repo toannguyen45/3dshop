@@ -80,16 +80,22 @@
       }
 
       .news-item-more {
-        padding: 0.5em 1.5em;
-        color: white;
-        background-color: #00712d;
-        border: none;
+        text-transform: uppercase;
+        padding: 1em 2.5em;
+        background-color: transparent;
+        border: 2px solid $color-primary;
         cursor: pointer;
-        font-size: 1em;
-        font-weight: 400;
+        font-size: 1.2em;
+        font-weight: 500;
         margin-top: 1rem;
-        display: inline-flex;
-        width: 124px;
+        color: black;
+        width: max-content;
+        display: inline-block;
+
+        &:hover {
+          background-color: $color-primary;
+          color: black;
+        }
       }
     }
   }
@@ -104,12 +110,10 @@
 }
 
 /* Desktop  */
-@media (max-width: 991px) {
-}
+@media (max-width: 991px) {}
 
 /* tablets  */
-@media (max-width: 767px) {
-}
+@media (max-width: 767px) {}
 
 /* phones  */
 @media (max-width: 575px) {
