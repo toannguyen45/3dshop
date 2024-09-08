@@ -20,7 +20,7 @@
       color: black;
     }
     .title-part2 {
-      color: #f4ce14;
+      color: $color-primary;
     }
   }
   .news-items {
@@ -61,7 +61,7 @@
 
         a {
           text-decoration: none;
-          color: $btn-color;
+          color: $color-primary;
         }
       }
 
@@ -110,7 +110,7 @@
 
   .view-more {
     text-decoration: none;
-    color: $btn-color;
+    color: $color-primary;
   }
 }
 

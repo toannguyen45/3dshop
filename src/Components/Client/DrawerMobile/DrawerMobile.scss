@@ -20,11 +20,11 @@
     text-transform: uppercase;
     font-size: 1rem;
     color: black;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .active {
-    color: $color-green;
+    color: $color-primary;
   }
 
   .contact {
@@ -37,6 +37,6 @@
   .cart {
     font-size: 1rem;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
   }
 }

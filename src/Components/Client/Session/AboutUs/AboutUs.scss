@@ -23,7 +23,7 @@
       text-transform: uppercase;
 
       .title-part2 {
-        color: #f4ce14;
+        color: $color-primary;
       }
     }
 
@@ -88,28 +88,14 @@
   }
 }
 
-/* tablets  */
-@media (max-width: 767px) {
-}
-
 /* phones  */
 @media (max-width: 575px) {
   .about-us-session {
     flex-direction: column;
 
     .about-us-content {
-      .about-us-title {
-        .title-part1 {
-        }
-        .title-part2 {
-        }
-      }
-
       .about-us-company {
         font-size: 1em;
-      }
-
-      .about-us-description {
       }
 
       .about-us-button {
