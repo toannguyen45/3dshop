@@ -49,20 +49,24 @@
     .slider-button {
       text-transform: uppercase;
       padding: 1em 2em;
-      background-color: $color-primary;
       border: none;
       cursor: pointer;
       font-size: 1.2em;
+      color: white;
       font-weight: 500;
-      color: black;
-      font-weight: 700;
+      border: 2px solid $color-primary;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $color-primary;
+        color: black;
+      }
     }
   }
 }
 
 /* Large  */
-@media (max-width: 1199px) {
-}
+@media (max-width: 1199px) {}
 
 /* Desktop  */
 @media (max-width: 991px) {
@@ -72,11 +76,14 @@
         height: 400px;
       }
     }
+
     .slider-content {
       padding: 1.5rem;
+
       .text-line-one {
         font-size: 2.5em;
       }
+
       .text-line-two {
         font-size: 2em;
       }
@@ -85,8 +92,7 @@
 }
 
 /* tablets  */
-@media (max-width: 767px) {
-}
+@media (max-width: 767px) {}
 
 /* phones  */
 @media (max-width: 575px) {
@@ -95,6 +101,7 @@
       .text-line-one {
         font-size: 2em;
       }
+
       .text-line-two {
         font-size: 1.2em;
       }

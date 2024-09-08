@@ -1,6 +1,7 @@
 import React from 'react'
 import './Advise.scss'
 import { HomeOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons'
+import ButtonCustom from '../../../ButtonCustom/ButtonCustom'
 
 const Advise = () => {
   return (
@@ -45,9 +46,7 @@ const Advise = () => {
 
             <textarea name="message" placeholder="Nội dung" required />
 
-            <button className="contact-us-button" type="submit">
-              Gửi ngay
-            </button>
+           <ButtonCustom title="Gửi ngay" type='submit'/>
           </form>
         </div>
       </div>
