@@ -2,8 +2,6 @@ import { Button, Form, Input, Space } from 'antd'
 import React, { useEffect, useState } from 'react'
 import BreadCrumbCus from '@components/Admin/BreadCrumbCus'
 import { useTranslation } from 'react-i18next'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -17,6 +15,7 @@ import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 import './BlogCreate.scss'
 import { storage_url } from '../../../Utils/baseUrl'
+import MyEditor from '../../../Components/MyEditor/MyEditor'
 
 const BlogCreate = () => {
   const { t } = useTranslation('translation')
@@ -276,29 +275,11 @@ const BlogCreate = () => {
                 : ''
             }
           >
-            <ReactQuill
-              theme="snow"
-              className="react-quill"
+            <MyEditor
+              // className="react-quill"
               name="content"
               onChange={formik.handleChange('content')}
               value={formik.values.content}
-              modules={{
-                toolbar: [
-                  [{ font: [] }],
-                  [{ size: ['small', false, 'large', 'huge'] }],
-                  ['bold', 'italic', 'underline', 'strike'],
-                  [{ color: [] }, { background: [] }],
-                  [{ script: 'sub' }, { script: 'super' }],
-                  [{ header: '1' }, { header: '2' }],
-                  ['blockquote', 'code-block'],
-                  [{ list: 'ordered' }, { list: 'bullet' }],
-                  [{ indent: '-1' }, { indent: '+1' }],
-                  [{ direction: 'rtl' }],
-                  [{ align: [] }],
-                  ['link', 'image', 'video'],
-                  ['clean'],
-                ],
-              }}
             />
           </Form.Item>
 
