@@ -46,7 +46,7 @@ const Blog = () => {
             <Skeleton count={4} />
           ) : (
             <>
-              <h2>{blog?.title}</h2>
+              <h2 className='blog-title'>{blog?.title}</h2>
               <hr className="divider" />
               <div className="blog-item-meta">
                 <span className="meta-label">Ngày đăng: </span>

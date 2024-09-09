@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactQuill from 'react-quill'
+import ReactQuill, { Quill } from 'react-quill'
 import 'react-quill/dist/quill.snow.css' // Import Quill styles
-import Quill from 'quill'
 import ImageUploader from 'quill-image-uploader'
 
 // Import quill-image-uploader styles
@@ -9,6 +8,8 @@ import 'quill-image-uploader/dist/quill.imageUploader.min.css'
 
 // Register the image uploader module
 Quill.register('modules/imageUploader', ImageUploader)
+
+import axiosInst from '../../Utils/axiosInstance'
 
 const modules = {
   toolbar: {
@@ -31,25 +32,23 @@ const modules = {
   imageUploader: {
     upload: file => {
       return new Promise((resolve, reject) => {
-        const formData = new FormData()
-        formData.append('file', file)
+        const formData = new FormData();
+        formData.append('file', file);
 
-        fetch('http://localhost/api/upload-image', {
-          method: 'POST',
-          body: formData,
-        })
-          .then(response => response.json())
-          .then(data => {
+        axiosInst
+          .post('/upload-image', formData)
+          .then(response => {
+            const { data } = response;
             if (data.url) {
-              resolve(data.url) // Resolve with the URL of the uploaded image
+              resolve(data.url); // Resolve với URL của ảnh sau khi upload thành công
             } else {
-              reject('Upload failed')
+              reject('Upload failed');
             }
           })
           .catch(error => {
-            reject(error)
-          })
-      })
+            reject(error);
+          });
+      });
     },
   },
 }
