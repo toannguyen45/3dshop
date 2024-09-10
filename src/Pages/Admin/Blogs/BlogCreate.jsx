@@ -373,7 +373,7 @@ const BlogCreate = () => {
           </Form.Item>
         </div>
 
-        <Button type="primary" htmlType="submit" disabled={isLoading}>
+        <Button type="primary" htmlType="submit" loading={isLoading}>
           Submit
         </Button>
       </Form>

@@ -89,6 +89,10 @@ const CateCreate = () => {
     },
   ], [id]);
 
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       <BreadCrumbCus items={items} />
