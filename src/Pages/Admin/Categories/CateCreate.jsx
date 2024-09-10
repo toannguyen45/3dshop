@@ -1,6 +1,6 @@
 import { Space, Form, Button, Input } from 'antd'
 import { useFormik } from 'formik'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 
 import {
   createNewCat,
-  resetState,
+  resetCategoryState,
   getCategory,
   updateCategory,
 } from '../../../Features/Category/CategorySlice'
@@ -25,9 +25,9 @@ const CateCreate = () => {
     if (id !== undefined) {
       dispatch(getCategory(id))
     } else {
-      dispatch(resetState())
+      dispatch(resetCategoryState())
     }
-  }, [id])
+  }, [dispatch, id])
 
   const {
     isSuccess,
@@ -43,18 +43,18 @@ const CateCreate = () => {
     if (isSuccess && createdCategory) {
       toast.success('Category Added Successfullly!')
       navigate('/admin/categories')
-      dispatch(resetState())
+      dispatch(resetCategoryState())
     }
     if (isSuccess && updatedCategory) {
       toast.success('Category Updated Successfullly!')
       navigate('/admin/categories')
-      dispatch(resetState())
+      dispatch(resetCategoryState())
     }
     if (isError) {
       toast.error('Something Went Wrong!')
-      dispatch(resetState())
+      dispatch(resetCategoryState())
     }
-  }, [isSuccess, isError, isLoading, createdCategory, updatedCategory])
+  }, [isSuccess, isError, isLoading, createdCategory, updatedCategory, navigate, dispatch])
 
   let schema = yup.object().shape({
     name: yup.string().required('Name is Required'),
@@ -79,7 +79,7 @@ const CateCreate = () => {
     },
   })
 
-  const items = [
+  const items = useMemo(() => [
     {
       href: '/admin/categories',
       title: 'Category',
@@ -87,7 +87,7 @@ const CateCreate = () => {
     {
       title: id !== undefined ? 'Edit' : 'Add',
     },
-  ]
+  ], [id]);
 
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
@@ -137,7 +137,7 @@ const CateCreate = () => {
               onBlur={formik.handleBlur}
             />
           </Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             Submit
           </Button>
         </Form>

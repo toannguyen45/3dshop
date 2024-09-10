@@ -56,7 +56,7 @@ export const deleteCategory = createAsyncThunk(
   }
 )
 
-export const resetState = createAction('Reset_all')
+export const resetCategoryState = createAction('category/resetState')
 
 const initialState = {
   categories: [],
@@ -102,7 +102,7 @@ export const categorySlice = createSlice({
         state.isSuccess = false
         state.message = action.error
       })
-      .addCase(resetState, () => initialState)
+      .addCase(resetCategoryState, () => initialState)
       .addCase(getCategory.pending, state => {
         state.isLoading = true
       })
