@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBlogsHome } from '../../../../Features/Blog/BlogSlice'
 import { storage_url } from '../../../../Utils/baseUrl'
 import { formatDateTimeFull } from '../../../../Utils/format'
+import SkeletonNewCard from './SkeletonNewCard'
 
 const News = () => {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ const News = () => {
 
   useEffect(() => {
     dispatch(getBlogsHome())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="news-section padding-x-default padding-y-default">
@@ -22,8 +23,10 @@ const News = () => {
         <span className="title-part2"> nổi bật</span>
       </h2>
       <div className="news-items">
-        {blogsHome?.length > 0 ? (
-          blogsHome?.map(newsItem => (
+        {isLoading ? (
+          <SkeletonNewCard amount={3}/>
+        ) : blogsHome?.length > 0 ? (
+          blogsHome.map(newsItem => (
             <div className="news-item card-news" key={newsItem.id}>
               <Link to={`/tin-tuc/${newsItem.slug}`}>
                 <div className="news-image">

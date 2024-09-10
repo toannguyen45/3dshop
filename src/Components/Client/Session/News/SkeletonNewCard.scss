@@ -1,17 +1,12 @@
 .card-skeleton {
+  width: 100%;
   padding: 1rem;
   border: 1px solid #ccc;
   margin-bottom: 1rem;
   background-color: white;
+  margin-right: 1rem;
 
   .image-skeleton {
     margin-bottom: 1rem;
-  }
-
-  .button-skeleton {
-    width: 150px;
-    padding: 0.5em 1.5em;
-    margin-top: 1rem;
-    height: 70px;
   }
 }
