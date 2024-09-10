@@ -39,7 +39,7 @@ const BlogCreate = () => {
     } else {
       dispatch(resetState())
     }
-  }, [id])
+  }, [dispatch, id])
 
   const {
     isSuccess,
@@ -79,7 +79,7 @@ const BlogCreate = () => {
     if (isError) {
       toast.error('Something Went Wrong!')
     }
-  }, [isSuccess, isError, isLoading])
+  }, [isSuccess, isError, isLoading, createdBlog, updatedBlog, navigate, dispatch])
 
   const schema = useMemo(() => yup.object().shape({
     title: yup.string().required('Title is Required'),
