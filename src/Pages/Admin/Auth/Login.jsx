@@ -1,6 +1,6 @@
 import { Button, Card, Checkbox, Flex, Form, Input } from 'antd'
 import { useFormik } from 'formik'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -19,18 +19,21 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess && user) {
-      toast.success('Login Successfullly!')
-      navigate('/admin/dashboard')
+      toast.success('Login Successfully!');
+      navigate('/admin/dashboard');
     }
-  }, [isSuccess, isError, isLoading])
+    if (isError && message) {
+      toast.error(message);
+    }
+  }, [isSuccess, isError, user, message, navigate]);
 
-  let schema = yup.object().shape({
+  const schema = useMemo(() => yup.object().shape({
     email: yup
       .string()
-      .email('Email should be valid')
-      .required('Email is Required'),
-    password: yup.string().required('Password is Required'),
-  })
+      .email(t('Email should be valid'))
+      .required(t('Email is Required')),
+    password: yup.string().required(t('Password is Required')),
+  }), [t]);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -112,7 +115,7 @@ const Login = () => {
               span: 16,
             }}
           >
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={isLoading}>
               Submit
             </Button>
           </Form.Item>

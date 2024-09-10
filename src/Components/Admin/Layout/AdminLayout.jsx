@@ -10,13 +10,14 @@ import {
   ShopOutlined,
   TeamOutlined,
 } from '@ant-design/icons'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../Features/Auth/AuthSlice'
 import ScrollToTop from '../../ScrollToTop/ScrollToTop'
+import { toast } from 'react-toastify'
 
 const { Header, Sider, Content } = Layout
 
@@ -36,25 +37,40 @@ const AdminLayout = () => {
       dispatch(logout())
       navigate('/admin/login')
     }
-  }, [dispatch, history])
+  }, [dispatch, navigate])
 
-  const items = [
+  const handleMenuClick = useCallback(({ key }) => {
+    if (key === 'logout') {
+      dispatch(logout()); // Dispatch the logout action
+      toast.success('Logout successfully');
+      // Redirect to login page after logout
+      navigate('/admin/login');
+    } else {
+      toast.error('Something Went Wrong!');
+    }
+  }, [dispatch, navigate]); // Dependencies of useCallback
+
+  const items = useMemo(() => [
     {
+      label: '1st menu item',
       key: '1',
-      type: 'group',
-      label: 'Group title',
-      children: [
-        {
-          key: '1-1',
-          label: '1st menu item',
-        },
-        {
-          key: '1-2',
-          label: '2nd menu item',
-        },
-      ],
     },
-  ]
+    {
+      label: '2nd menu item',
+      key: '2',
+    },
+    {
+      label: '3rd menu item',
+      key: '3',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: 'Logout',
+      key: 'logout',
+    },
+  ], []);
 
   return (
     <Layout
@@ -150,9 +166,8 @@ const AdminLayout = () => {
               <Dropdown
                 menu={{
                   items,
+                  onClick: handleMenuClick,
                 }}
-                placement="bottomRight"
-                arrow
               >
                 <a onClick={e => e.preventDefault()}>
                   <Avatar src="url_to_your_profile_image" />
