@@ -1,17 +1,28 @@
 @import '../../Styles/variables';
 
 .custom-button {
-    text-transform: uppercase;
-    padding: 1em 2.5em;
-    cursor: pointer;
-    font-size: 1.2em;
-    color: black;
-    font-weight: 500;
-    border: 2px solid $color-primary;
-    background-color: white;
+  display: inline-flex;       
+  align-items: center;        
+  justify-content: center;    
+  text-transform: uppercase;
+  padding: 1em 2.5em !important;      
+  cursor: pointer;
+  font-size: 1.1em;         
+  color: black;
+  font-weight: 500;
+  border: 2px solid $color-primary;
+  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 0 !important;
+  height: auto !important;
 
-    &:hover {
-        background-color: $color-primary;
-        color: black;
-    }
+  &:hover {
+    background-color: $color-primary !important;
+    color: black !important;
+    border: 2px solid $color-primary !important;
+  }
+
+//   &:disabled {
+//     background-color: #cccccc;
+//   }
 }

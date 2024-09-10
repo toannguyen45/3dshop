@@ -54,7 +54,7 @@ const CateCreate = () => {
       toast.error('Something Went Wrong!')
       dispatch(resetState())
     }
-  }, [isSuccess, isError, isLoading])
+  }, [isSuccess, isError, isLoading, createdCategory, updatedCategory])
 
   let schema = yup.object().shape({
     name: yup.string().required('Name is Required'),

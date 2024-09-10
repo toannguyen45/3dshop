@@ -29,6 +29,7 @@ import Service from '@pages/Client/Service/Service'
 import Shop from '@pages/Client/Shop/Shop'
 import ProductDetail from '@pages/Client/ProductDetail/ProductDetail'
 import ShoppingCart from '@pages/Client/ShoppingCart/ShoppingCart'
+import Checkout from '@pages/Client/Checkout/Checkout'
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: '/gio-hang',
         element: <ShoppingCart />,
+      },
+      {
+        path: '/gio-hang/thanh-toan',
+        element: <Checkout />,
       },
     ],
   },

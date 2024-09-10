@@ -10,9 +10,12 @@ import {
 } from '../../../Features/Cart/CartSlice'
 import { storage_url } from '../../../Utils/baseUrl'
 import { formatPrice } from '../../../Utils/format'
+import ButtonCustom from '../../../Components/ButtonCustom/ButtonCustom'
+import { useNavigate } from 'react-router-dom'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const cart = useSelector(state => state.cart)
 
   // Tính toán tổng giá trị giỏ hàng
@@ -126,19 +129,19 @@ const ShoppingCart = () => {
         <div className="summary">
           <div className="card-total">
             <h2 className="summary-title">Thông tin đơn hàng</h2>
-            <p>
+            <p className='info-money'>
               <span className="label">Tạm tính:</span>
               <span className="value">{formatPrice(subtotal)} đ</span>
             </p>
-            <p>
+            <p className='info-money'>
               <span className="label">Tiền ship:</span>
               <span className="value">{formatPrice(shippingFee)} đ</span>
             </p>
-            <p>
+            <p className='info-money'>
               <span className="label">Tổng:</span>
               <span className="value">{formatPrice(total)} đ</span>
             </p>
-            <button className="checkout">Thanh toán</button>
+            <ButtonCustom title="Tiến hành thanh toán" onClick={() => navigate('/gio-hang/thanh-toan')} />
           </div>
         </div>
       </div>

@@ -1,11 +1,20 @@
 import React from 'react';
-import './ButtonCustom.scss'
+import { Button } from 'antd';
+import './ButtonCustom.scss';
 
-const ButtonCustom = ({ title, onClick, type = 'button' }) => {
+const ButtonCustom = ({ title, onClick, type = 'button', disabled = false, loading = false, htmlType = 'button', ...rest }) => {
   return (
-    <button className="custom-button" onClick={onClick} type={type}>
+    <Button
+      className="custom-button"
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      loading={loading}
+      htmlType={htmlType}
+      {...rest} // Spread additional props to Button
+    >
       {title}
-    </button>
+    </Button>
   );
 };
 

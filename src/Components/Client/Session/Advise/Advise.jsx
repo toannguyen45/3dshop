@@ -2,6 +2,7 @@ import React from 'react'
 import './Advise.scss'
 import { HomeOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons'
 import ButtonCustom from '../../../ButtonCustom/ButtonCustom'
+import ContactForm from '../../ContactForm/ContactForm'
 
 const Advise = () => {
   return (
@@ -39,15 +40,7 @@ const Advise = () => {
       <div className="advise-right">
         <div className="card-advise">
           <h2>Liên hệ ngay</h2>
-          <form>
-            <input type="text" name="name" placeholder="Họ tên" required />
-
-            <input type="email" name="email" placeholder="Email" required />
-
-            <textarea name="message" placeholder="Nội dung" required />
-
-           <ButtonCustom title="Gửi ngay" type='submit'/>
-          </form>
+          <ContactForm/>
         </div>
       </div>
     </div>

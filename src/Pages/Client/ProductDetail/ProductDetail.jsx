@@ -92,7 +92,7 @@ const ProductDetail = () => {
               <p className="product-price">
                 <span className="price-label">Giá:</span>
                 <span className="price-value">{formatPrice(prodPrice)}</span>
-                VNĐ
+                đ
               </p>
               <hr className="divider" />
               <div className="quantity-selector">

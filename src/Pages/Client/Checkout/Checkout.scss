@@ -1,0 +1,56 @@
+@import '../../../Styles/variables';
+
+.checkout {
+  padding-left: $padding-x-desk;
+  padding-right: $padding-x-desk;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h2 {
+        text-transform: uppercase;
+        font-size: 2em;
+        font-weight: 600;
+        color: $color-primary;
+      }
+
+      .divider {
+        border: 0;
+        border-top: 1px solid $color-primary;
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .info{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+
+        .form-info{
+          flex: 1;
+        }
+
+        .total-pay{
+          flex: 1;
+          border: 1px solid;
+          padding: 1rem;
+
+          h3{
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+          }
+
+          .info-products{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        }
+      }
+  }
+}
