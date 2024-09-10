@@ -89,10 +89,14 @@ export const getBlogsHome = createAsyncThunk(
   }
 )
 
-export const resetState = createAction('Reset_all')
+export const resetBlogState = createAction('blog/resetState')
 
 const initialState = {
   blogs: [],
+  blog: null,
+  createdBlog: null,
+  updatedBlog: null,
+  deletedBlog: null,
   isError: false,
   isLoading: false,
   isSuccess: false,
@@ -135,7 +139,7 @@ export const blogSlice = createSlice({
         state.isSuccess = false
         state.message = action.error
       })
-      .addCase(resetState, () => initialState)
+      .addCase(resetBlogState, () => initialState)
       .addCase(getBlog.pending, state => {
         state.isLoading = true
       })

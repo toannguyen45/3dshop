@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {
   createNewBlog,
   getBlog,
-  resetState,
+  resetBlogState,
   updateBlog,
 } from '../../../Features/Blog/BlogSlice'
 import * as yup from 'yup'
@@ -37,9 +37,9 @@ const BlogCreate = () => {
     if (id !== undefined) {
       dispatch(getBlog(id))
     } else {
-      dispatch(resetState())
+      dispatch(resetBlogState())
     }
-  }, [id])
+  }, [dispatch, id])
 
   const {
     isSuccess,
@@ -69,17 +69,17 @@ const BlogCreate = () => {
     if (isSuccess && createdBlog) {
       toast.success('Blog Added Successfullly!')
       navigate('/admin/blogs')
-      dispatch(resetState())
+      dispatch(resetBlogState())
     }
     if (isSuccess && updatedBlog) {
       toast.success('Blog Updated Successfullly!')
       navigate('/admin/blogs')
-      dispatch(resetState())
+      dispatch(resetBlogState())
     }
     if (isError) {
       toast.error('Something Went Wrong!')
     }
-  }, [isSuccess, isError, isLoading])
+  }, [isSuccess, isError, isLoading, createdBlog, updatedBlog, navigate, dispatch])
 
   const schema = useMemo(() => yup.object().shape({
     title: yup.string().required('Title is Required'),
