@@ -12,6 +12,7 @@ import { storage_url } from '../../../Utils/baseUrl'
 import { formatPrice } from '../../../Utils/format'
 import ButtonCustom from '../../../Components/ButtonCustom/ButtonCustom'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
@@ -30,10 +31,12 @@ const ShoppingCart = () => {
 
   const handleRemove = id => {
     dispatch(removeFromCart(id))
+    toast.success('Xoá sản phẩm khỏi giỏ hàng thành công!')
   }
 
   const handleQuantityChange = (id, quantity) => {
     dispatch(updateQuantity({ id, quantity }))
+    toast.success('Cập nhật giỏ hàng thành công!')
   }
 
   const items = [

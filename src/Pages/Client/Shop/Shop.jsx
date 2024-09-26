@@ -12,6 +12,7 @@ import { AppstoreOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { formatPrice } from '../../../Utils/format'
 import SkeletonProd from './SkeletonProd'
 import { addToCart } from '../../../Features/Cart/CartSlice'
+import { toast } from 'react-toastify'
 
 const { Option } = Select
 
@@ -35,6 +36,7 @@ const Shop = () => {
       images: product.images,
     }
     dispatch(addToCart({ item: data, quantity: 1 }));
+    toast.success('Thêm vào giỏ hàng thành công!')
   }
 
   const [currentPage, setCurrentPage] = useState(1)

@@ -28,12 +28,13 @@ export const cartSlice = createSlice({
       localStorage.setItem('cart', JSON.stringify(state));
     },
     removeFromCart: (state, action) => {
-      const updatedCart = state.filter(item => item.id !== action.payload)
+      const index = state.findIndex(item => item.id === action.payload);
+      if (index !== -1) {
+        state.splice(index, 1); // Xóa item từ giỏ hàng
+      }
 
       // Lưu giỏ hàng vào localStorage
-      localStorage.setItem('cart', JSON.stringify(updatedCart))
-
-      return updatedCart
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload
