@@ -7,6 +7,8 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { formatPrice } from '../../../Utils/format'
 
+const { TextArea } = Input;
+
 const Checkout = () => {
 
   const items = [
@@ -109,6 +111,46 @@ const Checkout = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder='Nhập email'
+              />
+            </Form.Item>
+            <Form.Item
+              label='Địa chỉ'
+              required
+              validateStatus={
+                formik.errors.address && formik.touched.address ? 'error' : ''
+              }
+              help={
+                formik.errors.address && formik.touched.address
+                  ? formik.errors.address
+                  : ''
+              }
+            >
+              <Input
+                name="address"
+                value={formik.values.address}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder='Nhập địa chỉ'
+              />
+            </Form.Item>
+            <Form.Item
+              label='Ghi chú'
+              validateStatus={
+                formik.errors.note && formik.touched.note ? 'error' : ''
+              }
+              help={
+                formik.errors.note && formik.touched.note
+                  ? formik.errors.note
+                  : ''
+              }
+            >
+              <TextArea
+                rows={4}
+                name="note"
+                value={formik.values.note}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder='Ghi chú về đơn hàng'
               />
             </Form.Item>
           </Form>

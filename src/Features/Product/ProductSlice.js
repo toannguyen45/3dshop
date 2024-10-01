@@ -13,7 +13,7 @@ export const createNewProduct = createAsyncThunk(
 )
 
 export const getProducts = createAsyncThunk(
-  'product/get-categories',
+  'product/get-products',
   async (tableParams, thunkAPI) => {
     try {
       return await ProductService.getProducts(tableParams)
@@ -79,7 +79,9 @@ export const productSlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        state.createdProduct = action.payload
+
+        state.createdProduct = action.payload.data;
+        state.products.push(state.createdProduct);
       })
       .addCase(createNewProduct.rejected, (state, action) => {
         state.isLoading = false
@@ -94,7 +96,7 @@ export const productSlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        state.products = action.payload
+        state.products = action.payload.data
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.isLoading = false
@@ -131,7 +133,12 @@ export const productSlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        state.updatedProduct = action.payload
+        state.updatedProduct = action.payload.data
+
+        const index = state.products.data.findIndex(product => product.id === state.updatedProduct.id);
+        if (index !== -1) {
+          state.products.data[index] = state.updatedProduct;
+        }
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.isLoading = false
@@ -143,10 +150,15 @@ export const productSlice = createSlice({
         state.isLoading = true
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isError = false
-        state.isSuccess = true
-        state.deletedProduct = action.payload
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.deletedProduct = action.payload;
+
+        const { id } = action.payload.data;
+        if (id) {
+          state.products.data = state.products.data.filter(product => product.id !== id);
+        }
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.isLoading = false

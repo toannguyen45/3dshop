@@ -37,7 +37,7 @@ const ProductCreate = () => {
 
   useEffect(() => {
     dispatch(getCategories())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (id !== undefined) {
@@ -45,7 +45,7 @@ const ProductCreate = () => {
     } else {
       dispatch(resetState())
     }
-  }, [id])
+  }, [dispatch, id])
 
   const {
     isSuccess,
@@ -63,27 +63,26 @@ const ProductCreate = () => {
 
   const { categories } = useSelector(state => state.category)
 
-  const [previewImages, setPreviewImages] = useState(prodImages)
+  const [previewImages, setPreviewImages] = useState(prodImages ?? []);
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const previewFiles = files.map((file) => URL.createObjectURL(file));
+
+    // Set preview images, replacing the old ones
+    setPreviewImages(previewFiles);
+
+    // Set Formik field value for 'images', replacing the old files
+    formik.setFieldValue('images', e.target.files);
+  };
 
   useEffect(() => {
-    setPreviewImages(prodImages)
-  }, [prodImages])
-
-  const handleImageChange = e => {
-    if (e.target.files.length > 0) {
-      formik.setFieldValue('images', e.target.files)
-
-      // Create URL for each selected file
-      const filesArray = Array.from(e.target.files).map(file =>
-        URL.createObjectURL(file)
-      )
-
-      // Store URLs in the state
-      setPreviewImages(filesArray)
-
-      return () => filesArray.forEach(url => URL.revokeObjectURL(url))
-    } else setPreviewImages(null)
-  }
+    // Update preview images when prodImages changes (for editing case)
+    if (prodImages) {
+      const serverImages = prodImages.map((item) => `${storage_url}/${item.image}`);
+      setPreviewImages(serverImages);
+    }
+  }, [prodImages]);
 
   useEffect(() => {
     if (isSuccess && createdProduct) {
@@ -99,7 +98,7 @@ const ProductCreate = () => {
     if (isError) {
       toast.error('Something Went Wrong!')
     }
-  }, [isSuccess, isError, isLoading])
+  }, [isSuccess, isError, isLoading, createdProduct, updatedProduct, navigate, dispatch])
 
   let schema = yup.object().shape({
     name: yup.string().required('Name is Required'),
@@ -242,15 +241,22 @@ const ProductCreate = () => {
               onBlur={formik.handleBlur}
             />
           </Form.Item>
-          <Form.Item label={t('product.category')}>
+          <Form.Item label={t('product.category')} required
+            validateStatus={
+              formik.errors.category && formik.touched.category ? 'error' : ''
+            }
+            help={
+              formik.errors.category && formik.touched.category
+                ? formik.errors.category
+                : ''
+            }>
             <Select
-              placeholder="Select a option and change input text above"
+              placeholder="Select a option"
               name="category"
               onChange={formik.handleChange('category')}
               onBlur={formik.handleBlur('category')}
               value={formik.values.category}
             >
-              <Select.Option value="male">Select option</Select.Option>
               {categories?.data?.data.map((item, j) => {
                 return (
                   <Select.Option key={j} value={String(item?.id)}>
@@ -366,19 +372,15 @@ const ProductCreate = () => {
                 marginTop: '10px',
               }}
             >
-              {previewImages && previewImages?.map((item, index) => {
-                console.log(item, 'item')
-                return (
-                  <img
-                    key={index}
-                    src={`${storage_url}/${item.image}`}
-                    alt="Preview"
-                    width="200"
-                    height={200}
-                  />
-                )
-              }
-              )}
+              {previewImages && previewImages.map((item, index) => (
+                <img
+                  key={index}
+                  src={item} // Use the object URL or server URL
+                  alt="Preview"
+                  width="200"
+                  height={200}
+                />
+              ))}
             </div>
           </Form.Item>
 

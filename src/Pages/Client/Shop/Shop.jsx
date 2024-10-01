@@ -69,8 +69,8 @@ const Shop = () => {
           <h2>Danh mục</h2>
           <hr className="divider" />
           <ul className="cate-list">
-            {categories?.data?.data.length > 0 ? (
-              categories?.data?.data.map(category => (
+            {categories?.data?.length > 0 ? (
+              categories?.data?.map(category => (
                 <li key={category.id}>
                   <label>
                     <input type="checkbox" value={category.name} />
@@ -111,7 +111,7 @@ const Shop = () => {
             <SkeletonProd amount={2} />
           ) : viewMode === 'grid' ? (
             <div className="product-grid">
-              {products?.data?.data?.map((product, index) => (
+              {products?.data?.map((product, index) => (
                 <div key={index} className="product-card">
                   <div className="product-info">
                     <Link

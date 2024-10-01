@@ -52,8 +52,8 @@ const ProductList = () => {
         ...prev,
         pagination: {
           ...prev.pagination,
-          total: products.data.total,
-          current: products.data.current_page,
+          total: products.total,
+          current: products.current_page,
         },
       }))
     }
@@ -81,6 +81,12 @@ const ProductList = () => {
   }
 
   const hideModal = () => {
+    setOpen(false)
+  }
+
+  const deleteAProduct = e => {
+    dispatch(deleteProduct(e))
+
     setOpen(false)
   }
 
@@ -147,15 +153,6 @@ const ProductList = () => {
     },
   ]
 
-  const deleteAProduct = e => {
-    dispatch(deleteProduct(e))
-
-    setOpen(false)
-    setTimeout(() => {
-      dispatch(getProducts())
-    }, 100)
-  }
-
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       <BreadCrumbCus items={items} />
@@ -172,7 +169,7 @@ const ProductList = () => {
         <Table
           columns={columns}
           rowKey={record => record.id}
-          dataSource={products?.data?.data}
+          dataSource={products?.data}
           pagination={{
             ...tableParams.pagination,
             showSizeChanger: true,

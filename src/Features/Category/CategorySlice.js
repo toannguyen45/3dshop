@@ -79,7 +79,9 @@ export const categorySlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        state.createdCategory = action.payload
+
+        state.createdCategory = action.payload.data
+        state.categories.push(state.createdCategory);
       })
       .addCase(createNewCat.rejected, (state, action) => {
         state.isLoading = false
@@ -94,7 +96,7 @@ export const categorySlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
-        state.categories = action.payload
+        state.categories = action.payload.data
       })
       .addCase(getCategories.rejected, (state, action) => {
         state.isLoading = false
@@ -126,7 +128,12 @@ export const categorySlice = createSlice({
         state.isLoading = false
         state.isError = false
         state.isSuccess = true
+
         state.updatedCategory = action.payload
+        const index = state.categories.data.findIndex(cate => cate.id === state.updatedCategory.id);
+        if (index !== -1) {
+          state.categories.data[index] = state.updatedCategory;
+        }
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.isLoading = false
@@ -142,6 +149,11 @@ export const categorySlice = createSlice({
         state.isError = false
         state.isSuccess = true
         state.deletedCategory = action.payload
+
+        const { id } = action.payload.data;
+        if (id) {
+          state.categories.data = state.categories.data.filter(cate => cate.id !== id);
+        }
       })
       .addCase(deleteCategory.rejected, (state, action) => {
         state.isLoading = false

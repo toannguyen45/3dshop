@@ -44,8 +44,8 @@ const CateList = () => {
         ...prev,
         pagination: {
           ...prev.pagination,
-          total: categories.data.total,
-          current: categories.data.current_page,
+          total: categories.total,
+          current: categories.current_page,
         },
       }))
     }
@@ -117,9 +117,6 @@ const CateList = () => {
     dispatch(deleteCategory(e))
 
     setOpen(false)
-    setTimeout(() => {
-      dispatch(getCategories())
-    }, 100)
   }
 
   return (
@@ -138,7 +135,7 @@ const CateList = () => {
         <Table
           columns={columns}
           rowKey={record => record.id}
-          dataSource={categories?.data?.data}
+          dataSource={categories?.data}
           pagination={{
             ...tableParams.pagination,
             showSizeChanger: true,

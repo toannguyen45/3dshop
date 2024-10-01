@@ -19,6 +19,7 @@ const ShoppingCart = () => {
   const navigate = useNavigate()
   const cart = useSelector(state => state.cart)
 
+  console.log(cart, 'cart')
   // Tính toán tổng giá trị giỏ hàng
   const subtotal = cart.reduce(
     (total, item) => total + item.quantity * item.price,
@@ -130,22 +131,28 @@ const ShoppingCart = () => {
           <Table columns={columns} dataSource={cart} />
         </div>
         <div className="summary">
+
           <div className="card-total">
             <h2 className="summary-title">Thông tin đơn hàng</h2>
-            <p className='info-money'>
-              <span className="label">Tạm tính:</span>
-              <span className="value">{formatPrice(subtotal)} đ</span>
-            </p>
-            <p className='info-money'>
-              <span className="label">Tiền ship:</span>
-              <span className="value">{formatPrice(shippingFee)} đ</span>
-            </p>
-            <p className='info-money'>
-              <span className="label">Tổng:</span>
-              <span className="value">{formatPrice(total)} đ</span>
-            </p>
-            <ButtonCustom title="Tiến hành thanh toán" onClick={() => navigate('/gio-hang/thanh-toan')} />
+            {cart.length > 0 ? (
+              <>
+                <p className='info-money'>
+                  <span className="label">Tạm tính:</span>
+                  <span className="value">{formatPrice(subtotal)} đ</span>
+                </p>
+                <p className='info-money'>
+                  <span className="label">Tiền ship:</span>
+                  <span className="value">{formatPrice(shippingFee)} đ</span>
+                </p>
+                <p className='info-money'>
+                  <span className="label">Tổng:</span>
+                  <span className="value">{formatPrice(total)} đ</span>
+                </p>
+                <ButtonCustom title="Tiến hành thanh toán" onClick={() => navigate('/gio-hang/thanh-toan')} />
+              </>
+            ) : ''}
           </div>
+
         </div>
       </div>
     </div>

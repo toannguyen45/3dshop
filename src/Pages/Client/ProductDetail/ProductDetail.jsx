@@ -12,6 +12,7 @@ import { getProduct } from '../../../Features/Product/ProductSlice'
 import { storage_url } from '../../../Utils/baseUrl'
 import { addToCart } from '../../../Features/Cart/CartSlice'
 import SkeletonProductDetail from './SkeletonProductDetail'
+import { toast } from 'react-toastify'
 
 const ProductDetail = () => {
   // const { slug } = useParams()
@@ -23,7 +24,7 @@ const ProductDetail = () => {
     if (id !== undefined) {
       dispatch(getProduct(id))
     }
-  }, [id])
+  }, [dispatch, id])
 
   const {
     isSuccess,
@@ -38,9 +39,8 @@ const ProductDetail = () => {
   } = useSelector(state => state.product)
 
   const handleAddToCart = (data) => {
-    console.log("Product Data:", data);    // Log sản phẩm
-    console.log("Quantity:", quantity);    // Log số lượng
     dispatch(addToCart({ item: data, quantity: Number(quantity) }))
+    toast.success('Thêm vào giỏ hàng thành công!')
   }
 
   const items = [
@@ -97,7 +97,10 @@ const ProductDetail = () => {
               <hr className="divider" />
               <div className="quantity-selector">
                 <span className="quantity-label">Số lượng: </span>
-                <InputNumber min={1} defaultValue={quantity} onChange={e => setQuantity(Number(e.target.value))} />
+                <InputNumber min={1}
+                  defaultValue={quantity}
+                  onChange={value => setQuantity(value)}
+                />
               </div>
               <button className="add-to-cart" onClick={() => {
                 handleAddToCart({
